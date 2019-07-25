@@ -7,3 +7,10 @@ For guest wireless access, you need to connect to UTC initially, then they'll co
 
 Discussion board:
 https://etherpad.wikimedia.org/p/UTC-R-bootcamp2019
+
+Day 1
+
+
+
+Day 2
+
