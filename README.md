@@ -9,8 +9,23 @@ Discussion board:
 https://etherpad.wikimedia.org/p/UTC-R-bootcamp2019
 
 Day 1
+8am-8:30 breakfast	
+8:30-8:45 overview	overview
+8:45-9:15	
+9:15-10:15	
+10:15-10:30 Break
+10:30-11:45	
+	
+12-1pm	Lunch
+	
+1-2:30	
+	
 
+3-5pm	
+5-6pm	working dinner
+	
+Day 2, July 30	
+8am-8:30 breakfast	
+	
 
-
-Day 2
-
+12-1pm	lunch
