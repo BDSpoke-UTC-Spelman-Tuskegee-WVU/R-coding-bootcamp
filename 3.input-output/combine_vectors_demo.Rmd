@@ -1,0 +1,22 @@
+---
+title: "Combine_vectors"
+output: html_document
+---
+
+```{r}
+rm(list=ls())
+x = seq(1, 25)
+y = x + 2;
+```
+
+Combine x and y in one dataframe, and output it
+```{r}
+tb = cbind(x, y)
+tb = data.frame(tb)
+```
+
+Output
+```{r}
+write.csv(tb, file="/tmp/xy.csv")
+```
+

@@ -1,0 +1,8 @@
+id1,id2,tag,tag_counts,selfpairs,DegreePercentile1,DegreePercentile2,DegreePercentileProduct
+Edward,Sudha,Edward_Sudha,1,0,0.444444444444444,1,0.394626549299729
+Isabel,Sudha,Isabel_Sudha,1,0,0.444444444444444,1,0.411767900875867
+Foram,Jasmine,Foram_Jasmine,1,0,1,0.444444444444444,0.449090231376277
+Chris,Tes,Chris_Tes,1,0,0.444444444444444,1,0.461015001388833
+Caleb,Foram,Caleb_Foram,1,0,1,1,0.990444745241475
+Airuna,Tes,Airuna_Tes,1,0,1,1,1.00624790965526
+Airuna,Caleb,Airuna_Caleb,1,0,1,1,1.01794185207751

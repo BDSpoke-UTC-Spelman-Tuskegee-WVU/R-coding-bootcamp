@@ -1,0 +1,5 @@
+for i in {1..50}
+do
+  R -f ms02_driver_20180523.R --args seats.csv MS02/_ms02_seats.$i.csv 100 0.025 9 
+done
+

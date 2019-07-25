@@ -1,0 +1,128 @@
+---
+title: "yeast PIN degree Z-score"
+author: "H Qin"
+date: "11/1/2018"
+output:
+  html_document: default
+  pdf_document: default
+---
+
+```{r}
+rm(list=ls())
+debug = 0
+library(igraph)
+pairs= read.csv("Data/yeast.pin.csv", colClasses = c("character", "character"))
+```
+
+```{r degree}
+g = graph.data.frame(pairs[, 1:2], directed=F)
+g.degree = degree(g)
+g.degree [g.degree == max(g.degree)] #TN and MO have 8 bordering states
+```
+
+# F.obs 
+
+```{r F.obs}
+pairs$cat1 = g.degree[pairs$geneA]
+pairs$cat2 = g.degree[pairs$geneB]
+g.degree["YAL002W"] #visual check passed
+tags = t(apply(pairs[,c("cat1", "cat2")], 1, sort))
+pairs$tag = paste( tags[,1], tags[,2], sep='_')
+F.obs = data.frame( table(pairs$tag))
+names(F.obs) = c("tag", "freq")
+F.obs [1:10,]
+```
+
+#load MS02 null networks
+```{r F.ms02}
+ms02files = list.files(path='yeastMS02')
+if (debug ) {ms02files = ms02files[1:5] }
+F.ms02 = data.frame(matrix(data=NA, nrow=1, ncol=3)) #null distributions
+names(F.ms02) = c('tag', 'freq', 'file')
+
+# file = "ms02.1.csv" #debug
+
+for (file in ms02files ){
+  if ( debug > 0 ) { print(file) }
+  ms02_pairs= read.csv(paste("yeastMS02/", file, sep=''),
+                       colClasses = c("character", "character"))
+  ms02_pairs = ms02_pairs[,1:2]
+  
+  ms02_pairs$cat1 = g.degree[ms02_pairs$id1]
+  ms02_pairs$cat2 = g.degree[ms02_pairs$id2]
+  g.degree["YOR316C-A"] #visual check passed
+  g.degree["YGR007W"] #visual check passed
+  g.degree["YCR018C"] #visual check passed
+  
+  tags2 = t(apply(ms02_pairs[,c("cat1", "cat2")], 1, sort))
+  ms02_pairs$tag = paste( tags2[,1], tags2[,2], sep='_')
+  F.ms02current = data.frame( table(ms02_pairs$tag))
+  F.ms02current$file = file
+  names(F.ms02current) = c('tag', 'freq', 'file')
+  F.ms02 =  data.frame( rbind(F.ms02, data.frame(F.ms02current)) )
+}
+F.ms02 = F.ms02[ !is.na(F.ms02$tag), ]
+```
+
+# Initialize the Z-score matrix
+```{r Zs}
+unique_tags = unique( c(as.character(F.obs$tag), as.character(F.ms02$tag)))
+Zs = data.frame(unique_tags)
+names(Zs) = c('tag')
+Zs$freq = F.obs$freq[ match( Zs$tag , F.obs$tag) ]
+Zs$freq[is.na(Zs$freq)] = 0; 
+Zs[1:20,]
+```
+
+# calculate Z-score. This take 7 minutes on QIn's laptop. Need be modified by multicore
+```{r Z-calculation}
+for (i in 1 : length(Zs$tag)) {
+#i = 2
+  sub = F.ms02[ F.ms02$tag == Zs$tag[i], ]
+  if(debug>1 ){
+     print( paste( Zs$tag[i], "mean:", mean(sub$freq), "sd:", sd(sub$freq) ))  
+  } 
+  Zs$Z[i] = ( Zs$freq[i] - mean(sub$freq) ) / max(sd(sub$freq), 0.5)
+}
+```
+
+
+# generate Z matrix, 3:28-3:29
+```{r Zmat}
+#unique categories
+cats = sort(  unique(g.degree ))
+Zmat = matrix(NA, ncol=length(cats), nrow=length(cats))
+names(Zmat) = cats; 
+colnames(Zmat) = cats; 
+for (i in 1:length(cats)){#row
+  for (  j in 1:length(cats)) { #column
+    tmp = sort(c(cats[i], cats[j]))
+    mytag = paste(tmp[1], tmp[2], sep="_")
+    if( mytag %in% Zs$tag) {
+       Zmat[i,j] = Zs$Z[ Zs$tag == mytag ]
+    } else {
+       Zmat[i,j] = NA
+    }
+    if (debug > 1 ) {
+      print (paste(mytag, Zmat[i,j] ) )
+    }
+  }
+}
+Zmat
+```
+
+#heatmap
+
+```{r heatmap}
+library(gplots)
+#colors = c(seq(min(Zmat),-10.1,length=100),seq(-9.9,9.9,length=100),seq(10.1,max(Zmat),length=100))
+my_palette <- colorRampPalette(c("blue2", "white", "red2"))(n = 299)
+
+heatmap.2( as.matrix(Zmat), col=my_palette, scale="none", trace='none',
+          # margins = c(5,4), key.title = NA, 
+          dendrogram = "none", Rowv = FALSE, Colv = FALSE
+           ,key.xlab="Z-score", key.ylab=NA,
+          )
+
+```
+

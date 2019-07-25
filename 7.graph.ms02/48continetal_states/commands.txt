@@ -1,0 +1,5 @@
+for i in {21..50}
+do
+  R -f ms02_driver_20180523.R --args 48states.csv _ms02_48states.$i.csv 100 0.025 9 
+done
+

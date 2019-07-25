@@ -1,0 +1,106 @@
+---
+title: "48states"
+author: "H Qin"
+date: "10/15/2017"
+output: html_document
+---
+
+```{r}
+rm(list=ls())
+library(igraph)
+state_pairs= read.csv("48states.csv")
+states = read.csv("state_year.csv")
+```
+
+# convert long names to 2 letter
+```{r}
+state_pairs$state1A = states$abbr[match( state_pairs$state1, states$state)]
+state_pairs$state2A = states$abbr[match( state_pairs$state2, states$state)]
+```
+
+```{r}
+g = graph.data.frame(state_pairs[, 3:4], directed=F)
+g.degree = degree(g)
+g.degree [g.degree == max(g.degree)] #TN and MO have 8 bordering states
+```
+
+
+```{r}
+plot(g)
+```
+
+```{r}
+g.shortestpath.m = shortest.paths(g)
+str(g.shortestpath.m)
+sorted.names = sort( rownames(g.shortestpath.m) )
+gsm = g.shortestpath.m[, sorted.names]
+gsm = gsm[sorted.names, ]
+```
+
+# put states into 4 temporal categories
+```{r}
+summary(states$year)
+table(states$year)
+```
+
+```{r}
+hist(states$year, br=20)
+```
+```{r}
+cutoff = c(1788, 1830, 1888)
+cutoff[3]
+```
+
+```{r}
+year2bin = function( inYear ){
+  bin = 0;
+  if ( inYear <= cutoff[1]) {    bin = 1;  } 
+  else if (inYear <= cutoff[2] ) {    bin = 2;  } 
+  else if (inYear <= cutoff[3])  {    bin = 3;  } 
+  else {  bin = 4;  } 
+  return(bin)
+}
+```
+
+```{r}
+year2bin(1730)
+year2bin(1790)
+year2bin(1850)
+year2bin(1980)
+```
+
+```{r}
+unlist(lapply(states[, c("year")],  year2bin))
+states$bin = unlist(lapply(states[, c("year")],  year2bin))
+```
+
+```{r}
+state_pairs$state1bin = states$bin[match( state_pairs$state1, states$state)]
+state_pairs$state2bin = states$bin[match( state_pairs$state2, states$state)]
+```
+
+```{r}
+g2 = graph.data.frame(state_pairs[, c("state1bin","state2bin")], directed=F)
+plot(g2)
+```
+
+#load a MS02 states-network
+```{r}
+ms02_pairs= read.csv("48statesMS02/_ms02_48states.1.csv")
+ms02_pairs = ms02_pairs[,1:2]
+
+ms02_pairs$id1A = states$abbr[match( ms02_pairs$id1, states$state)]
+ms02_pairs$id2A = states$abbr[match( ms02_pairs$id2, states$state)]
+
+ms02_pairs$state1bin = states$bin[match( ms02_pairs$id1, states$state)]
+ms02_pairs$state2bin = states$bin[match( ms02_pairs$id2, states$state)]
+
+g.ms02 = graph.data.frame(ms02_pairs[, 3:4], directed=F)
+plot(g.ms02)
+```
+
+```{r}
+g2.ms02 = graph.data.frame(ms02_pairs[, c("state1bin","state2bin")], directed=F)
+plot(g2.ms02)
+```
+

@@ -1,0 +1,114 @@
+---
+title: "classroom Fall 2018"
+author: "H Qin"
+date: "10/23/2018"
+output: html_document
+---
+
+```{r}
+rm(list=ls())
+library(igraph)
+seat_pairs= read.csv("seats.csv", colClasses = c("character", "character"))
+students = read.csv("students.csv", colClasses = c("character", "character"))
+```
+
+```{r}
+g = graph.data.frame(seat_pairs[, 1:2], directed=F)
+g.degree = degree(g)
+g.degree [g.degree == max(g.degree)] #TN and MO have 8 bordering states
+```
+
+
+```{r}
+plot(g)
+```
+
+```{r}
+g.shortestpath.m = shortest.paths(g)
+str(g.shortestpath.m)
+sorted.names = sort( rownames(g.shortestpath.m) )
+gsm = g.shortestpath.m[, sorted.names]
+gsm = gsm[sorted.names, ]
+```
+
+# put states into 4 temporal categories
+```{r}
+table(students$Gender)
+```
+
+```{r}
+seat_pairs$Gender1 = students$Gender[match( seat_pairs$person1, students$Names)]
+seat_pairs$Gender2 = students$Gender[match( seat_pairs$person2, students$Names )]
+```
+
+```{r}
+g2 = graph.data.frame(seat_pairs[, c("Gender1","Gender2")], directed=F)
+plot(g2)
+```
+
+```{r}
+permute.pairs.wo.selfpairs = function( inpairs,  ncycles=10, debug=5 ) {
+  if (ncycles >= 1 ) {
+    if(debug) {
+      print(paste('ncycles=', ncycles))
+    }
+    longids = c(as.character(inpairs[,1]), as.character(inpairs[,2]) )
+    longids = sample(longids)
+    len = length(inpairs[,1])
+    newpairs = data.frame( cbind( longids[1:len], longids[(len+1): (2*len)]) )
+    names(newpairs) = c('id1', 'id2')
+    newpairs$id1 = as.character( newpairs$id1)
+    newpairs$id2 = as.character( newpairs$id2)    
+    newpairs$selfpairs = ifelse( newpairs$id1 == newpairs$id2, 1, 0 )
+    self.tb = newpairs[ newpairs$selfpairs==1, ]
+    nonself.tb = newpairs[newpairs$selfpairs==0, ]
+    if(debug) {
+      print(self.tb)
+    }
+    if( length(self.tb[,1])>0 ) {
+      if ( ncycles == 0) { return (c(NA,NA, NA) ) 
+      } else {
+        ncycles = ncycles - 1
+        selectedpairs = rbind(self.tb,  nonself.tb[1: (length(self.tb[,1])*2), ] )
+        restpairs = nonself.tb[ (length(self.tb[,1])*2+1): length(nonself.tb[,1]), ]
+        return( rbind(restpairs, permute.pairs.wo.selfpairs(selectedpairs, ncycles)))
+      }
+    } else {  
+      return (newpairs)
+    }
+  } else {
+    return( c(NA,NA,NA )) 
+  }
+}
+
+#test 
+x = permute.pairs.wo.selfpairs(seat_pairs)
+```
+
+```{r}
+x = x[ !is.na(x[,1]), 1:2]
+g.ms02 = graph.data.frame(x, directed=F)
+plot(g.ms02)
+```
+
+#load a MS02 states-network
+```{r}
+ms02_pairs= read.csv("48statesMS02/_ms02_48states.1.csv")
+ms02_pairs = ms02_pairs[,1:2]
+
+ms02_pairs$id1A = states$abbr[match( ms02_pairs$id1, states$state)]
+ms02_pairs$id2A = states$abbr[match( ms02_pairs$id2, states$state)]
+
+ms02_pairs$state1bin = states$bin[match( ms02_pairs$id1, states$state)]
+ms02_pairs$state2bin = states$bin[match( ms02_pairs$id2, states$state)]
+
+g.ms02 = graph.data.frame(ms02_pairs[, 3:4], directed=F)
+plot(g.ms02)
+```
+
+```{r}
+g2.ms02 = graph.data.frame(ms02_pairs[, c("state1bin","state2bin")], directed=F)
+plot(g2.ms02)
+```
+
+

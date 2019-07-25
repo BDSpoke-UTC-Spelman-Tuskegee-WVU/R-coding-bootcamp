@@ -1,0 +1,12 @@
+
+```{r}
+rm(list=ls())
+list.files()
+```
+
+```{r}
+source('take_even.R')
+x = 1:10
+take_even(x)
+```
+
