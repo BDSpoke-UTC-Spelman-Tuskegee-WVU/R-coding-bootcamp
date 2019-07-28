@@ -21,20 +21,19 @@ Please download a “RStudio Desktop” Open Source Edition from http://www.rstu
  
 ## Day 1 (July 29)
 
-8am-8:30 Breakfast <br>
-8:30-8:45 Logistics: WiFi, GitHub, R and Rstudio. <br>
-8:45-9am Basic R code, Markdown file, code block, RStudio interface. <br>	
-9am-10:15 [Learning R and RStudio through a survey on metric proficiency](https://github.com/BDSpoke-UTC-Spelman-Tuskegee-WVU/R-bootcamp-summer2019/tree/master/1.startRwMetricExample). Data frame, and basic data visualization and analysis <br> 
-10:15-10:30 Break
-10:30-11:45	
-	
-12-1pm	Lunch
-	
-1-2:30	
-	
+* 8am-8:30 	Breakfast <br>
+* 8:30-8:45 	Logistics: WiFi, GitHub, R and Rstudio. <br>
+* 8:45am-10:15	[Learning R and RStudio through a survey on metric proficiency](https://github.com/BDSpoke-UTC-Spelman-Tuskegee-WVU/R-bootcamp-summer2019/tree/master/1.startRwMetricExample). 
+Basic R code, Markdown file, code block, RStudio interface, Data frame, and basic data visualization and analysis <br> 
+* 10:15-10:30 	Break <br>
+* 10:30-11:45	[Coding in R](https://github.com/BDSpoke-UTC-Spelman-Tuskegee-WVU/R-bootcamp-summer2019/tree/master/2.coding) <br>
+* 12-1:15pm 	Lunch (Volunteers needed for focus groups assessment interview)<br> 	
+*1-2:30	[Input and output in R] (https://github.com/BDSpoke-UTC-Spelman-Tuskegee-WVU/R-bootcamp-summer2019/tree/master/3.input-output) <br> 
 
-3-5pm	
-5-6pm	working dinner
+* 2:30-2:45pm 	Break
+* 2:45-4:45m 	[Wrangling of the Metric Survey Data](https://github.com/BDSpoke-UTC-Spelman-Tuskegee-WVU/R-bootcamp-summer2019/tree/master/4.dataWrangle-metricExample) 
+
+* 5-6pm	working dinner
 	
 ## Day 2, July 30	
 8am-8:30 breakfast	
