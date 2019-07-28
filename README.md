@@ -16,7 +16,7 @@ Please download a “RStudio Desktop” Open Source Edition from http://www.rstu
  
 ## Day 1 (July 29)
 * 8am-8:30 	Breakfast <br>
-* 8:30-8:45 	Logistics: WiFi, GitHub, R and Rstudio. 
+* 8:30-8:45 	Logistics: WiFi, GitHub, R and Rstudio. Download the GitHub repo in Zip File. 
 * 8:45am-10:15	[Learning R and RStudio through a survey on metric proficiency](https://github.com/BDSpoke-UTC-Spelman-Tuskegee-WVU/R-bootcamp-summer2019/tree/master/1.startRwMetricExample). 
 Basic R code, Markdown file, code block, RStudio interface, Data frame, and basic data visualization and analysis
 * 10:15-10:30 	Break 
