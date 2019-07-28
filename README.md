@@ -21,10 +21,10 @@ Please download a “RStudio Desktop” Open Source Edition from http://www.rstu
  
 ## Day 1 (July 29)
 
-8am-8:30 breakfast	
-8:30-8:45 overview	overview
-8:45-9:15	
-9:15-10:15	
+8am-8:30 Breakfast <br>
+8:30-8:45 Logistics: WiFi, GitHub, R and Rstudio. <br>
+8:45-9am Basic R code, Markdown file, code block, RStudio interface. <br>	
+9am-10:15 Learning R and RStudio through a survey on metric proficiency. Data frame, and basic data visualization and analysis <br> 
 10:15-10:30 Break
 10:30-11:45	
 	
