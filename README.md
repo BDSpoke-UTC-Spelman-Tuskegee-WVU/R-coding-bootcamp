@@ -37,3 +37,5 @@ Basic R code, Markdown file, code block, RStudio interface, Data frame, and basi
 * 2:30-2:45pm 	Break
 * 2:45-4:45m 	Optional topics. 
 
+## Free Online Books on R: 
+If people want to learn R before and after the bootcamps, there are many free online books at http://ucanalytics.com/blogs/learn-r-12-books-and-online-resources/
