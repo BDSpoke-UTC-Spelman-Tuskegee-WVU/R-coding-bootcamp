@@ -14,7 +14,9 @@ Please install a recent version of R software from https://cran.r-project.org/ .
 RStudio is a popular user-friendly editor and environment to run R.
 Please download a “RStudio Desktop” Open Source Edition from http://www.rstudio.com/products/rstudio/download/, and follow the instruction for installation.
 
-## Pleaese complete this voluntary and anonymous [pre-survey](https://forms.gle/xV7829sdQEMTiuA17)
+
+## Please complete this voluntary and anonymous [pre-survey](https://forms.gle/xV7829sdQEMTiuA17)
+
 
 ## Day 1 (July 29)
 * 8am-8:30 	Breakfast <br>
