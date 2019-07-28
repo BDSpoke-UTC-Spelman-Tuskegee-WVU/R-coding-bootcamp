@@ -13,7 +13,9 @@ Please install a recent version of R software from https://cran.r-project.org/ .
 * Install RStudio on your laptops. (RStudio must be installed after R).
 RStudio is a popular user-friendly editor and environment to run R.
 Please download a “RStudio Desktop” Open Source Edition from http://www.rstudio.com/products/rstudio/download/, and follow the instruction for installation.
- 
+
+## Pleaese complete this voluntary and anonymous [Pre-survey](https://forms.gle/xV7829sdQEMTiuA17)
+
 ## Day 1 (July 29)
 * 8am-8:30 	Breakfast <br>
 * 8:30-8:45 	Logistics: WiFi, GitHub, R and Rstudio. Download the GitHub repo in Zip File. 
