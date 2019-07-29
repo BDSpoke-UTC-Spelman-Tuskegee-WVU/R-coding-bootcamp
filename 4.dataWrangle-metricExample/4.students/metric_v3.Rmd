@@ -40,7 +40,6 @@ str(tb.ori);
 tb.ori$Timestamp
 
 tb = tb.ori  #make a copy because we will modify the table. 
-
 ```
 
 # Shorten columns names
@@ -275,6 +274,17 @@ table( tb2$SciEffect )
 #Attitude total score
 tb2$SciAttitude = apply( tb2[, sciAttitude], MARGIN=1, FUN=sum)
 hist(tb2$SciAttitude, br=20)
+```
+
+# Do responses to religeonus questions correlate? 
+
+```{r}
+m =  lm ( tb2$religiousView ~ tb2$dailyLife)
+summary( m )
+plot( jitter(tb2$religiousView) ~ jitter(tb2$dailyLife)) 
+abline(m, col="red")
+plot( tb2$religiousView  ~ tb2$dailyLife ) 
+abline(m, col="red")
 ```
 
 
