@@ -2,12 +2,22 @@
 # loops
 
 ```{r}
+rm(list=ls())
  for ( i in 1:3) print(i);
 ```
 
 
 ```{r}
  for ( i in c(0.5, 1, -2, 5) ) print(i);
+```
+
+
+
+```{r}
+ for ( i in c(0.5, 1, -2, 5) ) {
+   x = i * i
+   print( sqrt(x))
+ }
 ```
 
 
@@ -23,12 +33,11 @@ i=2;
 #### conditionals
 
 ```{r}
-x = 1.5;
-#if ((x<1) & (x>0)) { 
-if ((x<0) | (x>1)) { 
-   print("X is not between 0 and 1");
-} else {
+x = 0.9;
+if ((x<1) & (x>0)) { 
    print("X is between 0 and 1 ");
+} else {
+   print("X is not between 0 and 1");
 }
 ```
 
@@ -54,17 +63,20 @@ if ( ! x<0 ) {
   print("negative");
 }
 
-y = ifelse( x<0, -x, x ); 
+x = c(-1, 3)
+x = c( 1, NA, 3, 4, 5, 2)
+y = ifelse( is.na(x), median(x, na.rm = T), x ); 
 # assign abosulte value of x to y
-
+print(y)
 ```
 
 
 ```{r}
 #### a function
-x = c( 1,2,3,4); #this is a global variable
+x = c( 1,2,3,4, 7, 9); #this is a global variable
 #x = c(5, 4, 3, 6, 10, 12)
 
+y = "I am global"
 ```
 
 
@@ -72,14 +84,20 @@ x = c( 1,2,3,4); #this is a global variable
 take_even = function( x ) {
   y = c(); # a locale copy inside of loop
   for( i in 1:length(x)) {
-    if ( (x[i]%% 2 )== 0 ) { # x mod 2
+    if ( (x[i] %% 2 )== 0 ) { # x mod 2
         y = c(y, x[i] );  # add a new x[i] to y
     }
   }
+  print ("inside y");
+  print(y)
+  print("end of inside")
   y; #the last line, return y to the main program
 }
 
-y = take_even(x); # c(2,4)
+take_even(x); # c(2,4)
+
+#y =  take_even(x); # c(2,4)
+
 z = take_even(x); # c(2,4);
 w = take_even(1:10); #c (2,4,6,8,10)
 u = -5:10;
@@ -93,7 +111,7 @@ take_even(c(5,4,10,11, 100, -3, 9, 0, 3333, 5524234234))
 #### a function calls another function
 even_total = function( x ) {
   x = take_even(x);
-  sum(x);
+  sum(x)
  }
 
 x = c( 1,2,3,4, 0, -2, -4 );
@@ -103,7 +121,6 @@ print(u)
 # x will be changed if the following line is run.
 x = take_even(x)
  
-
 ```
 
  
@@ -121,11 +138,12 @@ x = take_even(x)
      }
    }
    y.inside = y; 
+   print( paste("y.inside=", y.inside) ); 
    y; #the last line, return y to the main program
  }
  
  w = take_uphalf(x);
- 
+ mean(x)
  
 
 ```
@@ -152,6 +170,7 @@ x = take_even(x)
 ```{r}
 
 #### a simple example
+ rm(list = ls())
  library(seqinr);
 
  tablecode(); #the genetic code
@@ -168,9 +187,13 @@ x = take_even(x)
  num = 1:length(seqs);
  gc  = 1:length(seqs);
  out = data.frame( cbind( num, gc ) );
+ out$samples = "TMP"
+ 
  for( i in 1:length(seqs) ) {
    out$gc[i] = GC( seqs[[i]] );
+   out$samples[i] = attr(seqs[[i]], "name")
  }
+ 
  out;
 
  write.csv(out, "gc.csv", row.names=F) # output the results
@@ -178,9 +201,13 @@ x = take_even(x)
 
 #### save and load images
  save.image("Test.RData");
+ 
+ # delete everyting 
  rm(list=ls());
+ 
  ls(); #nothing
- load("Test.RData");
+
+  load("Test.RData");
  ls(); #everthing is back
 
 

@@ -2,24 +2,30 @@
 layout: topic
 title: "Preprocess survey data for metrics, scientific literacy and attitude"
 author: "H Qin"
-date: "2019 May 31"
+date: "2019 July 29"
 output: html_document
 ---
 
 ------------
 
 > ## Learning Objectives
->
 > * Load external tabular data from a .csv file into R.
-> * Describe what an R data frame is.
-> * Summarize the contents of a data frame in R.
-> * Manipulate categorical data in R using factors.
+> * Manipulate string and categorical data in R
+> * Find iregular inputs and correct them 
+> * Generate summary and clean results 
 
 ------------
+
+References: 
+ABC News: https://www.youtube.com/watch?v=1cPeZLCVWTw&feature=youtu.be
+
+Productive failure http://manukapur.com/productive-failure/
+
 
 # Check files in the working directory 
 
 ```{r list}
+rm(list=ls())
 list.files()
 ```
 
@@ -27,7 +33,8 @@ list.files()
 
 ```{r read}
 # colClass specify that all columns will be treated as characters for now. 
-tb.ori = read.csv("metric_survey_data.csv", colClass=rep("character", 24))
+# tb.ori = read.csv("metric_survey_data.csv", colClass=rep("character", 24))
+tb.ori = read.csv("metric_survey_data.csv", stringsAsFactors = FALSE)
 ?str
 str(tb.ori); 
 tb.ori$Timestamp
@@ -50,6 +57,10 @@ str(tb)
 ```
 
 
+```{r}
+summary(tb)
+```
+
 Visually check of the renamed columns.  
 
 cbind is to combine columns. 
@@ -61,8 +72,35 @@ cbind (names(tb), substr(names(tb.ori), 1, 30))
 ?cbind
 ```
 
+# Change all missing values (skipped questions) to NA
+doing repetive task one by one is tedious.
+we can use nested for-loops
 
-```{r}
+```{r NA}
+# dealing with missing values, add 'NA' to empty answers
+# nested for-loops
+for( i in 1:length(tb[, 1])) {  #outter for-loop, i for row, from 1 to the last row
+  for( j in 5:length(tb[1, ])) {  #inner for-loop, j for column, from 5th to the last column
+    # print( paste("i=", i, "j=", j) )
+  }
+}
+
+#if there is empty cell, we assign a missing value 'NA' there
+for( i in 1:length(tb[, 1])) {  #outter for-loop 
+  for( j in 5:length(tb[1, ])) {  #inner for-loop
+    if ( is.na(tb[i, j]) ) {
+      # do nothing
+    } else if (tb[i,j]=='') {
+      tb[i,j] = NA
+    } 
+  }
+}
+
+table(is.na(tb$age))
+```
+
+
+```{r NA_v2}
 #indexing features of R
 tb[1:5, 2:3]
 tb$age #what does mean? 
@@ -83,31 +121,6 @@ table(tb$gender)
 
 ```
 
-# Change all missing values (skipped questions) to NA
-doing repetive task one by one is tedious.
-we can use nested for-loops
-
-```{r}
-# dealing with missing values, add 'NA' to empty answers
-# nested for-loops
-for( i in 1:length(tb[, 1])) {  #outter for-loop, i for row, from 1 to the last row
-  for( j in 5:length(tb[1, ])) {  #inner for-loop, j for column, from 5th to the last column
-    # print( paste("i=", i, "j=", j) )
-  }
-}
-
-#if there is empty cell, we assign a missing value 'NA' there
-for( i in 1:length(tb[, 1])) {  #outter for-loop 
-  for( j in 5:length(tb[1, ])) {  #inner for-loop
-    if ( is.na(tb[i, j]) ) {
-      # do nothing
-    } else if (tb[i,j]=='') {
-      tb[i,j] = NA
-    } 
-  }
-}
-
-```
 
 # Now, we need to conver survey data in chacracters into numeric scores
 
@@ -132,7 +145,6 @@ tb2$age[grep("51-55", tb$age)] = 51/2 + 55/2
 tb2$age[grep("56-60", tb$age)] = 56/2 + 60/2
 #> grep("56-60", tb$age)
 # [1]   6  12  84  88 104 112 129 130 131 132 133 156 162 163 185 216 219
-
 tb2$age[grep("More than 60 years", tb$age)] = 65
 ```
 
@@ -140,11 +152,10 @@ Check the age responses
 ```{r}
 table(tb$age) #table is a very useful function (command) for tabulation
 table(tb2$age)
-summary(tb2$age)
+#summary(tb2$age)
 ```
 
 # Visualize the age values
-
 ```{r}
 table(tb2$age, tb2$gender)
 boxplot( tb2$age ~ tb2$gender)
@@ -222,15 +233,18 @@ table(tb2$weather)
 
 ```{r}
 # metrics = c("shaq", "kilo", "mm", "inseam", "weather")
-#metric total score
-tb2$metric = apply( tb2[, metrics], MARGIN=1, FUN=sum )
-hist(tb2$metric, br=4)
+# metric total score
+print(paste("metrics are: ", metrics));
+tb2$metric = apply( tb2[ , metrics], MARGIN=1, FUN=sum )
+hist(tb2$metric, br=5 )
+plot( density(tb2$metric) )
+
+#hist(tb2$metric, br=5, probability = TRUE )
 ```
 
 # Calcualte the science attitude scores
 
 ```{r}
-
 #sciAttitude = c("religiousView", "dailyLife", "SciOnLife", "SciEffect")
 # "My religious views are more important than scientific views
 tb2$religiousView = 0
@@ -264,7 +278,7 @@ hist(tb2$SciAttitude, br=20)
 ```
 
 
-#Calculate scientific literacy
+# Calculate scientific literacy
 
 ```{r}
 #sciLiteracy = c("light", "fossil", "food", "electronCharge", 

@@ -9,7 +9,7 @@
 molar_solution <- function( x, y) {
   58.433 * (x/10^3) * (y/10^3)
 }
-molar_solution(100, 500) #100mM 500mL NaCl
+molar_solution(10, 1000) #100mM 500mL NaCl
 ```
 
 
@@ -17,8 +17,8 @@ molar_solution(100, 500) #100mM 500mL NaCl
 molar_solution2 <- function( conc, vol, FW) {
   FW * conc * vol /10^6
 }
-molar_solution2( 1, 100, 58.433)
-molar_solution2( 1, 100, 74.5513)
+molar_solution2( 100, 500, 58.433) # 1mM 100mL NaCl
+molar_solution2( 100, 100, 74.5513)  #100mM 100mL KCl
 
 ```
 
@@ -30,7 +30,8 @@ molar_solution3 <- function( conc, vol, formula) {
   FW = FWs[formula]
   FW * conc * vol / 10^6
 }
-molar_solution3( 100, 500, 'NaCl' )
+molar_solution3( 100, 500, 'NaCl' ) #100mM 500ML NaCl
+
 ```
 
 
