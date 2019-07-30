@@ -74,6 +74,7 @@ unlist(lapply(states[, c("year")],  year2bin))
 states$bin = unlist(lapply(states[, c("year")],  year2bin))
 ```
 
+# match temporal bins onto the state-graph (network)
 ```{r}
 state_pairs$state1bin = states$bin[match( state_pairs$state1, states$state)]
 state_pairs$state2bin = states$bin[match( state_pairs$state2, states$state)]
@@ -97,6 +98,11 @@ ms02_pairs$state2bin = states$bin[match( ms02_pairs$id2, states$state)]
 
 g.ms02 = graph.data.frame(ms02_pairs[, 3:4], directed=F)
 plot(g.ms02)
+```
+
+```{r}
+gms02.degree = degree(g.ms02)
+sort(gms02.degree)
 ```
 
 ```{r}

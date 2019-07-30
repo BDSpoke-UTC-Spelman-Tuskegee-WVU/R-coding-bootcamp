@@ -1,0 +1,121 @@
+---
+title: "Frasher_fig3B keys"
+author: "H Qin"
+date: "10/5/2018"
+output:
+  pdf_document: default
+  html_document: default
+---
+
+```{r}
+rm(list=ls())
+set.seed(2017)
+source('network.r')
+```
+
+```{r}
+#input evolutionary distances
+Kdata = read.csv( "Sce.Spa.KaKs.csv");
+
+#input protein interaction pairs
+pairs = read.csv("pairs.csv");
+pairs$ORF1 = as.character( pairs$ORF1 );
+pairs$ORF2 = as.character( pairs$ORF2 );
+
+#input growth fitness
+fit = read.csv("growth.fitness.hom.csv");
+fit$orf = as.character( fit$orf ); 
+
+#calculate connecting degrees
+ids = c(pairs$ORF1, pairs$ORF2);
+degree = table( ids );
+
+# summarize the results in a dataframe 'net'
+net = data.frame(degree);
+str(net);
+net$id = as.character( net$id);
+
+```
+
+```{r}
+#double check
+intersect( net$id, Kdata$orfname) [1:10];
+
+#match data and net
+Kdata$degree = net$Freq[match(Kdata$orfname, net$id )]
+
+#visual examination to double the merged results
+head(Kdata)
+net[net$id=='YAL005C', ]
+net[net$id=='YAL012W', ]
+ 
+# find out correlation bw degree and Omega, Ka, Ks
+summary(lm(Kdata$Ka ~ Kdata$degree))
+
+#match data and fitness
+Kdata$YPD = fit$YPD[match(Kdata$orfname, fit$orf)] 
+
+#visual check the merge results
+fit[fit$orf=='YAL007C',]
+
+
+summary(lm(Kdata$Ka ~ Kdata$YPD))
+summary(lm(Kdata$degree ~ Kdata$YPD))
+summary(lm( log(Kdata$degree) ~ Kdata$YPD))#normalization
+
+#multiple regression
+summary(lm(Kdata$Ka ~ Kdata$YPD + Kdata$degree ))
+
+```
+
+
+# Fig 3B. Use permutation to calculate p-value of Ka difference
+Use permutation to calculate p-value of Ka difference in interacting pairs;
+This is equivalent to Fig 3A in Fraser 02, Science
+
+
+# First, define a function to calculate K difference
+```{r}
+ # First, define a function to calculate Ka difference in pairs of proteins
+ diff.YPD = function( inpairs ) {
+   inpairs$YPD1= fit$YPD[match(inpairs$ORF1, fit$orf)];
+   inpairs$YPD2= fit$YPD[match(inpairs$ORF2, fit$orf)];
+   ret = mean( abs( inpairs$YPD1 - inpairs$YPD2), na.rm=T );
+ } 
+ 
+ # calculate the observed difference in Ka
+ diff.YPD.obs = diff.YPD ( pairs );
+ paste( "Observed deltaYPD = ", diff.YPD.obs); 
+```
+
+# Do simulation here
+
+```{r}
+ #permutation of pairs, and their difference in Ka
+ Nsims = 10; #number of permutations
+ permutated.diff.YPD = numeric( Nsims ); #empty vector to store calculations
+
+ # Now do N simulations
+ for( i in 1:Nsims ) {
+   new.pairs = ms02_singlerun(pairs ) #generate a new MS02 random network
+   new.pairs = new.pairs[,1:2] #reformating into two-columns
+   names(new.pairs) = c("ORF1", "ORF2")
+
+   #calculate delta.K for one random network
+   permutated.diff.YPD[i] = diff.YPD( new.pairs ); #for null distribution of deltaK
+ }
+
+head(permutated.diff.YPD)
+hist(permutated.diff.YPD)
+
+ # calulate p-value
+ sub = permutated.diff.YPD[ permutated.diff.YPD <= diff.YPD.obs ]
+ p.YPD = length(sub) / length(permutated.diff.YPD);
+ paste("p-value of observed deltaK =", p.YPD);
+  
+ # generate Figure 3A
+ hist( permutated.diff.YPD, xlim=c(0.07, 0.1), br=20 );
+# hist( permutated.diff.YPD,  br=20 );
+ arrows( diff.YPD.obs, sqrt(Nsims)/3, diff.YPD.obs, 0.5, col="red" );
+ text( diff.YPD.obs, (sqrt(Nsims)/3)*1.05, "obs");
+```

@@ -111,7 +111,7 @@ for (i in 1:length(cats)){#row
 Zmat
 ```
 
-#heatmap
+# heatmap
 
 ```{r heatmap}
 library(gplots)
