@@ -1,0 +1,14 @@
+
+```{r}
+error = 0.01
+lines  = 1000
+noerrors = (1-error)^lines
+
+print(perfect)
+```
+
+```{r}
+1 - perfect
+
+```
+

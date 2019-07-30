@@ -49,8 +49,8 @@ First, define a function to calculate K difference
 ```{r}
 
  #permutation of pairs, and their difference in Ka
- Nsims = 10; #number of permutations
- permutated.diff.K = numeric( Nsims ); #empty vector to store calculations
+ Nsims = 100; #number of permutations
+ permutated.diff.K = numeric( Nsims ); # empty vector to store calculations
 
  # Now do N simulations
  for( i in 1:Nsims ) {

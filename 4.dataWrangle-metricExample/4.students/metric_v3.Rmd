@@ -1,9 +1,11 @@
 ---
-layout: topic
 title: "Preprocess survey data for metrics, scientific literacy and attitude"
 author: "H Qin"
 date: "2019 July 29"
-output: html_document
+output:
+  pdf_document: default
+  html_document: default
+layout: topic
 ---
 
 ------------
@@ -285,6 +287,15 @@ plot( jitter(tb2$religiousView) ~ jitter(tb2$dailyLife))
 abline(m, col="red")
 plot( tb2$religiousView  ~ tb2$dailyLife ) 
 abline(m, col="red")
+table(tb2$religiousView ,  tb2$dailyLife )
+```
+
+# Fisher exact test on 2x2 table
+```{r}
+table(tb2$religiousView ,  tb2$dailyLife )
+RVTable =  as.matrix( table(tb2$religiousView ,  tb2$dailyLife ) )
+str(RVTable)
+fisher.test(RVTable)
 ```
 
 

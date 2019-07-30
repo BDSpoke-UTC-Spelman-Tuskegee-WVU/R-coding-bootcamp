@@ -3,8 +3,8 @@ title: "Analysis of survey data for metrics, scientific literacy and attitude"
 author: "H Qin"
 date: "5/30/2019"
 output:
-  pdf_document: default
   html_document: default
+  pdf_document: default
 layout: topic
 ---
 
@@ -21,7 +21,7 @@ layout: topic
 
 # Check files in the working directory 
 
-```{r list}
+```{r list, echo=FALSE}
 rm( list=ls()) #clean up worksapce
 list.files()
 ```
@@ -30,7 +30,6 @@ list.files()
 
 ```{r read}
 tb = read.csv("metric-attitude-literacy.csv", stringsAsFactors = FALSE)
-View(tb)
 ```
 
 What is a data frame? 
@@ -44,7 +43,7 @@ str(tb);
 
 Indexing an element in a dataframe
 
-```{r}
+```{r indexing}
 #indexing features of R
 tb[1:5, 2:3]
 tb$age #what does mean? 
@@ -54,14 +53,14 @@ tb$age #what does mean?
 tb[c(5,9), c(7,2)]
 ```
 
-```{r}
+```{r indexing-by-c}
 tb[c(5,9), c('age', 'SciLitScore')]
 ```
 
 
 Overview of the data
 
-```{r}
+```{r summary}
 summary(tb)
 ```
 Exercise: Find out help information of summary(). 
@@ -109,14 +108,14 @@ tb$metric[tb$gender=='Female']
 
 What is t-test? 
 
-```{r}
+```{r t-test}
 t.test(tb$metric[tb$gender=='Female'], tb$metric[tb$gender=='Male'], alternative = 'less')
 # Does this mean that females are more uncomfortable with metric usage?
 ```
 
 # What does p-value mean? 
 
-```{r}
+```{r boxpliot}
 # Female participants tend to be younger
 boxplot( tb$age ~ tb$gender, ylab='age')
 
@@ -126,7 +125,7 @@ table( tb$gender, tb$degree )
 boxplot( tb$metric ~ tb$degree, ylab='metric proficiency')
 
 # how age in boxplot
-??
+# ???
   
 m1 = lm( tb$metric ~ tb$gender )
 summary(m1)

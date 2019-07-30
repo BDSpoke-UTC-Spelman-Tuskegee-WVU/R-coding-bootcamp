@@ -5,7 +5,7 @@ date: "10/3/2017"
 output: html_document
 ---
 
-There are three key dataset in Fraser paper: evolutionary distance, protein interaction, and fitness. First, we need load the 3 data sets into R. Second, we need to do some 'informatics' to merge the three datasets. 
+There are three key dataset in Fraser paper: evolutionary distances, protein interactions, and growth fitness. First, we need load the 3 data sets into R. Second, we need to do some 'informatics' to merge the three datasets. 
 
 ```{r}
 rm(list=ls())
@@ -45,8 +45,13 @@ sum(degree); #check the counting result, the length of ids
 length(ids)
 ```
 
+```{r}
+hist(degree, br=20)
+```
+
+
 # Figure 1
-Now, we want to regenerate Figure 1 in Frasher. We have degree and Ka, Ks in 'data', and we want  run lm() between degree and Ka. If we try: 
+Now, we want to regenerate Figure 1 in Fraser. We have degree and Ka, Ks in 'data', and we want  run lm() between degree and Ka. If we try: 
 lm ( degree ~ data$Ka) #but this won't work? why?
  
 ```{r}
@@ -99,12 +104,14 @@ head(Kdata)
 net[net$ids=='YAL010C', ]
 net[net$ids=='YAL012W', ]
 
-
-### Comment: 
-### Merge heterogenous datasets is an important bioinformatics
+## Comment: 
+### Merge heterogenous datasets is an important data science
 ###           and practical skill. 
 #### end of merging
 
+```
+
+```{r}
 ###Now the real work 
 # Figure 1
 # find out correlation bw degree and Omega, Ka, Ks
@@ -123,8 +130,8 @@ summary(m2)
 plot( Kdata$Omega ~ Kdata$degree, main="Omega ~ degree" )
 abline( m2, col="red")
 
-
 ```
+
 
 
 # video on match fuction
