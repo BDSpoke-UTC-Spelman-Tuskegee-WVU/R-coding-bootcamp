@@ -39,7 +39,7 @@ Basic R code, Markdown file, code block, RStudio interface, Data frame, and basi
 * 10:15-10:30 	Break <br>
 * 10:30-11:45	Continued. 
 * 12-1:15pm 	Lunch (Volunteers needed for focus groups assessment interview)<br> 	
-* 1-2:30	Optional topics. Network visualization. 
+* 1-2:30	Optional topics. [Network permutation, association evaluation, and visualization](https://github.com/BDSpoke-UTC-Spelman-Tuskegee-WVU/R-bootcamp-summer2019/tree/master/6.graph.ms02). 
 * 2:30-2:45pm 	Break
 * 2:45-4:45m 	Develop video tutorials for Coding and Data Science Education. Sign for QUBES VEFN Group. 
 
