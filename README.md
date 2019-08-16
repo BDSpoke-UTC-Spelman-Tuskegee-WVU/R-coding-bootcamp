@@ -1,6 +1,7 @@
 # UTC R data Wrangling Bootcamp, July 29-30, 2019
 
 ## URL of this site: https://tinyurl.com/UTC-R-camps2019 
+## Linked Group https://www.linkedin.com/groups/12279083/
 
 ## Quitstart
 * Location: Auditiorium, Multidisplinary Research Building (SimCenter) [701 E MLK Blv, Chattanooga, TN](https://goo.gl/maps/aTHVrdgPWMF8Lmhc9).
