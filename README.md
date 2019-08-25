@@ -25,7 +25,11 @@ Please download a “RStudio Desktop” Open Source Edition from http://www.rstu
 * 8am-8:30 	Breakfast <br>
 * 8:30-8:45 	Presurvey and Logistics: WiFi, GitHub, R and Rstudio. Download the GitHub repo in Zip File. 
 * 8:45am-10:15	[Learning R and RStudio through a survey on metric proficiency](https://github.com/BDSpoke-UTC-Spelman-Tuskegee-WVU/R-bootcamp-summer2019/tree/master/1.startRwMetricExample). 
-Basic R code, Markdown file, code block, RStudio interface, Data frame, and basic data visualization and analysis
+Basic R code, Markdown file, code block, RStudio interface, Data frame, and basic data visualization and analysis. 
+
+### Introduction to R and Rstudio with simple exercises. 
+[![](http://img.youtube.com/vi/LJIxbmDAhYM/0.jpg)](http://www.youtube.com/watch?v=LJIxbmDAhYM "BBD_simpleR")
+
 * 10:15-10:30 	Break 
 * 10:30-11:45	[Coding in R](https://github.com/BDSpoke-UTC-Spelman-Tuskegee-WVU/R-bootcamp-summer2019/tree/master/2.coding) 
 * 12-1:15pm 	Lunch (Volunteers needed for focus groups assessment interview)	
