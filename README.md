@@ -1,6 +1,5 @@
-# UTC R data Wrangling Bootcamp, May 2020
+# UTC R data Wrangling Bootcamp, May18-19, 2020
 
-## URL of this site: https://tinyurl.com/UTC-R-camps2019 
 ## Linked Group https://www.linkedin.com/groups/12279083/
 
 ## Quitstart
