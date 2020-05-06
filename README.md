@@ -1,7 +1,5 @@
 # UTC R data Wrangling Bootcamp, May18-19, 2020
 
-## Linked Group https://www.linkedin.com/groups/12279083/
-
 ## Quitstart
 * A laptop is required for this bootcamp. Please do not forget the chargers. 
 * [Realtime Discussion Etherpad](https://etherpad.wikimedia.org/p/UTC-R-bootcamp2019)
@@ -49,3 +47,5 @@ Basic R code, Markdown file, code block, RStudio interface, Data frame, and basi
 
 ## Free Online Books on R: 
 If people want to learn R before and after the bootcamps, there are many free online books at http://ucanalytics.com/blogs/learn-r-12-books-and-online-resources/
+
+## Linked Group https://www.linkedin.com/groups/12279083/
