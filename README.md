@@ -17,32 +17,27 @@ Please download a “RStudio Desktop” Open Source Edition from http://www.rstu
 
 
 ## Day 1 
-* 8am-8:30 	Breakfast <br>
-* 8:30-8:45 	Presurvey and Logistics: WiFi, GitHub, R and Rstudio. Download the GitHub repo in Zip File. 
-* 8:45am-10:15	[Learning R and RStudio through a survey on metric proficiency](https://github.com/BDSpoke-UTC-Spelman-Tuskegee-WVU/R-bootcamp-summer2019/tree/master/1.startRwMetricExample). 
+* 9:45am-10:00 	Presurvey. , GitHub, R and Rstudio. Download the GitHub repo in Zip File. 
+* 10am-1am	[Learning R and RStudio through a survey on metric proficiency](https://github.com/BDSpoke-UTC-Spelman-Tuskegee-WVU/R-bootcamp-summer2019/tree/master/1.startRwMetricExample). 
 Basic R code, Markdown file, code block, RStudio interface, Data frame, and basic data visualization and analysis. 
 
 ### Introduction to R and Rstudio with simple exercises. 
 [![](http://img.youtube.com/vi/LJIxbmDAhYM/0.jpg)](http://www.youtube.com/watch?v=LJIxbmDAhYM "BBD_simpleR")
 
-* 10:15-10:30 	Break 
-* 10:30-11:45	[Coding in R](https://github.com/BDSpoke-UTC-Spelman-Tuskegee-WVU/R-bootcamp-summer2019/tree/master/2.coding) 
-* 12-1:15pm 	Lunch (Volunteers needed for focus groups assessment interview)	
-* 1-2:30	[Input and output in R](https://github.com/BDSpoke-UTC-Spelman-Tuskegee-WVU/R-bootcamp-summer2019/tree/master/3.input-output) 
-* 2:30-2:45pm 	Break
-* 2:45-4:45m 	[Wrangling of the Metric Survey Data](https://github.com/BDSpoke-UTC-Spelman-Tuskegee-WVU/R-bootcamp-summer2019/tree/master/4.dataWrangle-metricExample). 
-* 5-6pm	working dinner
+* 11am-11:10 	Break 
+* 11:10-12pm	[Coding in R](https://github.com/BDSpoke-UTC-Spelman-Tuskegee-WVU/R-bootcamp-summer2019/tree/master/2.coding) 
+* 12-1pm 	Lunch (Volunteers needed for focus groups assessment interview)	
+* 1-3pm	[Input and output in R](https://github.com/BDSpoke-UTC-Spelman-Tuskegee-WVU/R-bootcamp-summer2019/tree/master/3.input-output) 
+ End of Day 1. 
 	
 ## Day 2 	
-* 8am-8:30 	Breakfast <br>
-* 8:30-10:15	[Using R codes to reconstruct analyses of a Science paper on protein interaction networks](https://github.com/BDSpoke-UTC-Spelman-Tuskegee-WVU/R-bootcamp-summer2019/tree/master/5.fraser.paper/PIN.KaKs). The original paper is [Fraser et al 2002 Science](https://www.ncbi.nlm.nih.gov/pubmed/11976460). 
-* 10:15-10:30 	Break <br>
-* 10:30-11:45	Continued. 
-* 12-1:15pm 	Lunch (Volunteers needed for focus groups assessment interview)<br> 	
-* 1-2:30	Optional topics. [Network permutation, association evaluation, and visualization](https://github.com/BDSpoke-UTC-Spelman-Tuskegee-WVU/R-bootcamp-summer2019/tree/master/6.graph.ms02). 
-* 2:30-2:45pm 	Break
-* 2:45-4:45m 	Develop video tutorials for Coding and Data Science Education. Sign for QUBES VEFN Group. 
+* 10-12pm 	[Wrangling of the Metric Survey Data](https://github.com/BDSpoke-UTC-Spelman-Tuskegee-WVU/R-bootcamp-summer2019/tree/master/4.dataWrangle-metricExample). 
+* 12-1pm 	Lunch (Volunteers needed for focus groups assessment interview)<br> 	
 
+* 1pm-2pm	[Using R codes to reconstruct analyses of a Science paper on protein interaction networks](https://github.com/BDSpoke-UTC-Spelman-Tuskegee-WVU/R-bootcamp-summer2019/tree/master/5.fraser.paper/PIN.KaKs). The original paper is [Fraser et al 2002 Science](https://www.ncbi.nlm.nih.gov/pubmed/11976460). 
+* 2-3pm	Optional topics. [Network permutation, association evaluation, and visualization](https://github.com/BDSpoke-UTC-Spelman-Tuskegee-WVU/R-bootcamp-summer2019/tree/master/6.graph.ms02). 
+  Post-survey
+  End of Day 2. 
 ## Please complete this anonymous and voluntary poster-survey if you are only attending the R bootcamp. (If you will attend the EHR bootcamp, please do not take it now. We will ask you take the post survey on Friday). 
 
 ## Free Online Books on R: 
