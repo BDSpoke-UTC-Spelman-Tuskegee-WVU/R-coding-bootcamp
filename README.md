@@ -1,4 +1,4 @@
-# UTC R data Wrangling Bootcamp, May18-19, 2020
+# UTC R Data Wrangling Bootcamp, May18-19, 2020
 
 ## Quitstart
 * A laptop is required for this bootcamp. Please do not forget the chargers. 
