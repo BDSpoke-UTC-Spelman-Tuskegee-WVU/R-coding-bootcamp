@@ -17,8 +17,8 @@ Please download a “RStudio Desktop” Open Source Edition from http://www.rstu
 
 
 ## Day 1 
-* 9:45am-10:00 	Presurvey. , GitHub, R and Rstudio. Download the GitHub repo in Zip File. 
-* 10am-1am	[Learning R and RStudio through a survey on metric proficiency](https://github.com/BDSpoke-UTC-Spelman-Tuskegee-WVU/R-bootcamp-summer2019/tree/master/1.startRwMetricExample). 
+* 9:45am-10:00 	Presurvey. R and Rstudio. Download the GitHub repo in Zip File. 
+* 10am-11am	[Learning R and RStudio through a survey on metric proficiency](https://github.com/BDSpoke-UTC-Spelman-Tuskegee-WVU/R-bootcamp-summer2019/tree/master/1.startRwMetricExample). 
 Basic R code, Markdown file, code block, RStudio interface, Data frame, and basic data visualization and analysis. 
 
 ### Introduction to R and Rstudio with simple exercises. 
@@ -34,8 +34,7 @@ Basic R code, Markdown file, code block, RStudio interface, Data frame, and basi
 * 10-12pm 	[Wrangling of the Metric Survey Data](https://github.com/BDSpoke-UTC-Spelman-Tuskegee-WVU/R-bootcamp-summer2019/tree/master/4.dataWrangle-metricExample). 
 * 12-1pm 	Lunch (Volunteers needed for focus groups assessment interview)<br> 	
 
-* 1pm-2pm	[Using R codes to reconstruct analyses of a Science paper on protein interaction networks](https://github.com/BDSpoke-UTC-Spelman-Tuskegee-WVU/R-bootcamp-summer2019/tree/master/5.fraser.paper/PIN.KaKs). The original paper is [Fraser et al 2002 Science](https://www.ncbi.nlm.nih.gov/pubmed/11976460). 
-* 2-3pm	Optional topics. [Network permutation, association evaluation, and visualization](https://github.com/BDSpoke-UTC-Spelman-Tuskegee-WVU/R-bootcamp-summer2019/tree/master/6.graph.ms02). 
+* 1pm-2pm	Using R to anayze the Covid19 data 
   Post-survey
   End of Day 2. 
 ## Please complete this anonymous and voluntary poster-survey if you are only attending the R bootcamp. (If you will attend the EHR bootcamp, please do not take it now. We will ask you take the post survey on Friday). 
