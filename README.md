@@ -4,6 +4,7 @@
 * A laptop is required for this bootcamp. Please do not forget the chargers. 
 * [Realtime Discussion Etherpad](https://etherpad.wikimedia.org/p/UTC-R-bootcamp2019)
 * A ZOOM link and password will be emailed to your registration email. 
+* Tutorials will be recorded and video link will be posted here. 
 
 ## Pre-bootcamp Preparation
 * Install R on your laptops. (R must be installed before RStudio).
