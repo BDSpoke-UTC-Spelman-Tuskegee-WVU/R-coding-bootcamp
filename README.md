@@ -38,7 +38,8 @@ Basic R code, Markdown file, code block, RStudio interface, Data frame, and basi
 * 1pm-2pm	Using R to anayze the Covid19 data 
   Post-survey
   End of Day 2. 
-## Please complete this anonymous and voluntary poster-survey if you are only attending the R bootcamp. (If you will attend the EHR bootcamp, please do not take it now. We will ask you take the post survey on Friday). 
+  
+## Please complete this anonymous and voluntary post-survey if you are only attending the R bootcamp. (If you will attend the NEON bootcamp, please do not take it now. We will ask you take the post survey on Friday). 
 
 ## Free Online Books on R: 
 If people want to learn R before and after the bootcamps, there are many free online books at http://ucanalytics.com/blogs/learn-r-12-books-and-online-resources/
