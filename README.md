@@ -39,7 +39,7 @@ Basic R code, Markdown file, code block, RStudio interface, Data frame, and basi
   Post-survey <br>
   End of Day 2. <br>
   
-## Please complete this anonymous and voluntary post-survey if you are only attending the R bootcamp. 
+## Please complete this anonymous and voluntary post-survey. 
 
 ## Free Online Books on R: 
 If people want to learn R before and after the bootcamps, there are many free online books at http://ucanalytics.com/blogs/learn-r-12-books-and-online-resources/
