@@ -35,11 +35,11 @@ Basic R code, Markdown file, code block, RStudio interface, Data frame, and basi
 * 10-12pm 	[Wrangling of the Metric Survey Data](https://github.com/BDSpoke-UTC-Spelman-Tuskegee-WVU/R-bootcamp-summer2019/tree/master/4.dataWrangle-metricExample). 
 * 12-1pm 	Lunch (Volunteers needed for focus groups assessment interview)<br> 	
 
-* 1pm-2pm	Using R to anayze the Covid19 data 
-  Post-survey
-  End of Day 2. 
+* 1pm-2pm	Using R to anayze the Covid19 data <br>
+  Post-survey <br>
+  End of Day 2. <br>
   
-## Please complete this anonymous and voluntary post-survey if you are only attending the R bootcamp. (If you will attend the NEON bootcamp, please do not take it now. We will ask you take the post survey on Friday). 
+## Please complete this anonymous and voluntary post-survey. 
 
 ## Free Online Books on R: 
 If people want to learn R before and after the bootcamps, there are many free online books at http://ucanalytics.com/blogs/learn-r-12-books-and-online-resources/
