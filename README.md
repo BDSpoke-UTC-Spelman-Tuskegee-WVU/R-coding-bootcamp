@@ -45,7 +45,9 @@ Basic R code, Markdown file, code block, RStudio interface, Data frame, and basi
 
 * 12-1pm 	<br> 	
 
-* 1pm-3pm	Using R to anayze the Covid19 data <br>
+* 1pm-3pm	[Using R to anayze the Covid19 data](https://github.com/BDSpoke-UTC-Spelman-Tuskegee-WVU/R-coding-bootcamp/tree/master/5.sars-cov-2)
+
+<br>
 
 * Post-survey <br>
 
