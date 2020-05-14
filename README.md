@@ -1,6 +1,6 @@
 # UTC R Data Wrangling Bootcamp, May18-19, 2020
 
-## Quitstart
+## Quikstart
 * A laptop is required for this bootcamp. Please do not forget the chargers. 
 * [Realtime Discussion Etherpad](https://etherpad.wikimedia.org/p/UTC-R-bootcamp2019)
 * A ZOOM link and password will be emailed to your registration email. 
