@@ -31,21 +31,24 @@ Basic R code, Markdown file, code block, RStudio interface, Data frame, and basi
 #### Molar solution exercise. 
 [![](https://i9.ytimg.com/vi/H0Zkc-RuY-0/mq1.jpg?sqp=CPCn8vUF&rs=AOn4CLDmqFrClihZ3d4JKvfx23kGJS91bQ)](https://youtu.be/H0Zkc-RuY-0 "Molar solution")
 
-* 12-1pm 	Lunch (Volunteers needed for focus groups assessment interview)	
+* 12-1pm 	Lunch <br>
+
 * 1-3pm	[Input and output in R](https://github.com/BDSpoke-UTC-Spelman-Tuskegee-WVU/R-bootcamp-summer2019/tree/master/3.input-output) 
 
 [![](https://i9.ytimg.com/vi/-ltUZ6YXwK8/mq2.jpg?sqp=CKmr8vUF&rs=AOn4CLBCaKYoIYll-2KsiwxNhWeiJ3VZqQ
 )](https://youtu.be/-ltUZ6YXwK8 "Convert an Excel file to csv, load into R, and plot")
 
- End of Day 1. 
+
 	
 ## Day 2 	
 * 10-12pm 	[Wrangling of the Metric Survey Data](https://github.com/BDSpoke-UTC-Spelman-Tuskegee-WVU/R-bootcamp-summer2019/tree/master/4.dataWrangle-metricExample). 
-* 12-1pm 	Lunch (Volunteers needed for focus groups assessment interview)<br> 	
 
-* 1pm-2pm	Using R to anayze the Covid19 data <br>
-  Post-survey <br>
-  End of Day 2. <br>
+* 12-1pm 	<br> 	
+
+* 1pm-3pm	Using R to anayze the Covid19 data <br>
+
+* Post-survey <br>
+
   
 ## Please complete this anonymous and voluntary post-survey. 
 
