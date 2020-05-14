@@ -33,6 +33,10 @@ Basic R code, Markdown file, code block, RStudio interface, Data frame, and basi
 
 * 12-1pm 	Lunch (Volunteers needed for focus groups assessment interview)	
 * 1-3pm	[Input and output in R](https://github.com/BDSpoke-UTC-Spelman-Tuskegee-WVU/R-bootcamp-summer2019/tree/master/3.input-output) 
+
+[![](https://i9.ytimg.com/vi/-ltUZ6YXwK8/mq2.jpg?sqp=CKmr8vUF&rs=AOn4CLBCaKYoIYll-2KsiwxNhWeiJ3VZqQ
+)](https://youtu.be/-ltUZ6YXwK8 "Convert an Excel file to csv, load into R, and plot")
+
  End of Day 1. 
 	
 ## Day 2 	
