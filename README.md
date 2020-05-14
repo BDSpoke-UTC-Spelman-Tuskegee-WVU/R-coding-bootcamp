@@ -1,21 +1,18 @@
 # UTC R Data Wrangling Bootcamp, May18-19, 2020
 
-## Quikstart
-* A laptop is required for this bootcamp. Please do not forget the chargers. 
-* [Realtime Discussion Etherpad](https://etherpad.wikimedia.org/p/UTC-R-bootcamp2019)
-* A ZOOM link and password will be emailed to your registration email. 
-* Tutorials will be recorded and video link will be posted here. 
-
 ## Pre-bootcamp Preparation
+* A laptop is required for this bootcamp. Please do not forget the chargers. 
 * Install R on your laptops. (R must be installed before RStudio).
 Please install a recent version of R software from https://cran.r-project.org/ .
 * Install RStudio on your laptops. (RStudio must be installed after R).
 RStudio is a popular user-friendly editor and environment to run R.
 Please download a “RStudio Desktop” Open Source Edition from http://www.rstudio.com/products/rstudio/download/, and follow the instruction for installation.
-
+* A ZOOM link and password will be emailed to your registration email. 
 
 ## Please complete this voluntary and anonymous [pre-survey](https://forms.gle/hjJZW2RThdGsJKc97)
 
+## Quikstart
+* [Realtime Discussion Etherpad](https://etherpad.wikimedia.org/p/UTC-R-bootcamp2019)
 
 ## Day 1 
 * 9:45am-10:00 	Presurvey. R and Rstudio. Download the GitHub repo in Zip File. 
