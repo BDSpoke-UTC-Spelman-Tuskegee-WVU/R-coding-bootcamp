@@ -22,11 +22,15 @@ Please download a “RStudio Desktop” Open Source Edition from http://www.rstu
 * 10am-11am	[Learning R and RStudio through a survey on metric proficiency](https://github.com/BDSpoke-UTC-Spelman-Tuskegee-WVU/R-bootcamp-summer2019/tree/master/1.startRwMetricExample). 
 Basic R code, Markdown file, code block, RStudio interface, Data frame, and basic data visualization and analysis. 
 
-### Introduction to R and Rstudio with simple exercises. 
-[![](http://img.youtube.com/vi/LJIxbmDAhYM/0.jpg)](http://www.youtube.com/watch?v=LJIxbmDAhYM "BBD_simpleR")
+#### Introduction to R and Rstudio with simple exercises. 
+[![](https://i9.ytimg.com/vi/LJIxbmDAhYM/mq2.jpg?sqp=CLeo8vUF&rs=AOn4CLCVRPNCUV98kFe2aog51hZWwe5Ubg)](http://www.youtube.com/watch?v=LJIxbmDAhYM "BBD_simpleR")
 
 * 11am-11:10 	Break 
 * 11:10-12pm	[Coding in R](https://github.com/BDSpoke-UTC-Spelman-Tuskegee-WVU/R-bootcamp-summer2019/tree/master/2.coding) 
+
+#### Molar solution exercise. 
+[![](https://i9.ytimg.com/vi/H0Zkc-RuY-0/mq1.jpg?sqp=CPCn8vUF&rs=AOn4CLDmqFrClihZ3d4JKvfx23kGJS91bQ)](https://youtu.be/H0Zkc-RuY-0 "Molar solution")
+
 * 12-1pm 	Lunch (Volunteers needed for focus groups assessment interview)	
 * 1-3pm	[Input and output in R](https://github.com/BDSpoke-UTC-Spelman-Tuskegee-WVU/R-bootcamp-summer2019/tree/master/3.input-output) 
  End of Day 1. 
