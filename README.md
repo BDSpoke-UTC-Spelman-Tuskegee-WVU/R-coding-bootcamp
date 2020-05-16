@@ -21,6 +21,7 @@ Please download a “RStudio Desktop” Open Source Edition from http://www.rstu
    * Introduction to R and Rstudio with simple exercises. [Video](http://www.youtube.com/watch?v=LJIxbmDAhYM)
 [![](https://i9.ytimg.com/vi/LJIxbmDAhYM/mq2.jpg?sqp=CLeo8vUF&rs=AOn4CLCVRPNCUV98kFe2aog51hZWwe5Ubg)](http://www.youtube.com/watch?v=LJIxbmDAhYM "BBD_simpleR")
    * Metric units, [Tucker Carlson video](https://youtu.be/1cPeZLCVWTw), [ABC news](https://youtu.be/MJd0aBQuTYQ), [Ted Talk](https://youtu.be/7bUVjJWA6Vw)
+   * [A survey on metric system, scientific literacy and attitude](https://forms.gle/gEjbXTj2yP8JNx5G9)
 
 * 11am-11:10 	Break 
 
