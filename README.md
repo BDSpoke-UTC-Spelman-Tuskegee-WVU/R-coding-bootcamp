@@ -24,7 +24,7 @@ Basic R code, Markdown file, code block, RStudio interface, Data frame, and basi
 * 11am-11:10 	Break 
 
 * 11:10-12:10pm	[Coding in R](https://github.com/BDSpoke-UTC-Spelman-Tuskegee-WVU/R-coding-bootcamp/tree/master/2.coding) 
-   * Molar solution exercise.[Video](https://youtu.be/H0Zkc-RuY-0)
+   * Molar solution exercise. [Video](https://youtu.be/H0Zkc-RuY-0)
 [![](https://i9.ytimg.com/vi/H0Zkc-RuY-0/mq1.jpg?sqp=CPCn8vUF&rs=AOn4CLDmqFrClihZ3d4JKvfx23kGJS91bQ)](https://youtu.be/H0Zkc-RuY-0 "Molar solution")
 
 * 12:10-1pm 	Lunch <br>
