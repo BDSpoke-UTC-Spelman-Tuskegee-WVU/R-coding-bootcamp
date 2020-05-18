@@ -1,14 +1,13 @@
 ---
 title: "Preprocess survey data for metrics, scientific literacy and attitude"
 author: "H Qin"
-date: "2019 July 29"
+date: "May 18, 2020"
 output:
-  pdf_document: default
   html_document: default
+  pdf_document: default
 layout: topic
 ---
 
-------------
 
 > ## Learning Objectives
 > * Load external tabular data from a .csv file into R.
@@ -16,7 +15,6 @@ layout: topic
 > * Find iregular inputs and correct them 
 > * Generate summary and clean results 
 
-------------
 
 References: 
 ABC News: https://www.youtube.com/watch?v=1cPeZLCVWTw&feature=youtu.be
