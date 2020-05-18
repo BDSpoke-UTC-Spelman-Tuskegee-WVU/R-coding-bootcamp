@@ -58,6 +58,11 @@ tb[c(5,9), c('age', 'SciLitScore')]
 ```
 
 
+```{r}
+table(tb$age)
+```
+
+
 Overview of the data
 
 ```{r summary}
