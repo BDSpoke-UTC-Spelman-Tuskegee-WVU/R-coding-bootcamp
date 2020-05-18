@@ -1,10 +1,10 @@
 ---
-title: "Analysis of survey data for metrics, scientific literacy and attitude"
+title: "Analysis of survey data for metric proficiency, scientific literacy and attitude"
 author: "H Qin"
 date: "5/18/2020"
 output:
-  pdf_document: default
   html_document: default
+  pdf_document: default
 layout: topic
 ---
 
@@ -37,8 +37,8 @@ What is a data frame?
 Looking for helps
 ```{r help}
 ?str
-help(str)
-str(tb); 
+help(str);
+str(tb);
 ```
 
 Indexing an element in a dataframe
@@ -57,6 +57,7 @@ tb[c(5,9), c(7,2)]
 tb[c(5,9), c('age', 'SciLitScore')]
 ```
 
+# tabuluate the values of 'age'
 
 ```{r}
 table(tb$age)
@@ -106,7 +107,7 @@ table(tb$metric, tb$gender )
 How to pick a subset of data? 
 Pick "Male" metric proficiency data? 
 ```{r}
-tb$gender=='Male'
+tb$gender == 'Male'
 tb$metric[tb$gender=='Male']
 tb$metric[tb$gender=='Female']
 ```

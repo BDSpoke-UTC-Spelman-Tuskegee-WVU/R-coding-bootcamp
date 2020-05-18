@@ -178,50 +178,21 @@ x = take_even(x)
 
 ```
 
+ 
 ```{r}
 
-#### a simple example
- rm(list = ls())
- library(seqinr);
-
- tablecode(); #the genetic code
-
- # read in some bacterial 16s rDNA sequences
- seqs = read.fasta( "http://www.bioinformatics.org/ctls/download/data/16srDNA.fasta",seqtype="DNA");
-
- # look at the first sequence
- seq1 = seqs[[1]]
- table( seq1 ); #nucleotide composition
- GC(seq1);  # GC content
-
- # a loop for all sequences 
- num = 1:length(seqs);
- gc  = 1:length(seqs);
- out = data.frame( cbind( num, gc ) );
- out$samples = "TMP"
- 
- for( i in 1:length(seqs) ) {
-   out$gc[i] = GC( seqs[[i]] );
-   out$samples[i] = attr(seqs[[i]], "name")
- }
- 
- out;
-
- write.csv(out, "gc.csv", row.names=F) # output the results
-
-
 #### save and load images
- save.image("Test.RData");
+ save.image("Test0518.RData");
  
  # delete everyting 
  rm(list=ls());
  
  ls(); #nothing
 
-  load("Test.RData");
+ load("Test0518.RData");
  ls(); #everthing is back
 
 
 ```
-
+ 
  

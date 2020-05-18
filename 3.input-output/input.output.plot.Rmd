@@ -17,7 +17,7 @@ tb = read.csv("Carlson_Yeast.csv");
 
  # a simple plot
 ```{r}
- plot( tb$Amount ~ tb$Hours );
+plot( tb$Amount ~ tb$Hours );
 ```
 
  # a better plot
@@ -25,6 +25,7 @@ tb = read.csv("Carlson_Yeast.csv");
 ```{r}
  plot( Amount ~ Hours, data=tb );
 ```
+
 
 ```{r}
  plot( Amount ~ Hours, data=tb, type="b",
@@ -46,12 +47,18 @@ tb = read.csv("Carlson_Yeast.csv");
 
 ```{r}
  ##now, let's add colors
- plot( tb2$Amount ~ tb2$Hours, ylab="Amount",xlab="Hours",type="l", 
+ plot( tb2$Amount ~ tb2$Hours, ylab="Amount",xlab="Hours",type="l",  lty=2,
     main="growth comparison", col="blue");
- lines( tb2$Amount2 ~ tb2$Hours, col="red" );
+ lines( tb2$Amount2 ~ tb2$Hours, col="red", lwd=5 );
 
  ##add legends
- legend(2,500,c("wt","mutant"), col=c("blue","red"), lwd=c(1,1) )
+ #legend(2,500,c("Amount","Amount2"), col=c("blue","red"), lwd=c(1,1) )
+#legend(12,250        ,c("wt","mutant"), col=c("blue","red"), lwd=c(1,1) )
+
+#legend("bottomright", c("Amount, second amount"))
+#legend('bottomright',500,c("wt","mutant"), col=c("blue","red"), lwd=c(1,1))
+legend(("bottomright"), c("WT", "MUT"), col=c("Blue","Red"),lwd=c(1,5), lty=c(2,1))
+
 ```
 
 ```{r}
