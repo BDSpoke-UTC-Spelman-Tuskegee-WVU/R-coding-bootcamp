@@ -1,10 +1,10 @@
 ---
 title: "Analysis of survey data for metrics, scientific literacy and attitude"
 author: "H Qin"
-date: "5/30/2019"
+date: "5/18/2020"
 output:
-  html_document: default
   pdf_document: default
+  html_document: default
 layout: topic
 ---
 

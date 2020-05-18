@@ -1,5 +1,6 @@
 ---
 title: "Simple R"
+author: "H Qin"
 output:
   html_document: default
   pdf_document: default
