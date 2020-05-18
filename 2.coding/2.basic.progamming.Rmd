@@ -1,4 +1,15 @@
 
+---
+title: "Basic R Coding"
+author: "H Qin"
+date: "5/18/2020"
+output:
+  html_document: default
+  pdf_document: default
+layout: topic
+---
+
+
 # loops
 
 ```{r}
