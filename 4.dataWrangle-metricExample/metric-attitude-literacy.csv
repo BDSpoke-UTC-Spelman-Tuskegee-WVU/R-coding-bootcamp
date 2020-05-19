@@ -1,4 +1,4 @@
-"gender","age","country","degree","metric","SciAttitude","SciLitScore"
+"sex","age","country","degree","metric","SciAttitude","SciLitScore"
 "Do not wish to answer",20,1,"Bachelor Degree in Science or equivalent",3,3,6
 "Male",20,1,"High School or equivalent",4,3,9
 "Female",35.5,1,"High School or equivalent",1,1,8
