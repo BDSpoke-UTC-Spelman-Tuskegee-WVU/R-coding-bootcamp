@@ -37,7 +37,6 @@ colnames(tb)[1:11]
 colnames = names(tb)
 #start = (1:length(tb[1,]))[colnames == "1/22/20"]  # beginning data
 start = (1:length(tb[1,]))[colnames == "3/1/20"]
-  
 ```
 
 ```{r}
@@ -53,8 +52,13 @@ tb.sub = tb[, start: (start + total.timepoints)] # pick the actual data
 
 calculate the sum by row (location)
 ```{r}
-tb$totalcasesbyrow= apply(tb.sub, 1, sum) 
+#tb$totalcasesbyrow= apply(tb.sub, 1, sum) #erros, cases is cumulative
+tb[, 'totalcasesbyrow'] = tb.sub[, length(tb.sub[1,])]
 hist(log10(tb$totalcasesbyrow))
+```
+
+```{r}
+summary(tb$totalcasesbyrow)
 ```
 
 find the cutoff value
