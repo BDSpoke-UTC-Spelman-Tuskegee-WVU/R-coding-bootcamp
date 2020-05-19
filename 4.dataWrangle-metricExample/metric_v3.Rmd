@@ -1,7 +1,7 @@
 ---
 title: "Preprocess survey data for metrics, scientific literacy and attitude"
 author: "H Qin"
-date: "May 18, 2020"
+date: "May 19, 2020"
 output:
   html_document: default
   pdf_document: default
@@ -16,10 +16,11 @@ layout: topic
 > * Generate summary and clean results 
 
 
-References: 
-ABC News: https://www.youtube.com/watch?v=1cPeZLCVWTw&feature=youtu.be
-
-Productive failure http://manukapur.com/productive-failure/
+> ## References: 
+> * ABC News: https://www.youtube.com/watch?v=1cPeZLCVWTw&feature=youtu.be
+> * Tucker Carlson news: https://youtu.be/1cPeZLCVWTw
+> * Ted Talk: https://youtu.be/7bUVjJWA6Vw
+> * A survey on metric system, scientific literacy and attitude: (https://forms.gle/gEjbXTj2yP8JNx5G9
 
 
 # Check files in the working directory 
@@ -47,7 +48,7 @@ tb = tb.ori  #make a copy because we will modify the table.
 names(tb.ori)
 ?names
 #rename the columns with shortter names for convenience 
-names(tb) = c("time","gender", "age", "degree", "country", "light", "shaq", "fossil", "kilo", "mm", 
+names(tb) = c("time","sex", "age", "degree", "country", "light", "shaq", "fossil", "kilo", "mm", 
         "food","inseam", "weather","electronCharge","earlyHuman", 
         "laser", "continents", "antibiotics", "electronSize","earthCenter",
         "religiousView","dailyLife","SciOnLife", "SciEffect")
@@ -115,13 +116,13 @@ table(tb$age)
 tb$degree [is.na(tb$degree)] = 'Do not wish to answer'
 table(tb$degree)
 
-tb$gender[tb$gender=='']='Do not wish to answer'
-table(tb$gender)
+tb$sex[tb$sex=='']='Do not wish to answer'
+table(tb$sex)
 
 ```
 
 
-# Now, we need to conver survey data in chacracters into numeric scores
+# Now, we need to convert survey data in chacracters into numeric scores
 
 # First, convert age categories into numeric values
 
@@ -156,8 +157,8 @@ table(tb2$age)
 
 # Visualize the age values
 ```{r}
-table(tb2$age, tb2$gender)
-boxplot( tb2$age ~ tb2$gender)
+table(tb2$age, tb2$sex)
+boxplot( tb2$age ~ tb2$sex)
 
 #histogram of age
 hist(tb2$age)
@@ -381,7 +382,7 @@ str(tb2)
 # Output the 'cleaned' data to a csv file
 
 ```{r}
-tb3 = tb2[, c("gender", "age", "country", "degree", "metric", "SciAttitude", "SciLitScore")]
+tb3 = tb2[, c("sex", "age", "country", "degree", "metric", "SciAttitude", "SciLitScore")]
 head(tb3)
 write.csv(tb3, file = "metric-attitude-literacy.csv", row.names = FALSE, quote=TRUE)
 ```
