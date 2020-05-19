@@ -8,20 +8,17 @@ output:
 layout: topic
 ---
 
-
 > ## Learning Objectives
 > * Load external tabular data from a .csv file into R.
 > * Manipulate string and categorical data in R
 > * Find iregular inputs and correct them 
 > * Generate summary and clean results 
 
-
 > ## References: 
 > * ABC News: https://www.youtube.com/watch?v=1cPeZLCVWTw&feature=youtu.be
 > * Tucker Carlson news: https://youtu.be/1cPeZLCVWTw
 > * Ted Talk: https://youtu.be/7bUVjJWA6Vw
 > * A survey on metric system, scientific literacy and attitude: (https://forms.gle/gEjbXTj2yP8JNx5G9
-
 
 # Check files in the working directory 
 
@@ -53,7 +50,6 @@ names(tb) = c("time","sex", "age", "degree", "country", "light", "shaq", "fossil
         "laser", "continents", "antibiotics", "electronSize","earthCenter",
         "religiousView","dailyLife","SciOnLife", "SciEffect")
 str(tb)
-
 ```
 
 
@@ -162,7 +158,6 @@ boxplot( tb2$age ~ tb2$sex)
 
 #histogram of age
 hist(tb2$age)
-
 ```
 
 # Convert country responses into values
@@ -259,13 +254,13 @@ tb2$dailyLife[ tb$dailyLife=='TRUE' ] = 0
 tb2$dailyLife[ tb$dailyLife=='FALSE' ] = 1
 table(tb2$dailyLife)
 
-# "Science and technology are making our lives healthiers, easiers and more comfortable."
+# "Science and technology are making our lives healthier, easier and more comfortable."
 tb2$SciOnLife = 0
 tb2$SciOnLife[ tb$SciOnLife=='TRUE' ] = 1
 tb2$SciOnLife[ tb$SciOnLife=='FALSE' ] = 0
 table(tb2$SciOnLife)
 
-# "The benefits of sciences are greaters than any harmful effects that it may have."
+# "The benefits of sciences are greater than any harmful effects that it may have."
 tb2$SciEffect = 0
 tb2$SciEffect[ tb$SciEffect=='TRUE' ] = 1
 tb2$SciEffect[ tb$SciEffect=='FALSE' ] = 0
@@ -386,3 +381,10 @@ tb3 = tb2[, c("sex", "age", "country", "degree", "metric", "SciAttitude", "SciLi
 head(tb3)
 write.csv(tb3, file = "metric-attitude-literacy.csv", row.names = FALSE, quote=TRUE)
 ```
+
+# Question for student to work on:  Is there correlation between "SciAttitude" and "SciLitScore"? 
+
+
+# Question for student to work on:  How would we visualize the correlation between "SciAttitude" and "SciLitScore"? 
+
+
