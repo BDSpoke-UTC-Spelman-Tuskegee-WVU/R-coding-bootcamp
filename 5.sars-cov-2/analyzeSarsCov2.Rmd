@@ -52,7 +52,7 @@ tb.sub = tb[, start: (start + total.timepoints)] # pick the actual data
 
 calculate the sum by row (location)
 ```{r}
-#tb$totalcasesbyrow= apply(tb.sub, 1, sum) #erros, cases is cumulative
+#tb$totalcasesbyrow= apply(tb.sub, 1, sum) #errors, cases is cumulative
 tb[, 'totalcasesbyrow'] = tb.sub[, length(tb.sub[1,])]
 hist(log10(tb$totalcasesbyrow))
 ```
@@ -119,7 +119,8 @@ tb.hotspots = filter(tb.hotspots, R0EG < 4.0 )
 regression of R0 with Latitude and Longtitudes
 ```{r}
 plot( tb.hotspots$R0EG ~ tb.hotspots$Lat )
-text( tb.hotspots$Lat, tb.hotspots$R0EG, tb.hotspots$Admin2)
+#text( tb.hotspots$Lat, tb.hotspots$R0EG, tb.hotspots$Admin2)
+text( tb.hotspots$Lat, tb.hotspots$R0EG, tb.hotspots$Province_State)
 m = lm(tb.hotspots$R0EG  ~ tb.hotspots$Lat  )
 abline(m, col='red')
 ```
@@ -137,11 +138,12 @@ write_csv(out, path="canubelievethis.csv")
 how to plot time series? using ggplot? 
 
 ```{r}
-ts1 = tb.hotspots[1, names(tb.hotspots)[c(13: (length(names(tb.hotspots))-2))]]
+ts1 = tb.hotspots[1, names(tb.hotspots)[c(12: (length(names(tb.hotspots))-2))]]
 ts1 = t(ts1)
 row.names(ts1)
 #day = parse_date(row.names(ts1), "%m/%d/%y")
 
+# put into a dataframe for ggplot
 data <- data.frame(
   day = as.Date(row.names(ts1), "%m/%d/%y"), 
   cases = ts1
@@ -152,5 +154,5 @@ data <- data.frame(
 
 ```{r}
 p <- ggplot(data, aes(x=day, y=cases)) + geom_line() + xlab("")
-p + scale_x_date(date_labels = "%Y %m %d")
+p + scale_x_date(date_labels = "%y %m %d")
 ```
