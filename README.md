@@ -50,7 +50,7 @@ Please download a “RStudio Desktop” Open Source Edition from http://www.rstu
 * Post-survey <br>
 
   
-## Please complete this anonymous and voluntary post-survey if you will NOT take the NEON bootcamp on Wed, Thu, Fri. 
+## Please complete this anonymous and voluntary [post-survey](https://forms.gle/zB9hH1MBr55WZpfT9) if you will NOT take the NEON bootcamp on Wed, Thu, Fri. 
 
 ## Free Online Books on R: 
 If people want to learn R before and after the bootcamps, there are many free online books at http://ucanalytics.com/blogs/learn-r-12-books-and-online-resources/
