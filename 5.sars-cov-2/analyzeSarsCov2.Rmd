@@ -1,11 +1,14 @@
 ---
-title: "Covid19 explotoary analysis for education"
+title: "Covid19 exploratory analysis for education"
 author: "Hong Qin"
 date: "May 10, 2020"
 output:
   html_document: default
   pdf_document: default
 ---
+
+> ## Disclaimer
+> * This analysis is only meant for educational purpose only. 
 
 
 ```{r}
@@ -56,7 +59,7 @@ hist(log10(tb$totalcasesbyrow))
 
 find the cutoff value
 ```{r}
-qcutoff= quantile(tb$totalcasesbyrow, probs=c(0, 0.5,  0.75 ) )[3]
+qcutoff= quantile(tb$totalcasesbyrow, probs=c(0, 0.5,  0.95 ) )[3]
 qcutoff
 ```
 
@@ -101,26 +104,45 @@ hist(tb.hotspots$R0EG, br = 40)
 
  remove outliers
 ```{r}
-tb.hotspots2 = filter(tb.hotspots, R0EG < 4.0 )
+tb.hotspots = filter(tb.hotspots, R0EG < 4.0 )
 ```
 
 regression of R0 with Latitude and Longtitudes
 ```{r}
-plot( tb.hotspots2$R0EG ~ tb.hotspots2$Lat )
-text( tb.hotspots2$Lat, tb.hotspots2$R0EG, tb.hotspots2$Admin2)
-m = lm(tb.hotspots2$R0EG  ~ tb.hotspots2$Lat  )
+plot( tb.hotspots$R0EG ~ tb.hotspots$Lat )
+text( tb.hotspots$Lat, tb.hotspots$R0EG, tb.hotspots$Admin2)
+m = lm(tb.hotspots$R0EG  ~ tb.hotspots$Lat  )
 abline(m, col='red')
 ```
 
 ```{r}
-m = lm(tb.hotspots2$R0EG  ~ tb.hotspots2$Lat  )
+m = lm(tb.hotspots$R0EG  ~ tb.hotspots$Lat  )
 summary(m)
 ```
 
-how plot time series? using ggplot? 
 ```{r}
-write_csv(tb.hotspots2, path="test.csv")
+out = tb.hotspots[, names(tb.hotspots)[c(1:12, length(names(tb.hotspots)))]]
+write_csv(out, path="canubelievethis.csv")
+```
+
+how to plot time series? using ggplot? 
+
+```{r}
+ts1 = tb.hotspots[1, names(tb.hotspots)[c(13: (length(names(tb.hotspots))-2))]]
+ts1 = t(ts1)
+row.names(ts1)
+#day = parse_date(row.names(ts1), "%m/%d/%y")
+
+data <- data.frame(
+  #day = as.Date("2017-06-14") - 0:364,
+  day = as.Date(row.names(ts1), "%m/%d/%y"), 
+  cases = ts1
+)
 ```
 
 
 
+```{r}
+p <- ggplot(data, aes(x=day, y=cases)) + geom_line() + xlab("")
+p + scale_x_date(date_labels = "%Y %m %d")
+```
