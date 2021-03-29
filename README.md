@@ -1,4 +1,4 @@
-# UTC R Data Wrangling Bootcamp, May18-19, 2020
+# UTC R Data Wrangling Bootcamp, May17-18, 2021
 
 ## Pre-bootcamp Preparation
 * A laptop is required for this bootcamp. Please do not forget the chargers. 
