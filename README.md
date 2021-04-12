@@ -9,7 +9,7 @@ RStudio is a popular user-friendly editor and environment to run R.
 Please download a “RStudio Desktop” Open Source Edition from http://www.rstudio.com/products/rstudio/download/, and follow the instruction for installation.
 * A ZOOM link and password will be emailed to your registration email. 
 
-## Please complete this voluntary and anonymous [pre-survey](https://forms.gle/hjJZW2RThdGsJKc97)
+## Please complete this voluntary and anonymous [pre-survey]()
 
 ## Quikstart
 * [Realtime Discussion Etherpad](https://etherpad.wikimedia.org/p/UTC-R-bootcamp2019)
@@ -50,7 +50,7 @@ Please download a “RStudio Desktop” Open Source Edition from http://www.rstu
 * Post-survey <br>
 
   
-## Please complete this anonymous and voluntary [post-survey](https://forms.gle/zB9hH1MBr55WZpfT9) if you will NOT take the NEON bootcamp on Wed, Thu, Fri. 
+## Please complete this anonymous and voluntary [post-survey]()  
 
 ## Free Online Books on R: 
 If people want to learn R before and after the bootcamps, there are many free online books at 
