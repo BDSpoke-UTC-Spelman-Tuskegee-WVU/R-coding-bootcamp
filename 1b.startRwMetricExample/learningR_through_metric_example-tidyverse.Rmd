@@ -1,0 +1,250 @@
+---
+title: "Analysis of survey data for metric proficiency, scientific literacy and attitude"
+author: "H Qin"
+date: "January/28/2021"
+output:
+  html_document: default
+  pdf_document: default
+layout: topic
+---
+
+------------
+
+> ## Learning Objectives
+>
+> * Load external tabular data from a .csv file into R.
+> * Describe what an R data frame is.
+> * Summarize the contents of a data frame in R.
+> * Manipulate categorical data in R using factors.
+
+------------
+
+# Check files in the working directory 
+
+```{r list, echo=FALSE}
+rm( list=ls()) #clean up worksapce
+library(tidyverse)
+list.files()
+```
+
+# Read the survey data in csv format
+
+```{r read}
+tb = read_csv("metric-attitude-literacy.csv")
+```
+
+What is a data frame? 
+
+Looking for helps
+```{r help}
+?str
+help(str);
+str(tb);
+```
+
+Indexing an element in a dataframe
+
+```{r indexing}
+#indexing features of R
+tb[1:5, 2:3]
+tb$age #what does mean? 
+#tb$age[?] #try for 5th row in age
+
+# what is the 5th and 9th rows in age and SciLitScore: 
+tb[c(5,9), c(7,2)]
+```
+
+```{r indexing-by-c}
+tb[c(5,9), c('age', 'SciLitScore')]
+```
+
+# tabuluate the values of 'age'
+
+```{r}
+table(tb$age)
+```
+
+
+Overview of the data
+
+```{r summary}
+summary(tb)
+```
+Exercise: Find out help information of summary(). 
+
+```{r look-at-data}
+head(tb)
+```
+
+Look at first 2 rows of columns 2 and 3
+```{r}
+head( tb[, 2:3], n=2)
+```
+
+# The survey provide results for three types of questions
+1) Metric proficiency
+2) Scientific literacy
+3) Attitude toward science
+
+What does the 'country' coded for? 
+
+```{r}
+table(tb$country)
+```
+So, USA is 1, other countries are coded as zeros. 
+
+# Is gender associated with metric proficiency? 
+
+```{r}
+boxplot( tb$metric ~ tb$gender, ylab="metric proficiency" )
+```
+
+```{r}
+table(tb$metric, tb$gender )
+```
+
+
+
+How to pick a subset of data? 
+Pick "Male" metric proficiency data? 
+```{r}
+tb$gender == 'Male'
+tb$metric[tb$gender=='Male']
+tb$metric[tb$gender=='Female']
+```
+
+What is t-test? 
+
+```{r t-test}
+t.test(tb$metric[tb$gender=='Female'], tb$metric[tb$gender=='Male'], alternative = 'less')
+# Does this mean that females are more uncomfortable with metric usage?
+```
+
+# What does p-value mean? 
+
+```{r boxpliot}
+# Female participants tend to be younger
+boxplot( tb$age ~ tb$gender, ylab='age')
+
+# More female participants with Bachelor degrees
+table( tb$gender, tb$degree )
+
+boxplot( tb$metric ~ tb$degree, ylab='metric proficiency')
+
+# how age in boxplot
+# ???
+  
+m1 = lm( tb$metric ~ tb$gender )
+summary(m1)
+#summary( lm( tb$metric ~ tb$gender ) )
+
+m2 = lm( tb$metric ~ tb$age )
+summary(m2)
+
+m3 = lm( tb$metric ~ tb$degree )
+summary(m3)
+
+m4 = lm( tb$metric~ tb$gender + tb$age + tb$degree )
+summary(m4)
+```
+
+
+# Caudal regression analyses
+
+```{r}
+#########################
+#summary(tb); str(tb)
+
+#remove rows with missing age from analysis. Missing age can cause bugs in anova model comparisons. 
+tb = tb[!is.na(tb$age), ] 
+
+summary(tb)
+str(tb); 
+
+pairs(tb[, c("age", "metric", "SciLitScore", "SciAttitude")])
+
+```
+
+
+```{r causal-analsyis}
+summary(lm(tb$SciLitScore ~ tb$metric )) #significant
+summary(lm(tb$SciAttitude ~ tb$metric )) #significant
+summary(lm(tb$SciAttitude ~ tb$SciLitScore )) #significant
+summary(lm(tb$SciAttitude ~ tb$age )) #significant
+summary(lm(tb$metric ~ tb$age )) #significant
+
+summary(lm(tb$SciAttitude ~ tb$SciLitScore + tb$metric )) #significant
+## metric -> SciAttitude and SciLitScore
+
+
+summary(lm(tb$SciAttitude ~ tb$metric + tb$age + tb$gender + tb$country  )) #only metric is significant
+summary(lm(tb$SciLitScore ~ tb$metric + tb$age + tb$gender + tb$country  )) #only metric is significant
+
+summary(lm(tb$SciLitScore ~ tb$country)) #p=0.0009, but seems due to metric?  
+summary(lm(tb$SciLitScore ~ tb$metric + tb$country  )) #only metric is significant
+
+summary(lm(tb$SciAttitude ~ tb$country)) #p=0.0127, but seems due to metric?  
+summary(lm(tb$SciAttitude ~ tb$country + tb$metric)) #country not significant when controled for metric 
+
+
+plot( tb$SciLitScore ~ jitter(tb$metric), xlab='Metric Proficiency', ylab='Scientific Literacy', ylim=c(2,10) )
+m1 = lm(tb$SciLitScore ~ tb$metric )
+abline(m1, col='red')
+summary(m1)
+text(2, 2.5, "SciLit ~ Metric, R2=0.26, p<0.001", col="red", pos=4)
+#abline(m2, col='blue')
+summary(m2)
+m2 = lm(tb$SciLitScore ~ tb$metric + tb$age)
+anova(m1, m2)
+m3 = lm(tb$SciLitScore ~ tb$metric + tb$age + tb$gender)
+summary(m3)
+anova(m2,m3)
+m4 = lm(tb$SciLitScore ~ tb$metric + tb$age + tb$country)
+anova(m2, m4)
+#text(2, 2, "SciLit ~ Metric + Age, R2=0.29, p=2.8E-14", col="blue", pos=4)
+
+plot( tb$SciAttitude ~ jitter(tb$metric), ylim=c(0.5,4), xlab='Metric Proficiency', ylab='Attitude toward Science' )
+m1 = lm( tb$SciAttitude ~ tb$metric )
+m2 = lm( tb$SciAttitude ~ tb$metric + tb$age )
+abline(m1, col='red')
+abline(m2, col='blue')
+summary(m1)
+summary(m2)
+anova(m1, m2)
+text(2, 0.9, "SciAttitude ~ Metric , R2=0.18, p=1.0E-9", col="red", pos=4)
+text(2, 0.7, "SciAttitude ~ Metric + Age, R2=0.24, p=4.7E-12", col="blue", pos=4)
+
+plot( tb$SciAttitude ~ jitter(tb$age), ylab='Attitude toward Science', xlab='Age')
+m2 = lm( tb$SciAttitude ~ tb$age + tb$metric)
+abline(m2, col='blue')
+text(30, 1.7, "SciAttitude ~ Metric + Age, R2=0.24, p=4.7E-12", col="blue", pos=4)
+
+summary(lm(tb$SciAttitude ~ tb$metric + tb$age + tb$gender + tb$country  )) #age is signicant!!!
+
+#but this might be a bias in the sample
+# 1) there is many faculty
+# 2) people took the sample may be interested in the metric and science at the first place?!
+summary(lm(tb$SciAttitude ~ tb$metric + tb$age + tb$gender + tb$country + tb$degree  )) #age is signicant!!!
+
+summary(lm(tb$SciAttitude ~ tb$SciLitScore))
+summary(lm(tb$SciAttitude ~ tb$SciLitScore + tb$metric))
+
+boxplot( tb$SciAttitude ~ tb$country )
+boxplot( tb$SciLitScore ~ tb$country )
+boxplot( tb$metric ~ tb$country )
+
+boxplot( tb$SciLitScore ~ tb$age )
+boxplot( tb$SciAttitude ~ tb$age )
+boxplot( tb$metric ~ tb$age )
+
+###########
+# remove phD from the samples
+#
+summary(tb[, 1:5])
+tb3 = tb[ - grep('Ph.D.', tb$degree)  , ]
+summary(tb3)
+summary(lm(tb3$SciAttitude ~ tb3$metric + tb3$age + tb3$gender + tb3$country + tb3$degree  )) 
+#age is still signicant after PhD are removed from the sample
+
+```
+

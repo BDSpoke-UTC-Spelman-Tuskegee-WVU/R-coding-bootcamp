@@ -1,0 +1,158 @@
+---
+title: "Covid19 exploratory analysis for education"
+author: "Hong Qin"
+date: "May 10, 2020"
+output:
+  html_document: default
+  pdf_document: default
+---
+
+> ## Disclaimer
+> * This analysis is only meant for educational purpose only. 
+
+
+```{r}
+rm(list=ls())
+library(tidyverse)
+library(readr)
+library(dplyr)
+```
+
+```{r}
+infile ="time_series_covid19_confirmed_US.csv"
+tb = read_csv(infile)
+head(tb)
+```
+
+```{r}
+dim(tb)
+```
+
+Time series start at the 12th columns 
+```{r}
+colnames(tb)[1:11]
+```
+
+```{r}
+colnames = names(tb)
+#start = (1:length(tb[1,]))[colnames == "1/22/20"]  # beginning data
+start = (1:length(tb[1,]))[colnames == "3/1/20"]
+```
+
+```{r}
+total.timepoints = length(tb[1,]) - start
+start: total.timepoints
+print( paste( "There are", total.timepoints  + 1, "time points"))
+```
+
+```{r}
+tb.sub = tb[, start: (start + total.timepoints)] # pick the actual data
+#summary(tb.sub)
+```
+
+calculate the sum by row (location)
+```{r}
+#tb$totalcasesbyrow= apply(tb.sub, 1, sum) #errors, cases is cumulative
+tb[, 'totalcasesbyrow'] = tb.sub[, length(tb.sub[1,])]
+hist(log10(tb$totalcasesbyrow))
+```
+
+```{r}
+summary(tb$totalcasesbyrow)
+```
+
+find the cutoff value
+```{r}
+qcutoff= quantile(tb$totalcasesbyrow, probs=c(0, 0.5,  0.95 ) )[3]
+qcutoff
+```
+
+pick the hot spots, top 5% and with latitude entry
+```{r}
+tb.hotspots = filter(tb, totalcasesbyrow >= qcutoff & Lat != 0) 
+nrow(tb.hotspots[,1])
+```
+
+# order the table
+```{r}
+#order(tb.q95$totalcasesbyrow)
+tb.hotspots = tb.hotspots[ order(tb.hotspots$totalcasesbyrow, decreasing = TRUE) , ]
+```
+
+# Now, estimate R0 
+```{r}
+library(R0)
+```
+
+```{r}
+debug = 0
+#for( i in 1:10){
+for( i in 1:nrow(tb.hotspots[,1])){
+ x = as.vector(t(tb.hotspots[i, start:(start+total.timepoints)])) 
+ for (j in 2:length(x)){
+   x[j] = x[j] - x[j-1]
+ }
+ x[x<0] = 0
+ 
+ if( debug > 0) {
+    print(paste("i=", i))
+   #print(x) 
+   }
+ #str(x)
+ mGT= generation.time("gamma", c(3, 1.5))
+ R0EG = estimate.R(x, GT=mGT,  methods=c('EG'), pop.size = 100000, nsim=10 )
+ tb.hotspots$R0EG[i] = as.numeric(unlist(R0EG$estimates$EG$R))
+}
+#tb.hotspots$R0EG
+```
+
+
+```{r}
+hist(tb.hotspots$R0EG, br = 40)
+```
+
+ remove outliers
+```{r}
+tb.hotspots = filter(tb.hotspots, R0EG < 4.0 )
+```
+
+regression of R0 with Latitude and Longtitudes
+```{r}
+plot( tb.hotspots$R0EG ~ tb.hotspots$Lat )
+#text( tb.hotspots$Lat, tb.hotspots$R0EG, tb.hotspots$Admin2)
+text( tb.hotspots$Lat, tb.hotspots$R0EG, tb.hotspots$Province_State)
+m = lm(tb.hotspots$R0EG  ~ tb.hotspots$Lat  )
+abline(m, col='red')
+```
+
+```{r}
+m = lm(tb.hotspots$R0EG  ~ tb.hotspots$Lat  )
+summary(m)
+```
+
+```{r}
+out = tb.hotspots[, names(tb.hotspots)[c(1:12, length(names(tb.hotspots)))]]
+write_csv(out, path="canubelievethis.csv")
+```
+
+how to plot time series? using ggplot? 
+
+```{r}
+ts1 = tb.hotspots[1, names(tb.hotspots)[c(12: (length(names(tb.hotspots))-2))]]
+ts1 = t(ts1)
+row.names(ts1)
+#day = parse_date(row.names(ts1), "%m/%d/%y")
+
+# put into a dataframe for ggplot
+data <- data.frame(
+  day = as.Date(row.names(ts1), "%m/%d/%y"), 
+  cases = ts1
+)
+```
+
+
+
+```{r}
+p <- ggplot(data, aes(x=day, y=cases)) + geom_line() + xlab("")
+p + scale_x_date(date_labels = "%y %m %d")
+```
