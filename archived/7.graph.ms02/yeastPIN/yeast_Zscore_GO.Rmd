@@ -1,0 +1,264 @@
+---
+title: 'yeast PIN Z-score, multi-labeled nodes, foreach '
+author: "H Qin"
+date: "11/5/2018"
+output:
+  pdf_document: default
+  html_document: default
+---
+
+```{r}
+rm(list=ls())
+debug = 11
+largeGOFlag = 1; 
+#library(igraph)
+library(foreach)
+library(doMC)
+registerDoMC(5)
+
+pairs= read.csv("Data/yeast.pin.csv", colClasses = c("character", "character"))
+if ( debug > 9) { pairs = pairs[1:5000, ]}
+names(pairs) = c("name1", "name2")
+```
+
+# Load yeast GO terms
+```{r}
+YeastBP = read.csv("Data/yeast.bp.gene.term.csv", colClasses = c("character", "character", "character", "character", "character"))
+cats = YeastBP;  #cats is a general name
+names(cats) = c("id", "gene", "sgd","type", "GO")
+```
+
+```{r}
+if( largeGOFlag > 0 ){ #pick large GO terms
+  tmp = table( cats$GO)
+  largeGOterms =as.character( names(tmp[ tmp >= mean(tmp)]) )
+  cats$large_flag = ifelse( cats$GO %in% largeGOterms, 1, 0 )
+  table(cats$large_flag)
+  cats = cats[ cats$large_flag == 1, ]
+}
+unique.cats = unique( cats$GO )
+```
+
+# function to find out all combinations of two vectors
+```{r}
+allCombinationsOfTwoVectors = function (els1, els2 ) {
+  tagbuffer = c();
+  for (e1 in els1) {
+    for (e2 in els2) {
+         tmp = sort(c(e1, e2));
+         current_tag = paste(tmp[1], tmp[2], sep="_")
+         tagbuffer = c(tagbuffer, current_tag)
+    }
+  }
+  return( tagbuffer)
+}
+
+allCombinationsOfTwoVectors( c("one", "two"), c("red", "blue", "orange"))
+x = allCombinationsOfTwoVectors( c("1", "2", "red"), c("red", "blue", "orange", "2"))
+length(x)
+table(x)
+```
+
+```{r F.obs}
+start = Sys.time()
+alltags = c()
+for ( i in 1:length(pairs[,1])){
+  sub1 = cats[ cats$id == pairs$name1[i], ]
+  sub2 = cats[ cats$id == pairs$name2[i], ]
+  els1 = sub1$GO
+  els2 = sub2$GO
+  if ( is.null(sub1) ) { els1 = c("NA") }
+  if ( is.null(sub2) ) { els2 = c("NA") }
+  tagbuffer = allCombinationsOfTwoVectors ( els1, els2 )  #all combinations
+  alltags = c( alltags, tagbuffer) #combine with dataframe buffer
+}
+stop1 = Sys.time()
+print(paste( "alltags.foreach runtime is ", stop1 - start, sep = " ") )
+
+F.obs = data.frame(  table(as.character( alltags))  )
+names(F.obs) = c("tag", "freq")
+F.obs$tag = as.character(F.obs$tag)
+F.obs = F.obs[ order(F.obs$tag), ]
+stop2 = Sys.time()
+print(paste( "Fobs runtime is ", stop2 - stop1, sep = " ") )
+```
+
+```{r F.obs_foreach}
+start = Sys.time()
+alltags2 = c()
+alltags2 = foreach(i=1:nrow(pairs), .combine = rbind ) %dopar% {
+  #print(i)
+  sub1 = cats[ cats$id == pairs$name1[i], ]
+  sub2 = cats[ cats$id == pairs$name2[i], ]
+  els1 = sub1$GO
+  els2 = sub2$GO
+  if ( is.null(sub1) ) { els1 = c("NA") }
+  if ( is.null(sub2) ) { els2 = c("NA") }
+  tagbuffer = allCombinationsOfTwoVectors ( els1, els2 )  #all combinations
+  data.frame(tagbuffer)
+}
+stop1 = Sys.time()
+print(paste( "alltags2 foreach runtime is ", stop1 - start, sep = " ") )
+
+F.obs.foreach  =  data.frame( table(as.character( alltags2[,1] ) ) )
+names(F.obs.foreach) = c("tag", "freq")
+F.obs.foreach$tag = as.character(F.obs.foreach$tag)
+#F.obs.foreach = F.obs.foreach[ order(F.obs.foreach$tag), ]
+
+stop2 = Sys.time()
+print(paste( "F.obs.foreach table() runtime is ", stop2 - stop1, sep = " ") )
+```
+
+# compare single core and multiple-core results. Passed. 
+```{r}
+table( F.obs$freq == F.obs.foreach$freq )
+table( F.obs$tag == F.obs.foreach$tag )
+#cbind( F.obs$tag, F.obs.foreach$tag )
+```
+
+# Analyze MS02 null networks
+```{r F.ms02}
+ms02files = list.files(path='yeastMS02')
+if (debug > 0 ) {ms02files = ms02files[1: 10] }
+F.ms02 = data.frame(matrix(data=NA, nrow=1, ncol=3)) #null distributions
+names(F.ms02) = c('tag', 'freq', 'file')
+start = Sys.time()
+
+for (file in ms02files ){
+  start.file  = Sys.time()
+  ms02_pairs= read.csv(paste("yeastMS02/", file, sep=''),
+                       colClasses = c("character", "character"))
+  ms02_pairs = ms02_pairs[,1:2]
+  if ( debug > 5 ) {     ms02_pairs = ms02_pairs[1:1000, ]  }
+  
+  alltagsMS02 = c()
+  alltagsMS02 = foreach(i=1:nrow(ms02_pairs), .combine = rbind ) %dopar% {
+    sub1 = cats[ cats$id == ms02_pairs$id1[i], ]
+    sub2 = cats[ cats$id == ms02_pairs$id2[i], ]
+    els1 = sub1$GO
+    els2 = sub2$GO
+    if ( is.null(sub1) ) { els1 = c("NA") }
+    if ( is.null(sub2) ) { els2 = c("NA") }
+    tagbufferMS02 = allCombinationsOfTwoVectors ( els1, els2 )  #all combinations
+    data.frame(tagbufferMS02)
+  }
+  stop.file = Sys.time()
+  print(paste( "alltagsMS02 foreach single file runtime is ", stop.file - start.file, sep = " ") )
+  
+  F.ms02current = data.frame( table(alltagsMS02[,1]))
+  F.ms02current$file = file
+  names(F.ms02current) = c('tag', 'freq', 'file')
+  F.ms02 =  data.frame( rbind(F.ms02, data.frame(F.ms02current)) )
+}
+F.ms02 = F.ms02[ !is.na(F.ms02$tag), ]
+summary(F.ms02)
+
+stop = Sys.time()
+print(paste( "MS02 tag counts",length(ms02files), " files, runtime", stop - start, sep = " ") )
+```
+
+# Initialize the Z-score matrix
+```{r}
+all_tags = unique( allCombinationsOfTwoVectors(unique.cats, unique.cats) )
+Zs = data.frame(all_tags)
+names(Zs) = c('tag')
+Zs$freq = ifelse( all_tags %in% Zs$tag, F.obs$freq[ match( Zs$tag , F.obs$tag) ], 0)
+Zs$freq[is.na(Zs$freq)] = 0; 
+summary(Zs)
+```
+
+# calculate Z-score. This take a few minutes. Need be modified by multicore
+```{r Zs}
+for (i in 1 : length(Zs$tag)) {
+#i = 2
+  sub = F.ms02[ F.ms02$tag == Zs$tag[i], ]
+  if ( length(sub[,1])> 0) {
+    Zs$Z[i] = ( Zs$freq[i] - mean(sub$freq) ) / max(sd(sub$freq), 0.5)
+    if(debug>1 ){
+       print( paste( Zs$tag[i],"lenthg(sub[,1]):",length(sub[,1]), "mean:", mean(sub$freq), "sd:", sd(sub$freq) ))  
+       sub
+    } 
+  } else {
+    #Zs$Z[i] = ( Zs$freq[i] - 0 ) / 1E-10  #never observed in ms02 nulls?? what to do??
+    Zs$Z[i] = 999  #never observed in ms02 nulls?? what to do??
+    if(debug>0 ){
+       print( paste( Zs$tag[i],"lenthg(sub[,1]):",length(sub[,1]), "mean:", mean(sub$freq), "sd:", sd(sub$freq) ))  
+    } 
+  }
+}
+summary(Zs$Z)
+```
+
+
+# generate Z matrix
+```{r Zmat}
+Zmat = matrix(NA, ncol=length( unique.cats ), nrow=length( unique.cats))
+colnames(Zmat) =  unique.cats; 
+rownames(Zmat) = rev( unique.cats); 
+for (i in 1:length( unique.cats)){#row
+  for (  j in 1:length( unique.cats)) { #column
+    tmp = sort(c( unique.cats[i], rev( unique.cats)[j]))
+    mytag = paste(tmp[1], tmp[2], sep="_")
+    if( mytag %in% Zs$tag) {
+       Zmat[i,j] = Zs$Z[ Zs$tag == mytag ]
+    } else {
+       Zmat[i,j] = NA
+    }
+    if (debug >1 ) {
+      print (paste(mytag, Zmat[i,j] ) )
+    }
+  }
+}
+Zmat
+```
+
+# Limit MS02Zscore to [-10, 10]
+
+```{r}
+for( i in 1:length(Zmat[1,])) {
+ for( j in 1:length(Zmat[,1])){
+   Zmat[i,j] =  ifelse( Zmat[i,j] > 10  , 10, Zmat[i,j] )
+   Zmat[i,j] =  ifelse( Zmat[i,j] < -10, -10, Zmat[i,j] )
+ }
+}
+
+```
+
+```{r heatmap.2}
+library(gplots)
+#colors = c(seq(min(Zmat),-10.1,length=100),seq(-9.9,9.9,length=100),seq(10.1,max(Zmat),length=100))
+my_palette <- colorRampPalette(c("blue2", "white", "red2"))(n = 299)
+
+heatmap.2( as.matrix(Zmat), col=my_palette, scale="none",
+          # margins = c(5,4), key.title = NA, 
+           ,key.xlab="Z-score", key.ylab=NA,
+          dendrogram='none', Rowv=FALSE, Colv=FALSE,trace='none'
+          )
+
+```
+
+
+```{r}
+colors = c( seq(min(Zmat, na.rm =T), -10.1, length=100),
+            seq(-9.9,9.9,length=100),seq(10.1,max(Zmat,na.rm=T),length=100) )
+my_palette <- colorRampPalette(c("blue2", "white", "red2"))(n = 299)
+
+
+heatmap.2(as.matrix(Zmat), col=my_palette, breaks=colors,
+          trace='none', offsetRow = 0, offsetCol = 0,
+          #ylab="Biological Process Terms", xlab="Biological Process Terms",
+          #margins = c(2,2), key.title = "Color Bar", key.xlab="Z-score", key.ylab=NA,
+          #labCol = NA, labRow = NA,
+          scale="none", dendrogram = "none", Rowv=FALSE, Colv=FALSE,
+          #symbreaks=T, symm=F, symkey = F
+          )
+
+```
+
+
+```{r}
+end = Sys.time()
+runtime = end - start
+print(runtime)
+```
+
