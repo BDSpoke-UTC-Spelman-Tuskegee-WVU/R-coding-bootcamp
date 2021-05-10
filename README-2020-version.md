@@ -1,4 +1,4 @@
-# UTC R Data Wrangling Bootcamp, May17-18, 2021
+# UTC R Data Wrangling Bootcamp, 2020 old version
 
 * A laptop is required for this bootcamp. Please do not forget the chargers. 
 * A ZOOM link and password will be emailed to your registration email. 
