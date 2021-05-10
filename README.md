@@ -11,7 +11,7 @@ RStudio is a popular user-friendly editor and environment to run R.
 Please download a “RStudio Desktop” Open Source Edition from http://www.rstudio.com/products/rstudio/download/, and follow the instruction for installation.
 
 
-## Please complete this voluntary and anonymous [pre-survey]()
+## Please complete this voluntary and anonymous [pre-survey](https://forms.gle/J4JAzzxAXR3SnE7t7)
 
 ## Quikstart
 * [Realtime Discussion Etherpad](https://etherpad.wikimedia.org/p/UTC-R-bootcamp2019)
