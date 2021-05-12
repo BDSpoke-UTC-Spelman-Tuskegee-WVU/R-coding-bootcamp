@@ -145,7 +145,7 @@ tb1 %>% dplyr::filter( dates >= start, dates <=  end)  %>% dplyr::select(1:5)
 
 ```
 
-# plot a time window
+## plot a time window
 
 ```{r}
 tb_sub <- 
@@ -239,9 +239,104 @@ tail(tb_daily_sub)
 myplot <- ggplot(tb_daily_sub, aes(x=YMD, y=tb_daily_sub[,1]))
 myplot + geom_point() + stat_smooth(span=0.3)
 ```
-# Chapter 3 Google Mobility 
+
+
+# Chapter 3. Google Mobility 
+
+Background, mobility and social distance
+Mobility can gauge the social distance practice
+Google Community Mobility report https://www.google.com/covid19/mobility/
 
 ```{r}
+url =  "https://www.gstatic.com/covid19/mobility/Region_Mobility_Report_CSVs.zip"
+download.file( url, destfile = "download/google.zip")
+```
+
+
+```{r}
+tbGMUS20 = read_csv("download/google/2020_US_Region_Mobility_Report.csv")
+tail(tbGMUS20)
+```
+
+```{r}
+tbGMUS21 = read_csv("download/google/2021_US_Region_Mobility_Report.csv")
+tail(tbGMUS21)
+```
+
+Stack the two data frames of Google Mobility
+```{r}
+tbGMUS = rbind( tbGMUS20, tbGMUS21)
+```
+
+## Pick Google Mob.ility for the county
+
+```{r}
+myState = 'Alabama'
+myCounty = "Macon County" #Google location is different from JHU
+tbGMmycounty <-
+  tbGMUS %>% filter( sub_region_1 == myState, sub_region_2 == myCounty)
+head(tbGMmycounty)
+```
+
+```{r}
+max(tbGMmycounty$date) #the most recent date of the mobility report
+```
+
+## Merge mobility and covid19 data for our location/county
+
+```{r}
+head( tb_daily_sub)
+
+tb_daily_mycounty = tb_daily_sub
+names(tb_daily_mycounty) = c("DailyCases", "date")
+tail(tb_daily_mycounty)
+
+```
+
+
+```{r}
+tb_GMCovidmycounty = merge(x=tb_daily_mycounty, y=tbGMmycounty, by= 'date', all.y=FALSE)
+
+row.names(  tb_GMCovidmycounty ) =  tb_GMCovidmycounty$date
+ 
+tail( tb_GMCovidmycounty )
+names(tb_GMCovidmycounty  ) 
+#names(tb_GMCovidmycounty  )[10:12] 
+
+```
+
+
+```{r}
+print( paste( "There are ", length(tb_GMCovidmycounty[1,]), "columns"))
+```
+
+Select columns, normalize, and overlay
+```{r}
+tb_GMCovidmycounty2  <- tb_GMCovidmycounty  %>% dplyr::select(2, 11:16 ) # select values columns
+tail(tb_GMCovidmycounty2 )
+
+tb_GMCovidmycounty_scaled <-  data.frame( scale(tb_GMCovidmycounty2) )
+head( tb_GMCovidmycounty_scaled  )
+
+# add the date column back
+tb_GMCovidmycounty_scaled$date = ymd(row.names(tb_GMCovidmycounty_scaled))
+tail( tb_GMCovidmycounty_scaled  )
+
+```
+
+
+```{r}
+names( tb_GMCovidmycounty_scaled )
+
+selected_columns = c('DailyCases', 'retail_and_recreation_percent_change_from_baseline', 'workplaces_percent_change_from_baseline','residential_percent_change_from_baseline')
+
+#selected_columns = c('DailyCases','workplaces_percent_change_from_baseline','residential_percent_change_from_baseline')
+
+df_melt <- melt(tb_GMCovidmycounty_scaled, measure.vars=selected_columns, value.names="Values", varialbe.name="varialbe" )
+
+plot <- ggplot(df_melt, aes(x=date, y=value, color=variable)) + stat_smooth(span=0.15) 
+
+plot + ggtitle( paste( myCounty, myState))
 
 ```
 
