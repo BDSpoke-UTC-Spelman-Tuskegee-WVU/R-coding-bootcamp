@@ -156,5 +156,86 @@ tb_sub
 ggplot(tb_sub, aes( x = dates, y=tb_sub[,3])) + geom_point() + geom_smooth()
 ```
 
+# Examining the daily cases for a specific county
+## Define the county and state. Change to your home county and state for your project
 
+```{r}
+mycounties = c( 'Macon, Alabama, US') #Change here to your home county and state
+#mycounties = c( 'San Francisco, California, US') #Change here to your home county and state
+#mycounties = c( 'Santa Clara, California, US') #Change here to your home county and state
+#mycounties = c('Hennepin, Minnesota, US') #Minneapolis
+#mycounties = c('Harris, Texas, US') #Houston
+#mycounties = c('Cobb, Georgia, US') #Houston
+#mycounties = c( 'Hamilton, Tennessee, US') #Change here to your home county and state
+
+```
+
+# Pick the cumulative cases for the county
+
+```{r}
+tb = read_csv("https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_confirmed_US.csv")
+
+tb1 <- tb %>% dplyr::select(12:length(tb[1,])) %>% as.matrix()
+tb1 = as.data.frame(t(tb1))
+
+names(tb1) = tb$Combined_Key
+
+current_dates = names(tb)[12:length(tb[1,])]
+tb1$dates = mdy(current_dates)
+#head(tb1)
+
+days_window = 340  # time  window
+endday = today(tzone ='EST')
+
+tb_sub <- tb1 %>% 
+  dplyr::select( all_of(mycounties), 'dates') %>%
+  dplyr::filter( between(dates, endday-ddays(days_window), endday))   
+
+head(tb_sub)
+```
+
+## Covert cumulative counts into daily cases
+
+The diff() function is helpful here. 
+
+```{r}
+tb_sub[,1]
+```
+
+
+```{r}
+diff( tb_sub[,1])
+```
+
+
+```{r}
+local_dailycases = c(0, diff( tb_sub[,1] )) # we add zero to the first day
+
+tb_daily_sub = data.frame( local_dailycases )
+head(tb_daily_sub)
+```
+```{r}
+tb_daily_sub$YMD = mdy(row.names(tb_sub))
+head(tb_daily_sub)
+```
+
+```{r}
+row.names(tb_daily_sub) = tb_daily_sub$YMD #add row names
+tail(tb_daily_sub )
+```
+
+
+```{r}
+names(tb_daily_sub)[1] = mycounties #add column names
+```
+
+
+```{r}
+tail(tb_daily_sub)
+```
+Plot the daily cases for this county 
+```{r}
+myplot <- ggplot(tb_daily_sub, aes(x=YMD, y=tb_daily_sub[,1]))
+myplot + geom_point() + stat_smooth(span=0.3)
+```
 
