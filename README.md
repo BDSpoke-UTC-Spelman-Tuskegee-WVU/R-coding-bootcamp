@@ -18,13 +18,15 @@ Please download a “RStudio Desktop” Open Source Edition from http://www.rstu
 
 ## Day 1 
 * 9:45am-10:00 	Presurvey. R and Rstudio. Download the GitHub repo in Zip File. 
-* 10am-11am Basic R Coding through learning COVID19 data analysis
+* 10am-11am Basic R Coding in RStudio
    * Basic R code, Markdown file, code block, RStudio interface, Data frame, and basic data visualization and analysis. 
    * Introduction to R and Rstudio with simple exercises. [Video](http://www.youtube.com/watch?v=LJIxbmDAhYM)
 [![](https://i9.ytimg.com/vi/LJIxbmDAhYM/mq2.jpg?sqp=CLeo8vUF&rs=AOn4CLCVRPNCUV98kFe2aog51hZWwe5Ubg)](http://www.youtube.com/watch?v=LJIxbmDAhYM "BBD_simpleR")
-   * COVID19 daily cases by counties in USA
 
-* 11am-11:10 	Break 
+* 11am-11:10 	Break
+
+* 11:10- 12:10pm Analyze GISAID meta data. 
+
 
 * 11:10-12:10pm	[Coding in R](https://github.com/BDSpoke-UTC-Spelman-Tuskegee-WVU/R-coding-bootcamp/tree/master/2.coding) 
    * Molar solution exercise. [Video](https://youtu.be/H0Zkc-RuY-0)
@@ -32,18 +34,18 @@ Please download a “RStudio Desktop” Open Source Edition from http://www.rstu
 
 * 12:10-1pm 	Lunch <br>
 
-* 1-3pm	[Input, output, ploting in R](https://github.com/BDSpoke-UTC-Spelman-Tuskegee-WVU/R-bootcamp-summer2019/tree/master/3.input-output) 
-    * Convert an Excel file to csv, load into R and plot. [Video](https://youtu.be/-ltUZ6YXwK8) 
-[![](https://i9.ytimg.com/vi/-ltUZ6YXwK8/mq2.jpg?sqp=CKmr8vUF&rs=AOn4CLBCaKYoIYll-2KsiwxNhWeiJ3VZqQ)](https://youtu.be/-ltUZ6YXwK8 "Convert an Excel file to csv, load into R, and plot")
-   * Output to csv file. [Video](https://youtu.be/Gscj7gGundo)
-[![](https://i9.ytimg.com/vi/Gscj7gGundo/mq2.jpg?sqp=CL6u8vUF&rs=AOn4CLBVvUKAyOwbyO2zRekO3qeqAGv46Q)](https://youtu.be/Gscj7gGundo "Output to csv")
-	
+
+*1-2pm  COVID19 daily cases by counties in USA
+
+*2pm-2:10 break
+
+*2:10-3pm Google Mobility and COVID19 cases
+
 ## Day 2 	
-* 10-12pm 	TBD
 
-* 12-1pm 	<br> 	
-
-* 1pm-3pm	TBD
+* AM Simple statistical test, linear regression
+	
+* PM	TBD
 <br>
 
 * Post-survey <br>
