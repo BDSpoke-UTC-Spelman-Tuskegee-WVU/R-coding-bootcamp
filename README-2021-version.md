@@ -18,12 +18,11 @@ Please download a “RStudio Desktop” Open Source Edition from http://www.rstu
 
 ## Day 1 
 * 9:45am-10:00 	Presurvey. R and Rstudio. Download the GitHub repo in Zip File. 
-* 10am-11am	[Learning R and RStudio through a survey on metric proficiency](https://github.com/BDSpoke-UTC-Spelman-Tuskegee-WVU/R-coding-bootcamp/tree/master/1.startRwMetricExample). [Video](https://youtu.be/Vn7zIUYxQ9U)
+* 10am-11am Basic R Coding through learning COVID19 data analysis
    * Basic R code, Markdown file, code block, RStudio interface, Data frame, and basic data visualization and analysis. 
    * Introduction to R and Rstudio with simple exercises. [Video](http://www.youtube.com/watch?v=LJIxbmDAhYM)
 [![](https://i9.ytimg.com/vi/LJIxbmDAhYM/mq2.jpg?sqp=CLeo8vUF&rs=AOn4CLCVRPNCUV98kFe2aog51hZWwe5Ubg)](http://www.youtube.com/watch?v=LJIxbmDAhYM "BBD_simpleR")
-   * Metric units, [Tucker Carlson video](https://youtu.be/1cPeZLCVWTw), [ABC news](https://youtu.be/MJd0aBQuTYQ), [Ted Talk](https://youtu.be/7bUVjJWA6Vw)
-   * [A survey on metric system, scientific literacy and attitude](https://forms.gle/gEjbXTj2yP8JNx5G9)
+   * COVID19 daily cases by counties in USA
 
 * 11am-11:10 	Break 
 
@@ -38,15 +37,13 @@ Please download a “RStudio Desktop” Open Source Edition from http://www.rstu
 [![](https://i9.ytimg.com/vi/-ltUZ6YXwK8/mq2.jpg?sqp=CKmr8vUF&rs=AOn4CLBCaKYoIYll-2KsiwxNhWeiJ3VZqQ)](https://youtu.be/-ltUZ6YXwK8 "Convert an Excel file to csv, load into R, and plot")
    * Output to csv file. [Video](https://youtu.be/Gscj7gGundo)
 [![](https://i9.ytimg.com/vi/Gscj7gGundo/mq2.jpg?sqp=CL6u8vUF&rs=AOn4CLBVvUKAyOwbyO2zRekO3qeqAGv46Q)](https://youtu.be/Gscj7gGundo "Output to csv")
-
 	
 ## Day 2 	
-* 10-12pm 	[Wrangling of the Metric Survey Data](https://github.com/BDSpoke-UTC-Spelman-Tuskegee-WVU/R-coding-bootcamp/tree/master/4.dataWrangle-metricExample). 
+* 10-12pm 	TBD
 
 * 12-1pm 	<br> 	
 
-* 1pm-3pm	[Using R to anayze the Covid19 data](https://github.com/BDSpoke-UTC-Spelman-Tuskegee-WVU/R-coding-bootcamp/tree/master/5.sars-cov-2)
-
+* 1pm-3pm	TBD
 <br>
 
 * Post-survey <br>
