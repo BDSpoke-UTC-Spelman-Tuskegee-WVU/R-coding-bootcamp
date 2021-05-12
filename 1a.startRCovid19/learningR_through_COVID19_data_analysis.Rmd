@@ -25,7 +25,7 @@ There are many other COVID19 data set, see https://en.wikipedia.org/wiki/COVID-1
 
 ------------
 
-# Check files in the working directory 
+Loat the libraries
 
 ```{r list, echo=FALSE}
 rm( list=ls()) #clean up worksapce
@@ -36,7 +36,7 @@ library(ggplot2)
 library(dplyr)
 ```
 
-# Load the data
+Load the data
 
 ```{r read}
 # load JHU covid19 data set with tidyverse read_csv
@@ -84,3 +84,41 @@ head( tb[, 2:3], n=2)
 length(tb[1,])
 print(paste( "There are ", length(tb[1,]), " columns"))
 ```
+
+## Select columns of daily cases
+Rotate the data so that data of each county is in one column
+
+```{r}
+#tb %>% select( 12:length(tb[1,]) ) 
+
+tb1 <- tb %>% dplyr::select(12:length(tb[1,])) %>% as.matrix()
+tb1 = as.data.frame(t(tb1)) # t for transpose, then convert to a dataframe
+tail(tb1)
+
+```
+
+## Add meaning columns names
+
+```{r}
+names(tb1) = tb$Combined_Key
+#tail(tb1[100:110,1:10])
+tail(tb1[,1:10])
+
+```
+
+## Convert dates from text format to actual Date type
+
+see https://lubridate.tidyverse.org/ 
+
+```{r}
+library(lubridate)
+mdy("10/1/2020")
+```
+
+
+```{r}
+current_dates = names(tb)[12:length(tb[1,])]
+class(current_dates)
+current_dates
+```
+
