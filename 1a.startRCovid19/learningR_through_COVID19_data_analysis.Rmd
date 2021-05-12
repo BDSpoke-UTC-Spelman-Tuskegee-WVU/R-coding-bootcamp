@@ -3,13 +3,13 @@ title: "Learning R through COVID19 data analysis"
 author: "H Qin"
 date: "5/17/2021"
 output:
-  html_document: default
-  pdf_document: default
-layout: topic
+  html_document: 
+    toc: true
+    toc_float: true
 ---
 
 
-> ## COVID19 transmission data in USA
+# Chapter 1. COVID19 transmission data in USA
 
 A popular source for reporting COVID cases is the site built by researchers at the John Hopkins University (JHU). This JHU data set is publically available and will be used in our study.
 
@@ -25,7 +25,7 @@ There are many other COVID19 data set, see https://en.wikipedia.org/wiki/COVID-1
 
 ------------
 
-Loat the libraries
+## Load the libraries
 
 ```{r list, echo=FALSE}
 rm( list=ls()) #clean up worksapce
@@ -36,7 +36,7 @@ library(ggplot2)
 library(dplyr)
 ```
 
-Load the data
+## Load the data
 
 ```{r read}
 # load JHU covid19 data set with tidyverse read_csv
@@ -44,7 +44,7 @@ Load the data
 tb = read_csv("https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_confirmed_US.csv")
 ```
 
-What is a data frame? 
+## What is a data frame? 
 
 Looking for helps
 ```{r help}
@@ -53,7 +53,7 @@ help(str);
 str(tb[ , 1:10]);
 ```
 
-Indexing an element in a dataframe
+### Indexing an element in a dataframe
 
 ```{r indexing}
 #indexing features of R
@@ -156,7 +156,8 @@ tb_sub
 ggplot(tb_sub, aes( x = dates, y=tb_sub[,3])) + geom_point() + geom_smooth()
 ```
 
-# Examining the daily cases for a specific county
+# Chapter 2 Examining the daily cases for a specific county
+
 ## Define the county and state. Change to your home county and state for your project
 
 ```{r}
@@ -170,7 +171,7 @@ mycounties = c( 'Macon, Alabama, US') #Change here to your home county and state
 
 ```
 
-# Pick the cumulative cases for the county
+## Pick the cumulative cases for the county
 
 ```{r}
 tb = read_csv("https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_confirmed_US.csv")
@@ -233,9 +234,14 @@ names(tb_daily_sub)[1] = mycounties #add column names
 ```{r}
 tail(tb_daily_sub)
 ```
-Plot the daily cases for this county 
+### Plot the daily cases for this county 
 ```{r}
 myplot <- ggplot(tb_daily_sub, aes(x=YMD, y=tb_daily_sub[,1]))
 myplot + geom_point() + stat_smooth(span=0.3)
+```
+# Chapter 3 Google Mobility 
+
+```{r}
+
 ```
 
