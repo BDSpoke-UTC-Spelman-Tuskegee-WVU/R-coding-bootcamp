@@ -122,3 +122,39 @@ class(current_dates)
 current_dates
 ```
 
+```{r}
+mdy(current_dates[1:10])
+```
+
+```{r}
+tb1$dates = mdy(current_dates)
+tail(tb1)
+```
+
+
+```{r}
+## Select a time window (row window) using 'filter'
+tb1 %>% filter( dates > mdy("4/30/2020"), dates < mdy("5/31/20")) %>% head()
+```
+
+```{r}
+start = mdy("12/1520")
+end = start + ddays(30)
+
+tb1 %>% dplyr::filter( dates >= start, dates <=  end)  %>% dplyr::select(1:5)
+
+```
+
+# plot a time window
+
+```{r}
+tb_sub <- 
+ tb1 %>% dplyr::filter( dates >= start, dates <  start + ddays(30)) %>% dplyr::select( c(1:5), dates)
+
+tb_sub
+
+ggplot(tb_sub, aes( x = dates, y=tb_sub[,3])) + geom_point() + geom_smooth()
+```
+
+
+
