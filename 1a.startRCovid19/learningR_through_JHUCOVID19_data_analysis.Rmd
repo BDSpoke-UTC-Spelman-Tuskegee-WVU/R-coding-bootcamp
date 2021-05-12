@@ -1,5 +1,5 @@
 ---
-title: "Learning R through COVID19 data analysis"
+title: "Learning R through JHU COVID19 data analysis"
 author: "H Qin"
 date: "5/17/2021"
 output:
