@@ -27,11 +27,6 @@ Please download a “RStudio Desktop” Open Source Edition from http://www.rstu
 
 * 11:10- 12:10pm Analyze GISAID meta data. 
 
-
-* 11:10-12:10pm	[Coding in R](https://github.com/BDSpoke-UTC-Spelman-Tuskegee-WVU/R-coding-bootcamp/tree/master/2.coding) 
-   * Molar solution exercise. [Video](https://youtu.be/H0Zkc-RuY-0)
-[![](https://i9.ytimg.com/vi/H0Zkc-RuY-0/mq1.jpg?sqp=CPCn8vUF&rs=AOn4CLDmqFrClihZ3d4JKvfx23kGJS91bQ)](https://youtu.be/H0Zkc-RuY-0 "Molar solution")
-
 * 12:10-1pm 	Lunch <br>
 
 
@@ -43,9 +38,15 @@ Please download a “RStudio Desktop” Open Source Edition from http://www.rstu
 
 ## Day 2 	
 
-* AM Simple statistical test, linear regression
-	
+* 10am-11am	[Coding in R](https://github.com/BDSpoke-UTC-Spelman-Tuskegee-WVU/R-coding-bootcamp/tree/master/2.coding) 
+   * Molar solution exercise. [Video](https://youtu.be/H0Zkc-RuY-0)
+[![](https://i9.ytimg.com/vi/H0Zkc-RuY-0/mq1.jpg?sqp=CPCn8vUF&rs=AOn4CLDmqFrClihZ3d4JKvfx23kGJS91bQ)](https://youtu.be/H0Zkc-RuY-0 "Molar solution")
+
+* 11:am-11:10am, break
+* 11:10-12:10 Simple statistical test, linear regression
+
 * PM	TBD
+
 <br>
 
 * Post-survey <br>
