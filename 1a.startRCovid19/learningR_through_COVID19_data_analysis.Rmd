@@ -1,0 +1,86 @@
+---
+title: "Learning R through COVID19 data analysis"
+author: "H Qin"
+date: "5/17/2021"
+output:
+  html_document: default
+  pdf_document: default
+layout: topic
+---
+
+
+> ## COVID19 transmission data in USA
+
+A popular source for reporting COVID cases is the site built by researchers at the John Hopkins University (JHU). This JHU data set is publically available and will be used in our study.
+
+There are many other COVID19 data set, see https://en.wikipedia.org/wiki/COVID-19_datasets
+
+------------
+
+> ## Learning Objectives
+>
+> * Load external tabular data from a .csv file into R.
+> * Describe what an R data frame is.
+> * Summarize the contents of a data frame in R.
+
+------------
+
+# Check files in the working directory 
+
+```{r list, echo=FALSE}
+rm( list=ls()) #clean up worksapce
+library(tidyverse)
+library(lubridate)
+library(reshape2)
+library(ggplot2)
+library(dplyr)
+```
+
+# Load the data
+
+```{r read}
+# load JHU covid19 data set with tidyverse read_csv
+# this is the URL for "view raw " for csv files on GitHub
+tb = read_csv("https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_confirmed_US.csv")
+```
+
+What is a data frame? 
+
+Looking for helps
+```{r help}
+?str
+help(str);
+str(tb[ , 1:10]);
+```
+
+Indexing an element in a dataframe
+
+```{r indexing}
+#indexing features of R
+tb[1:5, 2:3]
+tb$age #what does mean? 
+#tb$age[?] #try for 5th row in age
+
+# what is the 5th and 9th rows in age and SciLitScore: 
+tb[c(5,9), c(7,2)]
+```
+
+```{r indexing-by-c}
+tb[c(5,9), c('FIPS', 'Admin2', "Province_State")]
+```
+
+```{r look-at-data}
+head(tb)
+```
+
+Look at first 2 rows of columns 2 and 3
+```{r}
+head( tb[, 2:3], n=2)
+```
+
+
+```{r}
+# how many columns? 
+length(tb[1,])
+print(paste( "There are ", length(tb[1,]), " columns"))
+```
