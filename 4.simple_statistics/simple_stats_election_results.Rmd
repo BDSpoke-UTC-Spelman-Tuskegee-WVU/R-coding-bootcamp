@@ -15,6 +15,7 @@ rm(list=ls()) #clearn my workspace
 library(tidyverse)
 Election20df = read_csv("https://raw.githubusercontent.com/tonmcg/US_County_Level_Election_Results_08-20/master/2020_US_County_Level_Presidential_Results.csv")
 head(Election20df)
+
 ```
 
 #Question: What is the total number of votes? 
@@ -68,5 +69,106 @@ Statedf %>% filter( percentage_for_GOP < 0.1 )
 
 ```{r}
 mean( Statedf$percentage_for_GOP)
+```
+
+```{r}
+quantile( Statedf$percentage_for_GOP )
+```
+
+# Label the states to deep red, red, swing, blue, deep blue
+
+Reference: 
+https://stackoverflow.com/questions/21050021/create-category-based-on-range-in-r
+```{r}
+groups =  cut( Statedf$percentage_for_GOP, c(0, 0.4, 0.47, 0.53, 0.5, 1) )
+levels(groups) = c("deepblue", "blue", "swing", "red", "deepred")
+Statedf$groups = groups
+```
+
+```{r}
+Censusdf = read_csv("https://raw.githubusercontent.com/hongqin/USA-census-county-level/main/USA-County-level-census-2010-2019.csv")
+head(Censusdf)
+```
+
+Some states, such as Alaska, election results are not based on counties. 
+
+```{r}
+Election20df$Location = paste( Election20df$county_name, Election20df$state_name, sep=", " )
+Election20df$Location %in% Censusdf$Location
+
+```
+
+
+```{r}
+EleCen.df = merge( Election20df, Censusdf, by="Location")
+```
+
+```{r}
+Statedf2 <- EleCen.df %>% select( state_name, votes_gop, votes_dem,  total_votes, '2019' ) %>% group_by( state_name ) %>% summarise_if( is.numeric, sum)
+
+head(Statedf2)
+```
+
+```{r}
+names( Statedf2)[5] = "population"
+```
+
+```{r}
+Statedf$population = Statedf2$population[match( Statedf$state_name , Statedf2$state_name ) ]
+```
+
+```{r}
+model1 = lm( Statedf$percentage_for_GOP ~ Statedf$population)
+summary(model1)
+```
+
+
+```{r}
+model2 = lm(  Statedf$population ~ Statedf$groups)
+summary(model2)
+ggplot( Statedf, aes(x=groups, y=population)) + geom_point()
+```
+
+```{r}
+StateArea = read_csv("https://raw.githubusercontent.com/hongqin/data-USstates/master/state-areas.csv")
+names( StateArea) = c("state_name", "area")
+```
+
+
+```{r}
+Statedf$area = StateArea$area[ match( Statedf$state_name  , StateArea$state_name ) ]
+Statedf$pop_density = Statedf$population / Statedf$area
+
+model = lm( Statedf$percentage_for_GOP ~ Statedf$pop_density)
+summary(model)
+```
+
+
+```{r}
+ggplot( Statedf, aes(x=pop_density, y=percentage_for_GOP)) + geom_point()
+```
+
+```{r}
+Statedf3 <- Statedf %>% filter( percentage_for_GOP > 0.1)
+
+ggplot( Statedf3, aes(x=pop_density, y=percentage_for_GOP)) + 
+  geom_point() + 
+  geom_smooth(method='lm')
+ 
+```
+
+```{r}
+ggplot( Statedf3, aes(x=groups, y=pop_density)) + geom_point()
+```
+
+```{r}
+ggplot( Statedf3, aes(x=groups, y=pop_density)) + geom_boxplot()
+
+```
+
+There are many more way to more sophisicated plots. 
+
+```{r}
+
 ```
 
