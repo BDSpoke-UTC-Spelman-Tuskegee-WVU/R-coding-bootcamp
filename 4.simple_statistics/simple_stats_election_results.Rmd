@@ -56,4 +56,11 @@ Statedf$percentage_for_GOP = Statedf$votes_gop / Statedf$total_votes
 ggplot(Statedf, aes(percentage_for_GOP)) +  geom_histogram()
 ```
 
+# Question: Find out which state has the nearly 100% DEM voting percentage? 
+
+There are many ways to do this. 
+
+```{r}
+Statedf %>% filter( percentage_for_GOP < 0.1 )
+```
 
