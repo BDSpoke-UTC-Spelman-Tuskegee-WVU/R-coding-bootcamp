@@ -8,7 +8,7 @@ output:
     toc_float: true
 ---
 
-# Read a data set of yeast growth curves
+# Read a data set
 
 ```{r}
 rm(list=ls()) #clearn my workspace
@@ -31,6 +31,18 @@ sum( Election20df$total_votes )
 Election20df %>% select ( votes_gop ) %>% sum()
 Election20df %>% select ( votes_dem ) %>% sum()
 
+```
+
+# Look at California
+```{r}
+mystate = "California"
+Californiadf <- 
+  Election20df %>% filter( state_name == mystate) %>%  arrange( per_point_diff)
+
+names( Californiadf )[8] = "percentage_for_GOP"
+
+ggplot(Californiadf, aes(percentage_for_GOP)) +  geom_histogram()
+#summary(Californiadf$per_gop)
 ```
 
 # Results by States? 
