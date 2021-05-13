@@ -2,6 +2,7 @@
 
 * A laptop is required for this bootcamp. Please do not forget the chargers. 
 * A ZOOM link and password will be emailed to your registration email. 
+* Cloud Studio: https://rstudio.cloud/project/2549590 
 
 ## Pre-bootcamp: Install R and Rstudio [(YouTube video)](https://youtu.be/iGeHBlM6tSk)
 * Install R on your laptops. (R must be installed before RStudio).
