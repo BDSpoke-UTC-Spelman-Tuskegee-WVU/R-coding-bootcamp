@@ -247,13 +247,17 @@ Background, mobility and social distance
 Mobility can gauge the social distance practice
 Google Community Mobility report https://www.google.com/covid19/mobility/
 
+
 ```{r}
+# Download the Google Mobility data 
 url =  "https://www.gstatic.com/covid19/mobility/Region_Mobility_Report_CSVs.zip"
 download.file( url, destfile = "download/google.zip")
+# You would need to unzip the downloaded zip file
 ```
 
 
 ```{r}
+# If you use RStudio-Cloud, these file may be in your workspace
 tbGMUS20 = read_csv("download/google/2020_US_Region_Mobility_Report.csv")
 tail(tbGMUS20)
 ```
