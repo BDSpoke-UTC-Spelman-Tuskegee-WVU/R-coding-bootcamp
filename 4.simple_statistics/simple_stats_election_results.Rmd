@@ -64,3 +64,9 @@ There are many ways to do this.
 Statedf %>% filter( percentage_for_GOP < 0.1 )
 ```
 
+# Average 
+
+```{r}
+mean( Statedf$percentage_for_GOP)
+```
+
