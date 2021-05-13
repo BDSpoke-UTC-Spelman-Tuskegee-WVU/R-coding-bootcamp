@@ -1,0 +1,42 @@
+---
+title: "Simple statistics, 2020 Election Reults"
+author: "H Qin"
+date: "5/18/2021"
+output:
+  html_document: 
+    toc: true
+    toc_float: true
+---
+
+# Read a data set of yeast growth curves
+
+```{r}
+rm(list=ls()) #clearn my workspace
+library(tidyverse)
+Election20df = read_csv("https://raw.githubusercontent.com/tonmcg/US_County_Level_Election_Results_08-20/master/2020_US_County_Level_Presidential_Results.csv")
+head(Election20df)
+```
+
+#Question: What is the total number of votes? 
+
+```{r}
+Election20df %>% select ( total_votes ) %>% sum()
+
+sum( Election20df$total_votes )
+```
+
+# Question: What are the total number votes for GOP or DEM? 
+
+```{r}
+Election20df %>% select ( votes_gop ) %>% sum()
+Election20df %>% select ( votes_dem ) %>% sum()
+
+```
+
+# Results by States? 
+
+```{r}
+
+Statesdf <- Election20df %>% select( state_name, votes_gop, votes_dem,  total_votes ) %>% group_by( state_name ) %>% summarise_if( is.numeric, sum)
+```
+
