@@ -49,6 +49,11 @@ ggplot(Californiadf, aes(percentage_for_GOP)) +  geom_histogram()
 
 ```{r}
 
-Statesdf <- Election20df %>% select( state_name, votes_gop, votes_dem,  total_votes ) %>% group_by( state_name ) %>% summarise_if( is.numeric, sum)
+Statedf <- Election20df %>% select( state_name, votes_gop, votes_dem,  total_votes ) %>% group_by( state_name ) %>% summarise_if( is.numeric, sum)
+
+Statedf$percentage_for_GOP = Statedf$votes_gop / Statedf$total_votes
+
+ggplot(Statedf, aes(percentage_for_GOP)) +  geom_histogram()
 ```
+
 
