@@ -9,7 +9,7 @@ output:
 ---
 
 
-# Chapter 1. GISAID meta data
+# Load GISAID meta data
 
 
 ------------
@@ -18,7 +18,7 @@ output:
 >
 > * Load external tabular data from a Excel file into R.
 > * Describe what an R data frame is.
-> * Summarize the contents of a data frame in R.
+> * Explore the contents of a data frame in R.
 
 ------------
 
@@ -63,6 +63,10 @@ tb[c(5,9), c( '01/2020', "08/2020")]
 ```
 
 ```{r look-at-data}
+```
+
+
+```{r look-at-data}
 head(tb)
 ```
 
@@ -98,5 +102,4 @@ tb1 %>% select (USA)
 
 ```{r}
 tb1 %>% filter( USA > 1) %>% select (USA, China)
-```
-
+``
