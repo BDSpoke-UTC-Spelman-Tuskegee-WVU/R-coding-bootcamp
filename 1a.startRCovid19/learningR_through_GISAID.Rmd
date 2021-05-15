@@ -63,10 +63,6 @@ tb[c(5,9), c( '01/2020', "08/2020")]
 ```
 
 ```{r look-at-data}
-```
-
-
-```{r look-at-data}
 head(tb)
 ```
 
