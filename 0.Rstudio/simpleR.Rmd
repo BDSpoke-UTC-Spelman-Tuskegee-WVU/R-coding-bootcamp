@@ -2,8 +2,9 @@
 title: "Simple R"
 author: "H Qin"
 output:
-  html_document: default
-  pdf_document: default
+  html_document: 
+    toc: true
+    toc_float: true 
 ---
 
 # simple calculations
@@ -24,7 +25,7 @@ pi^2
 3.141593 * 3.141593
 ```
 
-Calculator
+# Calculator
 ```{r}
 #square 
 3^2
@@ -137,6 +138,8 @@ x[c(1,5,2)]
 y = log(x);
 plot( y ~ x, pch=19 );
 ```
+
+# add colors to plots
 
 ```{r}
 mycolors = c("red", "lightblue", "blue", "gold")
