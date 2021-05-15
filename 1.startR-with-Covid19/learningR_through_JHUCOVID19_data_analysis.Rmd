@@ -1,0 +1,346 @@
+---
+title: "Learning R through JHU COVID19 data analysis"
+author: "H Qin"
+date: "5/17/2021"
+output:
+  html_document: 
+    toc: true
+    toc_float: true
+---
+
+
+# Chapter 1. COVID19 transmission data in USA
+
+A popular source for reporting COVID cases is the site built by researchers at the John Hopkins University (JHU). This JHU data set is publically available and will be used in our study.
+
+There are many other COVID19 data set, see https://en.wikipedia.org/wiki/COVID-19_datasets
+
+------------
+
+> ## Learning Objectives
+>
+> * Load external tabular data from a .csv file into R.
+> * Describe what an R data frame is.
+> * Summarize the contents of a data frame in R.
+
+------------
+
+## Load the libraries
+
+```{r list, echo=FALSE}
+rm( list=ls()) #clean up worksapce
+library(tidyverse)
+library(lubridate)
+library(reshape2)
+library(ggplot2)
+library(dplyr)
+```
+
+## Load the data
+
+```{r read}
+# load JHU covid19 data set with tidyverse read_csv
+# this is the URL for "view raw " for csv files on GitHub
+tb = read_csv("https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_confirmed_US.csv")
+```
+
+## What is a data frame? 
+
+Looking for helps
+```{r help}
+?str
+help(str);
+str(tb[ , 1:10]);
+```
+
+### Indexing an element in a dataframe
+
+```{r indexing}
+#indexing features of R
+tb[1:5, 2:3]
+tb$age #what does mean? 
+#tb$age[?] #try for 5th row in age
+
+# what is the 5th and 9th rows in age and SciLitScore: 
+tb[c(5,9), c(7,2)]
+```
+
+```{r indexing-by-c}
+tb[c(5,9), c('FIPS', 'Admin2', "Province_State")]
+```
+
+```{r look-at-data}
+head(tb)
+```
+
+Look at first 2 rows of columns 2 and 3
+```{r}
+head( tb[, 2:3], n=2)
+```
+
+
+```{r}
+# how many columns? 
+length(tb[1,])
+print(paste( "There are ", length(tb[1,]), " columns"))
+```
+
+## Select columns of daily cases
+Rotate the data so that data of each county is in one column
+
+```{r}
+#tb %>% select( 12:length(tb[1,]) ) 
+
+tb1 <- tb %>% dplyr::select(12:length(tb[1,])) %>% as.matrix()
+tb1 = as.data.frame(t(tb1)) # t for transpose, then convert to a dataframe
+tail(tb1)
+
+```
+
+## Add meaning columns names
+
+```{r}
+names(tb1) = tb$Combined_Key
+#tail(tb1[100:110,1:10])
+tail(tb1[,1:10])
+
+```
+
+## Convert dates from text format to actual Date type
+
+see https://lubridate.tidyverse.org/ 
+
+```{r}
+library(lubridate)
+mdy("10/1/2020")
+```
+
+
+```{r}
+current_dates = names(tb)[12:length(tb[1,])]
+class(current_dates)
+current_dates
+```
+
+```{r}
+mdy(current_dates[1:10])
+```
+
+```{r}
+tb1$dates = mdy(current_dates)
+tail(tb1)
+```
+
+
+```{r}
+## Select a time window (row window) using 'filter'
+tb1 %>% filter( dates > mdy("4/30/2020"), dates < mdy("5/31/20")) %>% head()
+```
+
+```{r}
+start = mdy("12/1520")
+end = start + ddays(30)
+
+tb1 %>% dplyr::filter( dates >= start, dates <=  end)  %>% dplyr::select(1:5)
+
+```
+
+## plot a time window
+
+```{r}
+tb_sub <- 
+ tb1 %>% dplyr::filter( dates >= start, dates <  start + ddays(30)) %>% dplyr::select( c(1:5), dates)
+
+tb_sub
+
+ggplot(tb_sub, aes( x = dates, y=tb_sub[,3])) + geom_point() + geom_smooth()
+```
+
+# Chapter 2 Examining the daily cases for a specific county
+
+## Define the county and state. Change to your home county and state for your project
+
+```{r}
+mycounties = c( 'Macon, Alabama, US') #Change here to your home county and state
+#mycounties = c( 'San Francisco, California, US') #Change here to your home county and state
+#mycounties = c( 'Santa Clara, California, US') #Change here to your home county and state
+#mycounties = c('Hennepin, Minnesota, US') #Minneapolis
+#mycounties = c('Harris, Texas, US') #Houston
+#mycounties = c('Cobb, Georgia, US') #Houston
+#mycounties = c( 'Hamilton, Tennessee, US') #Change here to your home county and state
+
+```
+
+## Pick the cumulative cases for the county
+
+```{r}
+tb = read_csv("https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_confirmed_US.csv")
+
+tb1 <- tb %>% dplyr::select(12:length(tb[1,])) %>% as.matrix()
+tb1 = as.data.frame(t(tb1))
+
+names(tb1) = tb$Combined_Key
+
+current_dates = names(tb)[12:length(tb[1,])]
+tb1$dates = mdy(current_dates)
+#head(tb1)
+
+days_window = 340  # time  window
+endday = today(tzone ='EST')
+
+tb_sub <- tb1 %>% 
+  dplyr::select( all_of(mycounties), 'dates') %>%
+  dplyr::filter( between(dates, endday-ddays(days_window), endday))   
+
+head(tb_sub)
+```
+
+## Covert cumulative counts into daily cases
+
+The diff() function is helpful here. 
+
+```{r}
+tb_sub[,1]
+```
+
+
+```{r}
+diff( tb_sub[,1])
+```
+
+
+```{r}
+local_dailycases = c(0, diff( tb_sub[,1] )) # we add zero to the first day
+
+tb_daily_sub = data.frame( local_dailycases )
+head(tb_daily_sub)
+```
+```{r}
+tb_daily_sub$YMD = mdy(row.names(tb_sub))
+head(tb_daily_sub)
+```
+
+```{r}
+row.names(tb_daily_sub) = tb_daily_sub$YMD #add row names
+tail(tb_daily_sub )
+```
+
+
+```{r}
+names(tb_daily_sub)[1] = mycounties #add column names
+```
+
+
+```{r}
+tail(tb_daily_sub)
+```
+### Plot the daily cases for this county 
+```{r}
+myplot <- ggplot(tb_daily_sub, aes(x=YMD, y=tb_daily_sub[,1]))
+myplot + geom_point() + stat_smooth(span=0.3)
+```
+
+
+# Chapter 3. Google Mobility 
+
+Background, mobility and social distance
+Mobility can gauge the social distance practice
+Google Community Mobility report https://www.google.com/covid19/mobility/
+
+
+```{r}
+# Download the Google Mobility data 
+url =  "https://www.gstatic.com/covid19/mobility/Region_Mobility_Report_CSVs.zip"
+download.file( url, destfile = "download/google.zip")
+# You would need to unzip the downloaded zip file
+```
+
+
+```{r}
+# If you use RStudio-Cloud, these file may be in your workspace
+tbGMUS20 = read_csv("download/google/2020_US_Region_Mobility_Report.csv")
+tail(tbGMUS20)
+```
+
+```{r}
+tbGMUS21 = read_csv("download/google/2021_US_Region_Mobility_Report.csv")
+tail(tbGMUS21)
+```
+
+Stack the two data frames of Google Mobility
+```{r}
+tbGMUS = rbind( tbGMUS20, tbGMUS21)
+```
+
+## Pick Google Mob.ility for the county
+
+```{r}
+myState = 'Alabama'
+myCounty = "Macon County" #Google location is different from JHU
+tbGMmycounty <-
+  tbGMUS %>% filter( sub_region_1 == myState, sub_region_2 == myCounty)
+head(tbGMmycounty)
+```
+
+```{r}
+max(tbGMmycounty$date) #the most recent date of the mobility report
+```
+
+## Merge mobility and covid19 data for our location/county
+
+```{r}
+head( tb_daily_sub)
+
+tb_daily_mycounty = tb_daily_sub
+names(tb_daily_mycounty) = c("DailyCases", "date")
+tail(tb_daily_mycounty)
+
+```
+
+
+```{r}
+tb_GMCovidmycounty = merge(x=tb_daily_mycounty, y=tbGMmycounty, by= 'date', all.y=FALSE)
+
+row.names(  tb_GMCovidmycounty ) =  tb_GMCovidmycounty$date
+ 
+tail( tb_GMCovidmycounty )
+names(tb_GMCovidmycounty  ) 
+#names(tb_GMCovidmycounty  )[10:12] 
+
+```
+
+
+```{r}
+print( paste( "There are ", length(tb_GMCovidmycounty[1,]), "columns"))
+```
+
+Select columns, normalize, and overlay
+```{r}
+tb_GMCovidmycounty2  <- tb_GMCovidmycounty  %>% dplyr::select(2, 11:16 ) # select values columns
+tail(tb_GMCovidmycounty2 )
+
+tb_GMCovidmycounty_scaled <-  data.frame( scale(tb_GMCovidmycounty2) )
+head( tb_GMCovidmycounty_scaled  )
+
+# add the date column back
+tb_GMCovidmycounty_scaled$date = ymd(row.names(tb_GMCovidmycounty_scaled))
+tail( tb_GMCovidmycounty_scaled  )
+
+```
+
+
+```{r}
+names( tb_GMCovidmycounty_scaled )
+
+selected_columns = c('DailyCases', 'retail_and_recreation_percent_change_from_baseline', 'workplaces_percent_change_from_baseline','residential_percent_change_from_baseline')
+
+#selected_columns = c('DailyCases','workplaces_percent_change_from_baseline','residential_percent_change_from_baseline')
+
+df_melt <- melt(tb_GMCovidmycounty_scaled, measure.vars=selected_columns, value.names="Values", varialbe.name="varialbe" )
+
+plot <- ggplot(df_melt, aes(x=date, y=value, color=variable)) + stat_smooth(span=0.15) 
+
+plot + ggtitle( paste( myCounty, myState))
+
+```
+

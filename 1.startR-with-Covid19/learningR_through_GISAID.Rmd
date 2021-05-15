@@ -1,0 +1,101 @@
+---
+title: "Learning R through GISAID metadata analysis"
+author: "H Qin"
+date: "5/17/2021"
+output:
+  html_document: 
+    toc: true
+    toc_float: true
+---
+
+
+# Load GISAID meta data
+
+
+------------
+
+> ## Learning Objectives
+>
+> * Load external tabular data from a Excel file into R.
+> * Describe what an R data frame is.
+> * Explore the contents of a data frame in R.
+
+------------
+
+## Load the libraries
+
+```{r list, echo=FALSE}
+rm( list=ls()) #clean up worksapce
+library(tidyverse)
+library(lubridate)
+library(readxl)
+```
+
+## Load the data
+
+```{r read}
+tb = read_excel('gisaid_monthly_submissions_global_2021-05-12-0958.xlsx')
+```
+
+## What is a data frame? 
+
+Looking for helps
+```{r help}
+?str
+help(str);
+head(tb)
+```
+
+### Indexing an element in a dataframe
+
+```{r indexing}
+#indexing features of R
+tb[1:5, 2:3]
+tb$age #what does mean? 
+#tb$age[?] #try for 5th row in age
+
+# what is the 5th and 9th rows in age and SciLitScore: 
+tb[c(5,9), c(7,2)]
+```
+
+```{r indexing-by-c}
+tb[c(5,9), c( '01/2020', "08/2020")]
+```
+
+```{r look-at-data}
+head(tb)
+```
+
+Look at first 2 rows of columns 2 and 3
+```{r}
+head( tb[, 2:3], n=2)
+```
+
+
+```{r}
+# how many columns? 
+length(tb[1,])
+print(paste( "There are ", length(tb[1,]), " columns"))
+```
+
+Take only the values
+```{r}
+tb1 = t(tb[, 2: length(tb[1,])])
+tb1 = data.frame(tb1)
+names(tb1) = t(tb[,1])
+tail(tb1)
+```
+
+```{r}
+library(zoo)
+tb1$date = as.yearmon( row.names(tb1),  "%m/%Y")
+ggplot( tb1, aes(x=date, y=USA)) + geom_point()
+```
+
+```{r}
+tb1 %>% select (USA)
+```
+
+```{r}
+tb1 %>% filter( USA > 1) %>% select (USA, China)
+``
