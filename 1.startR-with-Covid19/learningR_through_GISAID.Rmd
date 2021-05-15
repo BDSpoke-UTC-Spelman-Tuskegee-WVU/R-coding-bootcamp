@@ -98,4 +98,6 @@ tb1 %>% select (USA)
 
 ```{r}
 tb1 %>% filter( USA > 1) %>% select (USA, China)
-``
+head(tb1)
+```
+
