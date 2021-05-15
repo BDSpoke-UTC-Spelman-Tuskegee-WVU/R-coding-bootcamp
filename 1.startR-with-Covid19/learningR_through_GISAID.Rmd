@@ -22,7 +22,7 @@ output:
 
 ------------
 
-## Load the libraries
+# Load the libraries
 
 ```{r list, echo=FALSE}
 rm( list=ls()) #clean up worksapce
@@ -31,13 +31,13 @@ library(lubridate)
 library(readxl)
 ```
 
-## Load the data
+# Load the data
 
 ```{r read}
 tb = read_excel('gisaid_monthly_submissions_global_2021-05-12-0958.xlsx')
 ```
 
-## What is a data frame? 
+#  What is a data frame? 
 
 Looking for helps
 ```{r help}
@@ -46,7 +46,7 @@ help(str);
 head(tb)
 ```
 
-### Indexing an element in a dataframe
+# Indexing items in a dataframe
 
 ```{r indexing}
 #indexing features of R
@@ -62,6 +62,7 @@ tb[c(5,9), c(7,2)]
 tb[c(5,9), c( '01/2020', "08/2020")]
 ```
 
+# Look at a portion of the data frame
 ```{r look-at-data}
 head(tb)
 ```
@@ -71,6 +72,7 @@ Look at first 2 rows of columns 2 and 3
 head( tb[, 2:3], n=2)
 ```
 
+# How many columns? 
 
 ```{r}
 # how many columns? 
@@ -78,7 +80,7 @@ length(tb[1,])
 print(paste( "There are ", length(tb[1,]), " columns"))
 ```
 
-Take only the values
+# Take only the values
 ```{r}
 tb1 = t(tb[, 2: length(tb[1,])])
 tb1 = data.frame(tb1)
@@ -86,16 +88,21 @@ names(tb1) = t(tb[,1])
 tail(tb1)
 ```
 
+# Convert strings into Date type
+
 ```{r}
 library(zoo)
 tb1$date = as.yearmon( row.names(tb1),  "%m/%Y")
 ggplot( tb1, aes(x=date, y=USA)) + geom_point()
 ```
 
+# tidyverse, select
+
 ```{r}
 tb1 %>% select (USA)
 ```
 
+# tidyverse, filter 
 ```{r}
 tb1 %>% filter( USA > 1) %>% select (USA, China)
 head(tb1)
