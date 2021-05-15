@@ -59,5 +59,6 @@ Please download a “RStudio Desktop” Open Source Edition from http://www.rstu
 If people want to learn R before and after the bootcamps, there are many free online books at 
 * https://bookdown.org/
 * http://ucanalytics.com/blogs/learn-r-12-books-and-online-resources/
+* https://emilhvitfeldt.github.io/ISLR-tidymodels-labs/linear-regression.html
 
 ## Linked Group https://www.linkedin.com/groups/12279083/
