@@ -26,16 +26,16 @@ Please download a “RStudio Desktop” Open Source Edition from http://www.rstu
 
 * 11am-11:10 	Break
 
-* 11:10- 12:10pm Analyze GISAID meta data. 
+* 11:10- 12:10pm [Explore a dataframe of GISAID submission records](https://github.com/BDSpoke-UTC-Spelman-Tuskegee-WVU/R-coding-bootcamp/blob/master/1.startR-with-Covid19/learningR_through_GISAID.Rmd). 
 
-* 12:10-1pm 	Lunch <br>
+* 12:10-1pm 	Lunch break <br>
 
 
-*1-2pm  COVID19 daily cases by counties in USA
+* 1-2pm [Learn R though COVID19 daily cases by counties in USA](https://github.com/BDSpoke-UTC-Spelman-Tuskegee-WVU/R-coding-bootcamp/blob/master/1.startR-with-Covid19/learningR_through_JHUCOVID19_data_analysis.Rmd)
 
 *2pm-2:10 break
 
-*2:10-3pm Google Mobility and COVID19 cases
+*2:10-3pm Integrate heterogenous data sets: Analyze Google Mobility and COVID19 cases
 
 ## Day 2 	
 
