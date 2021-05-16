@@ -19,6 +19,7 @@ Please download a “RStudio Desktop” Open Source Edition from http://www.rstu
 
 ## Day 1 
 * 9:45am-10:00 	Presurvey. R and Rstudio. Download the GitHub repo in Zip File. 
+* Ask TAs to add TA in their zoon alias. Open up breakout room for TAs to help participant trouble-shoot. 
 * 10am-11am [Basic R Coding in RStudio](https://github.com/BDSpoke-UTC-Spelman-Tuskegee-WVU/R-coding-bootcamp/tree/master/0.Rstudio)
    * Basic R code, Markdown file, code block, RStudio interface, Data frame, and basic data visualization and analysis. 
    * Introduction to R and Rstudio with simple exercises. [Video](http://www.youtube.com/watch?v=LJIxbmDAhYM)
