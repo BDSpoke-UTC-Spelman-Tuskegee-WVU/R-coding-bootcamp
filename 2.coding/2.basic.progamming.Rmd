@@ -2,16 +2,17 @@
 ---
 title: "Basic R Coding"
 author: "H Qin"
-date: "5/18/2020"
+date: "5/18/2021"
 output:
-  html_document: default
-  pdf_document: default
-layout: topic
+  html_document: 
+    toc: true
+    toc_float: true 
 ---
 
 
 # loops
 
+## for loops
 ```{r}
 rm(list=ls())
  for ( i in 1:3) print(i);
@@ -32,6 +33,8 @@ rm(list=ls())
 ```
 
 
+## while loops 
+
 ```{r}
 i=2;
  while( i<=10 ) { 
@@ -41,7 +44,7 @@ i=2;
 ```
 
 
-#### conditionals
+# conditionals
 
 ```{r}
 x = 0.9;
@@ -81,6 +84,7 @@ y = ifelse( is.na(x), median(x, na.rm = T), x );
 print(y)
 ```
 
+# function and scope of variables
 
 ```{r}
 #### a function
@@ -160,7 +164,7 @@ x = take_even(x)
 ```
  
  
-#### packages
+# packages
 
 ```{r}
 #install packages
@@ -177,7 +181,7 @@ x = take_even(x)
   #you should also read the manual of the packages
 
 ```
-
+# save working space
  
 ```{r}
 
