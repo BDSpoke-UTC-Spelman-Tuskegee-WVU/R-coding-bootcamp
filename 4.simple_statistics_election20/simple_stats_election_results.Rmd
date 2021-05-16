@@ -18,7 +18,7 @@ head(Election20df)
 
 ```
 
-#Question: What is the total number of votes? 
+# Question: What is the total number of votes? 
 
 ```{r}
 Election20df %>% select ( total_votes ) %>% sum()
@@ -85,6 +85,8 @@ levels(groups) = c("deepblue", "blue", "swing", "red", "deepred")
 Statedf$groups = groups
 ```
 
+# add cencus data
+
 ```{r}
 Censusdf = read_csv("https://raw.githubusercontent.com/hongqin/USA-census-county-level/main/USA-County-level-census-2010-2019.csv")
 head(Censusdf)
@@ -95,7 +97,6 @@ Some states, such as Alaska, election results are not based on counties.
 ```{r}
 Election20df$Location = paste( Election20df$county_name, Election20df$state_name, sep=", " )
 Election20df$Location %in% Censusdf$Location
-
 ```
 
 
@@ -117,6 +118,8 @@ names( Statedf2)[5] = "population"
 Statedf$population = Statedf2$population[match( Statedf$state_name , Statedf2$state_name ) ]
 ```
 
+## any correlation with voting and population? 
+
 ```{r}
 model1 = lm( Statedf$percentage_for_GOP ~ Statedf$population)
 summary(model1)
@@ -129,11 +132,14 @@ summary(model2)
 ggplot( Statedf, aes(x=groups, y=population)) + geom_point()
 ```
 
+# Add  state areas
+
 ```{r}
 StateArea = read_csv("https://raw.githubusercontent.com/hongqin/data-USstates/master/state-areas.csv")
 names( StateArea) = c("state_name", "area")
 ```
 
+## merge different data sets
 
 ```{r}
 Statedf$area = StateArea$area[ match( Statedf$state_name  , StateArea$state_name ) ]
@@ -156,6 +162,8 @@ ggplot( Statedf3, aes(x=pop_density, y=percentage_for_GOP)) +
   geom_smooth(method='lm')
  
 ```
+
+## voting and population density
 
 ```{r}
 ggplot( Statedf3, aes(x=groups, y=pop_density)) + geom_point()
