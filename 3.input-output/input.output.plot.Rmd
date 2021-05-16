@@ -3,9 +3,9 @@ title: "Input and output in R"
 author: "H Qin"
 date: "5/18/2020"
 output:
-  pdf_document: default
-  html_document: default
-layout: topic
+  html_document: 
+    toc: true
+    toc_float: true 
 ---
 
 # Read a data set of yeast growth curves
