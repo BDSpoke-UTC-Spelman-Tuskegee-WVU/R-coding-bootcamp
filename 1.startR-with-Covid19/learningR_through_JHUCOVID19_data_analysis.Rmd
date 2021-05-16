@@ -332,9 +332,7 @@ tail( tb_GMCovidmycounty_scaled  )
 ```{r}
 names( tb_GMCovidmycounty_scaled )
 
-selected_columns = c('DailyCases', 'retail_and_recreation_percent_change_from_baseline', 'workplaces_percent_change_from_baseline','residential_percent_change_from_baseline')
-
-#selected_columns = c('DailyCases','workplaces_percent_change_from_baseline','residential_percent_change_from_baseline')
+selected_columns = c('DailyCases', "transit_stations_percent_change_from_baseline", 'workplaces_percent_change_from_baseline','residential_percent_change_from_baseline')
 
 df_melt <- melt(tb_GMCovidmycounty_scaled, measure.vars=selected_columns, value.names="Values", varialbe.name="varialbe" )
 
