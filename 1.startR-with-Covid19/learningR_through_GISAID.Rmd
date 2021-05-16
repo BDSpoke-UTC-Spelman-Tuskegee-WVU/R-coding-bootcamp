@@ -96,6 +96,14 @@ tb1$date = as.yearmon( row.names(tb1),  "%m/%Y")
 ggplot( tb1, aes(x=date, y=USA)) + geom_point()
 ```
 
+```{r}
+names(tb1)
+```
+
+```{r}
+tb1$USA
+```
+
 # tidyverse, select
 
 ```{r}
@@ -106,5 +114,14 @@ tb1 %>% select (USA)
 ```{r}
 tb1 %>% filter( USA > 1) %>% select (USA, China)
 head(tb1)
+```
+
+```{r}
+tb1$"monthly total:"
+```
+
+# total submission 
+```{r}
+sum(tb1$"monthly total:") / 1E6
 ```
 
