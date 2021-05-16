@@ -314,7 +314,7 @@ names(tb_GMCovidmycounty  )
 print( paste( "There are ", length(tb_GMCovidmycounty[1,]), "columns"))
 ```
 
-Select columns, normalize, and overlay
+## Select columns, normalize, and overlay
 ```{r}
 tb_GMCovidmycounty2  <- tb_GMCovidmycounty  %>% dplyr::select(2, 11:16 ) # select values columns
 tail(tb_GMCovidmycounty2 )
@@ -328,6 +328,7 @@ tail( tb_GMCovidmycounty_scaled  )
 
 ```
 
+## overlay
 
 ```{r}
 names( tb_GMCovidmycounty_scaled )
