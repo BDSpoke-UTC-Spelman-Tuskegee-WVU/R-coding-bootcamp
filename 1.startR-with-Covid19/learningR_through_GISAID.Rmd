@@ -39,6 +39,10 @@ tb = read_excel('gisaid_monthly_submissions_global_2021-05-12-0958.xlsx')
 
 #  What is a data frame? 
 
+```{r}
+str(tb)
+```
+
 Looking for helps
 ```{r help}
 ?str
@@ -48,18 +52,21 @@ head(tb)
 
 # Indexing items in a dataframe
 
-```{r indexing}
+```{r}
 #indexing features of R
-tb[1:5, 2:3]
-tb$age #what does mean? 
-#tb$age[?] #try for 5th row in age
+tb[1:5, 2:4]
+```
+```{r}
+tb[3, 4]
+```
 
+```{r indexing}
 # what is the 5th and 9th rows in age and SciLitScore: 
-tb[c(5,9), c(7,2)]
+tb[c(3, 4, 7), c(4,5)]
 ```
 
 ```{r indexing-by-c}
-tb[c(5,9), c( '01/2020', "08/2020")]
+tb[c(3,4), c( '03/2020', "04/2020")]
 ```
 
 # Look at a portion of the data frame
