@@ -45,16 +45,13 @@ Please download a “RStudio Desktop” Open Source Edition from http://www.rstu
 [![](https://i9.ytimg.com/vi/H0Zkc-RuY-0/mq1.jpg?sqp=CPCn8vUF&rs=AOn4CLDmqFrClihZ3d4JKvfx23kGJS91bQ)](https://youtu.be/H0Zkc-RuY-0 "Molar solution")
 
 * 11:am-11:10am, break
-* 11:10-12:10 Simple statistical test, linear regression with 2020 USA Election results
+* 11:10-12:10 input, output 
 
-* PM	TBD
+* 1pm - Simple statistical test, linear regression with 2020 USA Election results
 
 <br>
 
-* Post-survey <br>
-
-  
-## Please complete this anonymous and voluntary [post-survey]()  
+## Please take this anononymous voluntary [Post-survey] (https://forms.gle/TUWXX6yGXEYwibze9) <br>
 
 ## Free Online Books on R: 
 If people want to learn R before and after the bootcamps, there are many free online books at 
