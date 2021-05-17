@@ -19,12 +19,13 @@ Please download a “RStudio Desktop” Open Source Edition from http://www.rstu
 
 ## Day 1 
 * 9:45am-10:00 	Presurvey. R and Rstudio. Download the GitHub repo in Zip File. 
+* Ask TAs to add TA in their zoom alias. Open up breakout rooms for TAs to help participant trouble-shoot. 
 * 10am-11am [Basic R Coding in RStudio](https://github.com/BDSpoke-UTC-Spelman-Tuskegee-WVU/R-coding-bootcamp/tree/master/0.Rstudio)
    * Basic R code, Markdown file, code block, RStudio interface, Data frame, and basic data visualization and analysis. 
    * Introduction to R and Rstudio with simple exercises. [Video](http://www.youtube.com/watch?v=LJIxbmDAhYM)
 [![](https://i9.ytimg.com/vi/LJIxbmDAhYM/mq2.jpg?sqp=CLeo8vUF&rs=AOn4CLCVRPNCUV98kFe2aog51hZWwe5Ubg)](http://www.youtube.com/watch?v=LJIxbmDAhYM "BBD_simpleR")
 
-* 11am-11:10 	Break
+* 11am-11:10 	Break (Group Virtual Photo)
 
 * 11:10- 12:10pm [Explore a dataframe of GISAID submission records](https://github.com/BDSpoke-UTC-Spelman-Tuskegee-WVU/R-coding-bootcamp/blob/master/1.startR-with-Covid19/learningR_through_GISAID.Rmd). 
 
@@ -33,9 +34,9 @@ Please download a “RStudio Desktop” Open Source Edition from http://www.rstu
 
 * 1-2pm [Learn R though COVID19 daily cases by counties in USA](https://github.com/BDSpoke-UTC-Spelman-Tuskegee-WVU/R-coding-bootcamp/blob/master/1.startR-with-Covid19/learningR_through_JHUCOVID19_data_analysis.Rmd)
 
-*2pm-2:10 break
+* 2pm-2:10 break
 
-*2:10-3pm Integrate heterogenous data sets: Analyze Google Mobility and COVID19 cases
+* 2:10-3pm Integrate heterogenous data sets: Analyze Google Mobility and COVID19 cases
 
 ## Day 2 	
 
