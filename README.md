@@ -45,7 +45,7 @@ Please download a “RStudio Desktop” Open Source Edition from http://www.rstu
 [![](https://i9.ytimg.com/vi/H0Zkc-RuY-0/mq1.jpg?sqp=CPCn8vUF&rs=AOn4CLDmqFrClihZ3d4JKvfx23kGJS91bQ)](https://youtu.be/H0Zkc-RuY-0 "Molar solution")
 
 * 11:am-11:10am, break
-* 11:10-12:10 Simple statistical test, linear regression
+* 11:10-12:10 Simple statistical test, linear regression with 2020 USA Election results
 
 * PM	TBD
 
