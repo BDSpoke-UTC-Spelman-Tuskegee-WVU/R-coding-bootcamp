@@ -50,7 +50,8 @@ help(str);
 head(tb)
 ```
 
-# Indexing items in a dataframe
+# Indexing items in a dataframe, using square brackets [ ], before comma are row, after comma are columns. 
+
 
 ```{r}
 #indexing features of R
@@ -71,7 +72,7 @@ tb[c(3,4), c( '03/2020', "04/2020")]
 
 # Look at a portion of the data frame
 ```{r look-at-data}
-head(tb)
+tail(tb)
 ```
 
 Look at first 2 rows of columns 2 and 3
@@ -87,18 +88,27 @@ length(tb[1,])
 print(paste( "There are ", length(tb[1,]), " columns"))
 ```
 
+## we can use $ to access the columns in data frame
+
+```{r}
+tb$`01/2020`
+```
+
 # Take only the values
 ```{r}
 tb1 = t(tb[, 2: length(tb[1,])])
 tb1 = data.frame(tb1)
-names(tb1) = t(tb[,1])
-tail(tb1)
+names(tb1) = t(tb[,1]) #use contry names as columns names in tb1
+head(tb1)
 ```
 
 # Convert strings into Date type
-
 ```{r}
 library(zoo)
+
+```
+
+```{r}
 tb1$date = as.yearmon( row.names(tb1),  "%m/%Y")
 ggplot( tb1, aes(x=date, y=USA)) + geom_point()
 ```
@@ -107,24 +117,30 @@ ggplot( tb1, aes(x=date, y=USA)) + geom_point()
 names(tb1)
 ```
 
+# We can use $ to take a spcifiied column
+
 ```{r}
 tb1$USA
 ```
 
-# tidyverse, select
+# tidyverse, select columns (varialbes)
 
 ```{r}
 tb1 %>% select (USA)
 ```
 
-# tidyverse, filter 
+# tidyverse, filter by rows
 ```{r}
-tb1 %>% filter( USA > 1) %>% select (USA, China)
-head(tb1)
+tb1 %>% filter( USA > 100 & USA < 5000 ) %>% select (USA, China)
+tb1[, c("USA", "China")]
+```
+```{r}
+tb1$"monthly total:"
 ```
 
 ```{r}
-tb1$"monthly total:"
+tb1$USA_percentage = tb1$USA / tb1$"monthly total:"
+tb1$USA_percentage
 ```
 
 # total submission 
