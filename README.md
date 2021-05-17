@@ -51,7 +51,7 @@ Please download a “RStudio Desktop” Open Source Edition from http://www.rstu
 
 <br>
 
-## Please take this anononymous voluntary [Post-survey] (https://forms.gle/TUWXX6yGXEYwibze9) <br>
+## Please take this anononymous voluntary [Post-survey](https://forms.gle/TUWXX6yGXEYwibze9) <br>
 
 ## Free Online Books on R: 
 If people want to learn R before and after the bootcamps, there are many free online books at 
