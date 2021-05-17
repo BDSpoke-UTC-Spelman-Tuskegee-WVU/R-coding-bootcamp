@@ -123,7 +123,7 @@ names(tb1)
 tb1$USA
 ```
 
-# tidyverse, select columns (varialbes)
+# tidyverse, select columns (variables)
 
 ```{r}
 tb1 %>% select (USA)

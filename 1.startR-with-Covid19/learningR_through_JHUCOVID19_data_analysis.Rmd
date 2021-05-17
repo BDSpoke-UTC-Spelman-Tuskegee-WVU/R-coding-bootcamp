@@ -151,7 +151,7 @@ tb1 %>% dplyr::filter( dates >= start, dates <=  end)  %>% dplyr::select(1:5)
 tb_sub <- 
  tb1 %>% dplyr::filter( dates >= start, dates <  start + ddays(30)) %>% dplyr::select( c(1:5), dates)
 
-tb_sub
+head(tb_sub)
 
 ggplot(tb_sub, aes( x = dates, y=tb_sub[,3])) + geom_point() + geom_smooth()
 ```
