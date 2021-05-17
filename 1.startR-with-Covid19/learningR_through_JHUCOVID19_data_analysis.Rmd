@@ -86,7 +86,7 @@ print(paste( "There are ", length(tb[1,]), " columns"))
 ```
 
 ## Select columns of daily cases
-Rotate the data so that data of each county is in one column
+Rotate the dataframe so that data of each county is in one column
 
 ```{r}
 #tb %>% select( 12:length(tb[1,]) ) 
@@ -134,11 +134,11 @@ tail(tb1)
 
 ```{r}
 ## Select a time window (row window) using 'filter'
-tb1 %>% filter( dates > mdy("4/30/2020"), dates < mdy("5/31/20")) %>% head()
+tb1 %>% filter( dates > mdy("3/30/2020"), dates < mdy("5/16/20")) %>% head()
 ```
 
 ```{r}
-start = mdy("12/1520")
+start = mdy("12/15/20")
 end = start + ddays(30)
 
 tb1 %>% dplyr::filter( dates >= start, dates <=  end)  %>% dplyr::select(1:5)
