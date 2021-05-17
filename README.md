@@ -34,9 +34,9 @@ Please download a “RStudio Desktop” Open Source Edition from http://www.rstu
 
 * 1-2pm [Learn R though COVID19 daily cases by counties in USA](https://github.com/BDSpoke-UTC-Spelman-Tuskegee-WVU/R-coding-bootcamp/blob/master/1.startR-with-Covid19/learningR_through_JHUCOVID19_data_analysis.Rmd)
 
-*2pm-2:10 break
+* 2pm-2:10 break
 
-*2:10-3pm Integrate heterogenous data sets: Analyze Google Mobility and COVID19 cases
+* 2:10-3pm Integrate heterogenous data sets: Analyze Google Mobility and COVID19 cases
 
 ## Day 2 	
 
