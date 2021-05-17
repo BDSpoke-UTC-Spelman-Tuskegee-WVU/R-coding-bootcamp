@@ -25,7 +25,7 @@ Please download a “RStudio Desktop” Open Source Edition from http://www.rstu
    * Introduction to R and Rstudio with simple exercises. [Video](http://www.youtube.com/watch?v=LJIxbmDAhYM)
 [![](https://i9.ytimg.com/vi/LJIxbmDAhYM/mq2.jpg?sqp=CLeo8vUF&rs=AOn4CLCVRPNCUV98kFe2aog51hZWwe5Ubg)](http://www.youtube.com/watch?v=LJIxbmDAhYM "BBD_simpleR")
 
-* 11am-11:10 	Break
+* 11am-11:10 	Break (Group Virtual Photo)
 
 * 11:10- 12:10pm [Explore a dataframe of GISAID submission records](https://github.com/BDSpoke-UTC-Spelman-Tuskegee-WVU/R-coding-bootcamp/blob/master/1.startR-with-Covid19/learningR_through_GISAID.Rmd). 
 
