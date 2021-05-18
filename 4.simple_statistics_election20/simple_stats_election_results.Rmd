@@ -23,7 +23,7 @@ head(Election20df)
 ```{r}
 Election20df %>% select ( total_votes ) %>% sum()
 
-sum( Election20df$total_votes )
+sum( Election20df$total_votes ) /1E6
 ```
 
 # Question: What are the total number votes for GOP or DEM? 
@@ -49,15 +49,15 @@ ggplot(Californiadf, aes(percentage_for_GOP)) +  geom_histogram()
 # Results by States? 
 
 ```{r}
-
-Statedf <- Election20df %>% select( state_name, votes_gop, votes_dem,  total_votes ) %>% group_by( state_name ) %>% summarise_if( is.numeric, sum)
+Statedf <- 
+  Election20df %>% select( state_name, votes_gop, votes_dem,  total_votes ) %>% group_by( state_name ) %>% summarise_if( is.numeric, sum)
 
 Statedf$percentage_for_GOP = Statedf$votes_gop / Statedf$total_votes
 
 ggplot(Statedf, aes(percentage_for_GOP)) +  geom_histogram()
 ```
 
-# Question: Find out which state has the nearly 100% DEM voting percentage? 
+# Question: Find out which state has the nearly 95% DEM voting percentage? 
 
 There are many ways to do this. 
 
@@ -80,8 +80,8 @@ quantile( Statedf$percentage_for_GOP )
 Reference: 
 https://stackoverflow.com/questions/21050021/create-category-based-on-range-in-r
 ```{r}
-groups =  cut( Statedf$percentage_for_GOP, c(0, 0.4, 0.47, 0.53, 0.5, 1) )
-levels(groups) = c("deepblue", "blue", "swing", "red", "deepred")
+groups =  cut( Statedf$percentage_for_GOP, c(0, 0.4, 0.47, 0.53, 0.6, 1) )
+levels(groups) =                   c("deepblue", "blue", "swing", "red", "deepred")
 Statedf$groups = groups
 ```
 
@@ -163,6 +163,10 @@ ggplot( Statedf3, aes(x=pop_density, y=percentage_for_GOP)) +
  
 ```
 
+```{r}
+summary(lm(Statedf3$percentage_for_GOP~ Statedf3$pop_density))
+```
+
 ## voting and population density
 
 ```{r}
@@ -183,5 +187,12 @@ deepblue_pop_densities <-
     Statedf3 %>% filter( groups == "deepblue") %>% select( pop_density)
 
 t.test( deepblue_pop_densities, deepred_pop_densities, alternative = "greater")
+```
+```{r}
+ggplot(Statedf, aes(x=state_name, y=percentage_for_GOP)) + geom_bar(stat='identity', width=.5)+ theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
+```
+
+```{r}
+ggplot(Statedf, aes(x=reorder(state_name, percentage_for_GOP), y=percentage_for_GOP)) + geom_bar(stat='identity', width=.5)+ theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
 ```
 
