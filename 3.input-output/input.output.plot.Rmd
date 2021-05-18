@@ -86,6 +86,10 @@ plot( y ~x, pch=x)
        )
 ```
 
+```{r}
+ggplot( sunflower, aes(x=Stripes, y=Seeds)) + geom_area()
+```
+
 # Output to csv file 
 
 ```{r}

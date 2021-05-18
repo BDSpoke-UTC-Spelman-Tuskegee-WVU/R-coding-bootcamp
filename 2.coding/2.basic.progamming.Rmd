@@ -91,10 +91,13 @@ print(y)
 
 # function and scope of variables
 
+## simple functions
 ```{r}
 # a simple function
-
-random_walk = function (n_of_steps){
+n_of_steps = 100
+ 
+random_walk = function (){
+  
   x = rep( 0, n_of_steps)
   for( i in 2:n_of_steps ){
     x[i] = x[i-1] + rnorm(1)
@@ -102,9 +105,11 @@ random_walk = function (n_of_steps){
   return(x)
 }
 
-plot(random_walk(100), type='l')
+plot(random_walk(), type='l')
 ```
 
+
+## scopes
 ```{r}
 #### a function
 x = c( 1,2,3,4, 7, 9); #this is a global variable
@@ -182,6 +187,24 @@ x = take_even(x)
  mean(x)
  
 print( paste("y.outside=", y.outside))
+```
+
+## return more than 1 results
+
+```{r}
+multi_return = function( N ){
+  x = 1:N
+  y = c("red", "blue", "orange")
+  return( list( x, y))
+}
+
+z = multi_return(10)
+
+x = z[[1]]
+class(x)
+print( paste("x=", x))
+y = z[[2]]
+class(y)
 ```
  
  
