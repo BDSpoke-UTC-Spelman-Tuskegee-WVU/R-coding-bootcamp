@@ -45,9 +45,9 @@ Please download a “RStudio Desktop” Open Source Edition from http://www.rstu
 [![](https://i9.ytimg.com/vi/H0Zkc-RuY-0/mq1.jpg?sqp=CPCn8vUF&rs=AOn4CLDmqFrClihZ3d4JKvfx23kGJS91bQ)](https://youtu.be/H0Zkc-RuY-0 "Molar solution")
 
 * 11:am-11:10am, break
-* 11:10-12:10 input, output 
+* 11:10-12:10 [input, output](https://github.com/BDSpoke-UTC-Spelman-Tuskegee-WVU/R-coding-bootcamp/tree/master/3.input-output) 
 
-* 1pm - Simple statistical test, linear regression with 2020 USA Election results
+* 1pm - [Simple statistical analysis with 2020 USA Election results](https://github.com/BDSpoke-UTC-Spelman-Tuskegee-WVU/R-coding-bootcamp/tree/master/4.simple_statistics_election20)
 
 <br>
 
