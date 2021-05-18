@@ -171,12 +171,17 @@ ggplot( Statedf3, aes(x=groups, y=pop_density)) + geom_point()
 
 ```{r}
 ggplot( Statedf3, aes(x=groups, y=pop_density)) + geom_boxplot()
-
 ```
 
-There are many more way to more sophisicated plots. 
+# t-test 
 
 ```{r}
+deepred_pop_densities <- 
+    Statedf3 %>% filter( groups == "deepred") %>% select( pop_density)
 
+deepblue_pop_densities <- 
+    Statedf3 %>% filter( groups == "deepblue") %>% select( pop_density)
+
+t.test( deepblue_pop_densities, deepred_pop_densities, alternative = "greater")
 ```
 
