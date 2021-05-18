@@ -7,7 +7,7 @@
 
 ```{r}
 molar_solution <- function( x, y) {
-  58.433 * (x/10^3) * (y/10^3)
+  58.433 * (x/10^3) * (y/10^3)  #in R by default, last line results are returned. 
 }
 molar_solution(100, 500) #100mM 500mL NaCl
 ```
@@ -30,7 +30,7 @@ molar_solution3 <- function( conc, vol, formula) {
   FW * conc * vol / 10^6
 }
 molar_solution3( 100, 500, 'NaCl' ) #100mM 500ML NaCl
-
+molar_solution3( 100, 500, 'NaOH' ) #100mM 500ML NaOH
 ```
 
 
