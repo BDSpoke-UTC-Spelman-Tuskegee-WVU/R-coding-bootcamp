@@ -92,6 +92,20 @@ print(y)
 # function and scope of variables
 
 ```{r}
+# a simple function
+
+random_walk = function (n_of_steps){
+  x = rep( 0, n_of_steps)
+  for( i in 2:n_of_steps ){
+    x[i] = x[i-1] + rnorm(1)
+  }
+  return(x)
+}
+
+plot(random_walk(100), type='l')
+```
+
+```{r}
 #### a function
 x = c( 1,2,3,4, 7, 9); #this is a global variable
 #x = c(5, 4, 3, 6, 10, 12)
