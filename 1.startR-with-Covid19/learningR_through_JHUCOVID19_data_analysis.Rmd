@@ -161,7 +161,7 @@ ggplot(tb_sub, aes( x = dates, y=tb_sub[,3])) + geom_point() + geom_smooth()
 ## Define the county and state. Change to your home county and state for your project
 
 ```{r}
-mycounties = c( 'Macon, Alabama, US') #Change here to your home county and state
+mycounties = c( 'Montgomery, Alabama, US') #Change here to your home county and state
 #mycounties = c( 'San Francisco, California, US') #Change here to your home county and state
 #mycounties = c( 'Santa Clara, California, US') #Change here to your home county and state
 #mycounties = c('Hennepin, Minnesota, US') #Minneapolis
@@ -234,7 +234,7 @@ names(tb_daily_sub)[1] = mycounties #add column names
 ```{r}
 tail(tb_daily_sub)
 ```
-### Plot the daily cases for this county 
+## Plot the daily cases for this county 
 ```{r}
 myplot <- ggplot(tb_daily_sub, aes(x=YMD, y=tb_daily_sub[,1]))
 myplot + geom_point() + stat_smooth(span=0.3)
@@ -251,7 +251,7 @@ Google Community Mobility report https://www.google.com/covid19/mobility/
 ```{r}
 # Download the Google Mobility data 
 url =  "https://www.gstatic.com/covid19/mobility/Region_Mobility_Report_CSVs.zip"
-download.file( url, destfile = "download/google.zip")
+# download.file( url, destfile = "download/google.zip") #do not need this because google report are on Github. 
 # You would need to unzip the downloaded zip file
 ```
 
@@ -276,7 +276,7 @@ tbGMUS = rbind( tbGMUS20, tbGMUS21)
 
 ```{r}
 myState = 'Alabama'
-myCounty = "Macon County" #Google location is different from JHU
+myCounty = "Montgomery County" #Google location is different from JHU
 tbGMmycounty <-
   tbGMUS %>% filter( sub_region_1 == myState, sub_region_2 == myCounty)
 head(tbGMmycounty)
@@ -333,9 +333,9 @@ tail( tb_GMCovidmycounty_scaled  )
 ```{r}
 names( tb_GMCovidmycounty_scaled )
 
-selected_columns = c('DailyCases', "transit_stations_percent_change_from_baseline", 'workplaces_percent_change_from_baseline','residential_percent_change_from_baseline')
+selected_columns = c('DailyCases', "transit_stations_percent_change_from_baseline", 'workplaces_percent_change_from_baseline')
 
-df_melt <- melt(tb_GMCovidmycounty_scaled, measure.vars=selected_columns, value.names="Values", varialbe.name="varialbe" )
+df_melt <- melt( tb_GMCovidmycounty_scaled, measure.vars=selected_columns, value.names="Values", varialbe.name="varialbe" )
 
 plot <- ggplot(df_melt, aes(x=date, y=value, color=variable)) + stat_smooth(span=0.15) 
 
