@@ -19,8 +19,9 @@ Please download a “RStudio Desktop” Open Source Edition from http://www.rstu
 
 ## Day 1 
 * 9:45am-10:00 	Presurvey. R and Rstudio. Download the GitHub repo in Zip File. 
+
 * Ask TAs to add TA in their zoom alias. Open up breakout rooms for TAs to help participant trouble-shoot. 
-* 
+
 * 10am-11am [Basic R Coding in RStudio](https://github.com/BDSpoke-UTC-Spelman-Tuskegee-WVU/R-coding-bootcamp/tree/master/0.Rstudio) ; [Video](https://youtu.be/Vaaxf7efpYQ)
    * Basic R code, Markdown file, code block, RStudio interface, Data frame, and basic data visualization and analysis. 
    * Introduction to R and Rstudio with simple exercises. [Video](http://www.youtube.com/watch?v=LJIxbmDAhYM)
@@ -46,9 +47,13 @@ Please download a “RStudio Desktop” Open Source Edition from http://www.rstu
 [![](https://i9.ytimg.com/vi/H0Zkc-RuY-0/mq1.jpg?sqp=CPCn8vUF&rs=AOn4CLDmqFrClihZ3d4JKvfx23kGJS91bQ)](https://youtu.be/H0Zkc-RuY-0 "Molar solution")
 
 * 11:am-11:10am, break
+
 * 11:10-12:10 [input, output](https://github.com/BDSpoke-UTC-Spelman-Tuskegee-WVU/R-coding-bootcamp/tree/master/3.input-output); [Video](https://youtu.be/8SieO7r0euY) 
+
 * lunch break
+
 * 1pm - [Simple statistical analysis with 2020 USA Election results](https://github.com/BDSpoke-UTC-Spelman-Tuskegee-WVU/R-coding-bootcamp/tree/master/4.simple_statistics_election20); [Vide](https://youtu.be/2Z09HfD90XA)
+
 * Anonymous survey
 * Please join the linkedIn group for future collaborations, https://www.linkedin.com/groups/12279083/
 
