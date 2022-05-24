@@ -172,8 +172,8 @@ ggplot(tb_sub, aes( x = dates, y=tb_sub[,3])) + geom_point() + geom_smooth()
 ## Define the county and state. Change to your home county and state for your project
 
 ```{r}
-#mycounties = c( 'Montgomery, Alabama, US') #Change here to your home county and state
-mycounties = c( 'San Francisco, California, US') #Change here to your home county and state
+mycounties = c( 'Montgomery, Alabama, US') #Change here to your home county and state
+#mycounties = c( 'San Francisco, California, US') #Change here to your home county and state
 #mycounties = c( 'Santa Clara, California, US') #Change here to your home county and state
 #mycounties = c('Hennepin, Minnesota, US') #Minneapolis
 #mycounties = c('Harris, Texas, US') #Houston
