@@ -1,11 +1,13 @@
 ---
 title: "Learning R through GISAID metadata analysis"
 author: "H Qin"
-date: "5/17/2021"
+date: "5/24/2022"
 output:
-  html_document: 
-    toc: true
-    toc_float: true
+  html_document:
+    toc: yes
+    toc_float: yes
+  pdf_document:
+    toc: yes
 ---
 
 
@@ -34,7 +36,10 @@ library(readxl)
 # Load the data
 
 ```{r read}
-tb = read_excel('gisaid_monthly_submissions_global_2021-05-12-0958.xlsx')
+#tb = read_excel('gisaid_monthly_submissions_global_2021-05-12-0958.xlsx')
+tb = read_excel('gisaid_monthly_submissions_global_2022-05-23.xlsx')
+distinct_names = dplyr::distinct(tb[,1])
+tb = tb[ match(distinct_names$...1, tb$...1), ] #remove redundant country names
 ```
 
 #  What is a data frame? 
@@ -105,12 +110,11 @@ head(tb1)
 # Convert strings into Date type
 ```{r}
 library(zoo)
-
 ```
 
 ```{r}
 tb1$date = as.yearmon( row.names(tb1),  "%m/%Y")
-ggplot( tb1, aes(x=date, y=USA)) + geom_point()
+ ggplot( tb1, aes(x=date, y=USA)) + geom_point()
 ```
 
 ```{r}
@@ -132,7 +136,7 @@ tb1 %>% select (USA)
 # tidyverse, filter by rows
 ```{r}
 tb1 %>% filter( USA > 100 & USA < 5000 ) %>% select (USA, China)
-tb1[, c("USA", "China")]
+##tb1[, c("USA", "China")]
 ```
 ```{r}
 tb1$"monthly total:"
