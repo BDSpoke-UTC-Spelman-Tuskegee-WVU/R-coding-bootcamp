@@ -172,7 +172,14 @@ ggplot(tb_sub, aes( x = dates, y=tb_sub[,3])) + geom_point() + geom_smooth()
 ## Define the county and state. Change to your home county and state for your project
 
 ```{r}
-mycounties = c( 'Montgomery, Alabama, US') #Change here to your home county and state
+#myState = "Alabama"
+#myCounty = "Montgomery"
+
+myState = "Tennessee"
+myCounty = "Hamilton"
+
+mycounties = paste( myCounty, ", ", myState, ", US", sep="")
+#mycounties = c( 'Montgomery, Alabama, US') #Change here to your home county and state
 #mycounties = c( 'San Francisco, California, US') #Change here to your home county and state
 #mycounties = c( 'Santa Clara, California, US') #Change here to your home county and state
 #mycounties = c('Hennepin, Minnesota, US') #Minneapolis
@@ -291,8 +298,9 @@ tbGMUS = rbind( tbGMUS20, tbGMUS21, tbGMUS22)
 ## Pick Google Mob.ility for the county
 
 ```{r}
-myState = 'Alabama'
-myCounty = "Montgomery County" #Google location is different from JHU
+#myState = 'Alabama'
+myCounty = paste(myCounty, " County", sep="")
+#myCounty = "Montgomery County" #Google location is different from JHU
 tbGMmycounty <-
   tbGMUS %>% filter( sub_region_1 == myState, sub_region_2 == myCounty)
 head(tbGMmycounty)
