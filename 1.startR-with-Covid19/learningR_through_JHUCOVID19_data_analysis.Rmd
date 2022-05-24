@@ -1,7 +1,7 @@
 ---
 title: "Learning R through JHU COVID19 data analysis"
 author: "H Qin"
-date: "5/17/2021"
+date: "5/23/2022"
 output:
   html_document: 
     toc: true
