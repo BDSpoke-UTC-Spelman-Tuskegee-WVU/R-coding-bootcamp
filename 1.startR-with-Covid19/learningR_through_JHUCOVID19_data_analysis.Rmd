@@ -185,14 +185,14 @@ current_dates = names(tb)[12:length(tb[1,])]
 tb1$dates = mdy(current_dates)
 #head(tb1)
 
-days_window = 340  # time  window
+days_window = 600  # time  window
 endday = today(tzone ='EST')
 
 tb_sub <- tb1 %>% 
   dplyr::select( all_of(mycounties), 'dates') %>%
   dplyr::filter( between(dates, endday-ddays(days_window), endday))   
 
-head(tb_sub)
+tail(tb_sub)
 ```
 
 ## Covert cumulative counts into daily cases
@@ -267,9 +267,14 @@ tbGMUS21 = read_csv("download/google/2021_US_Region_Mobility_Report.csv")
 tail(tbGMUS21)
 ```
 
-Stack the two data frames of Google Mobility
 ```{r}
-tbGMUS = rbind( tbGMUS20, tbGMUS21)
+tbGMUS22 = read_csv("download/google/2022_US_Region_Mobility_Report.csv")
+tail(tbGMUS22)
+```
+
+Stack the three data frames of Google Mobility
+```{r}
+tbGMUS = rbind( tbGMUS20, tbGMUS21, tbGMUS22)
 ```
 
 ## Pick Google Mob.ility for the county
