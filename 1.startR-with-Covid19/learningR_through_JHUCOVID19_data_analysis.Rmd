@@ -178,6 +178,10 @@ ggplot(tb_sub, aes( x = dates, y=tb_sub[,3])) + geom_point() + geom_smooth()
 myState = "Tennessee"
 myCounty = "Hamilton"
 
+myState = "Texas"
+myCounty = "Harris"
+
+
 mycounties = paste( myCounty, ", ", myState, ", US", sep="")
 #mycounties = c( 'Montgomery, Alabama, US') #Change here to your home county and state
 #mycounties = c( 'San Francisco, California, US') #Change here to your home county and state
@@ -203,7 +207,7 @@ current_dates = names(tb)[12:length(tb[1,])]
 tb1$dates = mdy(current_dates)
 #head(tb1)
 
-days_window = 600  # time  window
+days_window = 800  # time  window
 endday = today(tzone ='EST')
 
 tb_sub <- tb1 %>% 
@@ -361,8 +365,8 @@ selected_columns = c('DailyCases', "transit_stations_percent_change_from_baselin
 
 df_melt <- melt( tb_GMCovidmycounty_scaled, measure.vars=selected_columns, value.names="Values", varialbe.name="varialbe" )
 
-plot <- ggplot(df_melt, aes(x=date, y=value, color=variable)) + stat_smooth(span=0.15) 
-
+plot <- ggplot(df_melt, aes(x=date, y=value, color=variable)) + stat_smooth(span=0.05) 
+#plot + geom_point()
 plot + ggtitle( paste( myCounty, myState))
 
 ```
