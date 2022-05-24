@@ -58,7 +58,7 @@ str(tb[ , 1:10]);
 ```{r indexing}
 #indexing features of R
 tb[1:5, 2:3]
-tb$age #what does mean? 
+#tb$age #what does mean? 
 #tb$age[?] #try for 5th row in age
 
 # what is the 5th and 9th rows in age and SciLitScore: 
@@ -76,6 +76,16 @@ head(tb)
 Look at first 2 rows of columns 2 and 3
 ```{r}
 head( tb[, 2:3], n=2)
+```
+## How to find out the most recent dates in the JHU data set? 
+
+```{r}
+names(tb)[ length(names(tb)) ]
+```
+
+```{r}
+tail( names(tb) )
+last(names(tb))
 ```
 
 
@@ -129,6 +139,7 @@ mdy(current_dates[1:10])
 ```{r}
 tb1$dates = mdy(current_dates)
 tail(tb1)
+tail(tb1$dates)
 ```
 
 
@@ -161,8 +172,8 @@ ggplot(tb_sub, aes( x = dates, y=tb_sub[,3])) + geom_point() + geom_smooth()
 ## Define the county and state. Change to your home county and state for your project
 
 ```{r}
-mycounties = c( 'Montgomery, Alabama, US') #Change here to your home county and state
-#mycounties = c( 'San Francisco, California, US') #Change here to your home county and state
+#mycounties = c( 'Montgomery, Alabama, US') #Change here to your home county and state
+mycounties = c( 'San Francisco, California, US') #Change here to your home county and state
 #mycounties = c( 'Santa Clara, California, US') #Change here to your home county and state
 #mycounties = c('Hennepin, Minnesota, US') #Minneapolis
 #mycounties = c('Harris, Texas, US') #Houston
@@ -237,7 +248,7 @@ tail(tb_daily_sub)
 ## Plot the daily cases for this county 
 ```{r}
 myplot <- ggplot(tb_daily_sub, aes(x=YMD, y=tb_daily_sub[,1]))
-myplot + geom_point() + stat_smooth(span=0.3)
+myplot + geom_point() + stat_smooth(span=0.05) + ggtitle(mycounties)
 ```
 
 
