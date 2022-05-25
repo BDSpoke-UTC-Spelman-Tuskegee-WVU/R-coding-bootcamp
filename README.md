@@ -54,6 +54,8 @@ Please download a “RStudio Desktop” Open Source Edition from http://www.rstu
 
 * 1pm - [Simple statistical analysis with 2020 USA Election results](https://github.com/BDSpoke-UTC-Spelman-Tuskegee-WVU/R-coding-bootcamp/tree/master/4.simple_statistics_election20); [Video](https://youtu.be/2Z09HfD90XA)
 
+* Participants are encourage to share their theiry own computational experiences and projects. 
+ 
 * Anonymous survey
 * Please join the linkedIn group for future collaborations, https://www.linkedin.com/groups/12279083/
 
